@@ -12,7 +12,7 @@
         "start:dev": "node -r ./register.js src/index.ts",
         "dev": "nodemon",
         "build": "tsc",
-        "start": "nodemon"
+        "start": "node ./dist/index.js"
     },
     "repository": {
         "type": "git",
