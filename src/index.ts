@@ -2,10 +2,9 @@ import { Adapter, CommandGroupBuilder } from "@enitoni/gears-discordjs";
 import { matchPrefixes, Bot } from "@enitoni/gears";
 
 import { parseArguments } from "./common/parsing/middleware/parseArguments";
-import { prefix , port } from "./modules/constants";
+import { prefix , port, app } from "./modules/constants";
 
-const express = require("express");
-const app = express();
+
 
 import say from "./modules/commands/say";
 import meme from "./modules/commands/meme";
@@ -33,4 +32,4 @@ const init = async (): Promise<void> => {
     console.info(`The bot is up and running!`);
 };
 
-app.listen(port, init());
+app.listen(port, init);
