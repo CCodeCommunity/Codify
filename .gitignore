@@ -61,4 +61,3 @@ typings/
 .next
 
 # ignore dist folder
-/dist
