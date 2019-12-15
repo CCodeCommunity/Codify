@@ -9,7 +9,6 @@ import meme from "./modules/commands/meme";
 import joke from "./modules/commands/joke";
 import dbtest from "./modules/commands/database test";
 
-
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
 const commands = new CommandGroupBuilder()
@@ -23,7 +22,6 @@ const bot = new Bot({ adapter, commands: [commands] });
 bot.on("error", err => console.log("Error ", err));
 
 const init = async (): Promise<void> => {
-
     console.info(`Connecting to discord...`);
     await bot.start();
     console.info(`Logged in as ${bot.client.user.tag}`);
@@ -35,4 +33,3 @@ const init = async (): Promise<void> => {
 };
 
 app.listen(port, init);
-

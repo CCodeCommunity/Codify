@@ -1,10 +1,8 @@
-import Knex, { Config } from "knex";
-
-
+import { Config } from "knex";
 
 const options = {
-    client: 'pg',
-    connection:  process.env.DATABASE_URL+"?ssl=true",
+    client: "pg",
+    connection: process.env.DATABASE_URL + "?ssl=true",
     migrations: {
         directory: "db",
         tableName: "migrations"
@@ -16,10 +14,10 @@ const options = {
 const configs: Record<string, Config> = {
     development: {
         ...options,
-        connection:{
-            database: 'postgres',
-            user: 'postgres',
-            password: 'password'
+        connection: {
+            database: "postgres",
+            user: "postgres",
+            password: "password"
         }
     },
 
@@ -29,4 +27,3 @@ const configs: Record<string, Config> = {
 };
 
 export const { development, production } = configs;
-

@@ -10,31 +10,36 @@ const loop = (type: "content" | "title" | "score") => {
         loopIt++ % 20;
     }
     return loopIt;
-}
-
+};
 
 export default new CommandBuilder()
     .match(matchPrefixes("joke"))
     .use(async context => {
         try {
-            let response = await fetch(`https://www.reddit.com/r/Jokes/hot/.json`);
-            let data = await response.json();
+            const response = await fetch(
+                `https://www.reddit.com/r/Jokes/hot/.json`
+            );
+            const data = await response.json();
 
-            return context.message.channel.send(
-                {
-                    embed: {
-                        color: 3447003,
-                        title: `${data.data.children[loop("title")].data.title}`,
-                        description: `${data.data.children[loop("content")].data.selftext}`,
+            return context.message.channel.send({
+                embed: {
+                    color: 3447003,
+                    title: `${data.data.children[loop("title")].data.title}`,
+                    description: `${
+                        data.data.children[loop("content")].data.selftext
+                    }`,
 
-                        footer: {
-                            text: `👍 ${data.data.children[loop("score")].data.score} | 💬 ${data.data.children[loop("score")].data.num_comments}`
-                        }
+                    footer: {
+                        text: `👍 ${
+                            data.data.children[loop("score")].data.score
+                        } | 💬 ${
+                            data.data.children[loop("score")].data.num_comments
+                        }`
                     }
                 }
-            );
+            });
         } catch (e) {
-            return context.message.channel.send(e)
+            return context.message.channel.send(e);
         }
     })
     .done();
