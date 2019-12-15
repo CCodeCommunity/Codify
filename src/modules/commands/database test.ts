@@ -38,7 +38,7 @@ export default new CommandBuilder()
         if (args.length) {
             await insertMessage(message.author.id, args.join(" "));
 
-            if (args.length < 1800) {
+            if (args.length > 1800) {
                 return message.channel.send(`Error: Your message is too long.`);
             } else {
                 return message.channel.send(
