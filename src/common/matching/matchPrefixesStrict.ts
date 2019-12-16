@@ -1,4 +1,5 @@
 import { Matcher } from "@enitoni/gears-discordjs";
+import { Message } from "discord.js";
 
 const symbols = ["-", "."] as const;
 
@@ -14,6 +15,10 @@ export const matchPrefixesStrict = (
 
     const isMatching = !!context.content.match(regex);
     if (!isMatching) {
+        if (keywords[0] === "help|cmds|commands")
+            context.message.channel.send(
+                `**Invalid command, try:** \`cc!help\`**!**`
+            );
         return;
     }
 
