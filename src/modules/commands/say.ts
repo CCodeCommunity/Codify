@@ -11,12 +11,12 @@ export default new CommandBuilder()
 
         if (!args.length) {
             return message.channel.send(
-                `**${message.author.username}** said nothing`
+                `Absolutely nothing.`
             );
         }
 
         return message.channel.send(
-            `**${message.author.username}** said:\n${args.join(" ")}`
+            `${args.join(" ")}`
         );
     })
     .done();
