@@ -15,28 +15,33 @@ export default new CommandBuilder()
                 },
                 fields: [
                     {
-                        name: "\`cc!help / cc!cmds / cc!commands\`",
+                        name: "`cc!help / cc!cmds / cc!commands`",
                         value:
                             "List all the commands for the discord bot. Basically what you are seeing right now."
                     },
                     {
-                        name: "\`cc!say [text]\`",
+                        name: "`cc!say [text]`",
                         value: "@Codify will say whatever you want."
                     },
                     {
-                        name: "\`cc!meme [subreddit](optional)\`",
+                        name: "`cc!meme [subreddit](optional)`",
                         value:
                             "Use this for memes, the default subreddit is programmerHumour but you can choose other subreddits as well. ***WARING:*** *Using nsfw subreddits will result in a kick or a ban*"
                     },
                     {
-                        name: "\`cc!joke\`",
+                        name: "`cc!joke`",
                         value:
                             "Use this for seeing jokes from r/jokes. **Disclaimer:** The subreddit is full of bad jokes lol."
                     },
                     {
-                        name: "\`cc!dbtest [text]\`",
+                        name: "`cc!dbtest [text]`",
                         value:
-                            "This command will store a message in the bot's database. Use \`cc!dbtest\` to get the message back from the database. This command is temporary and it was set for testing our bot's database."
+                            "This command will store a message in the bot's database. Use `cc!dbtest` to get the message back from the database. This command is temporary and it was set for testing our bot's database."
+                    },
+                    {
+                        name: "`cc!challenge",
+                        value:
+                            "Run this command to get a coding challenge, just try to make what it says lol."
                     }
                 ]
             }
