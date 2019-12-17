@@ -6,7 +6,7 @@ import puppeteer from "puppeteer";
 export default new CommandBuilder()
     .match(matchPrefixesStrict("challenge"))
     .use(async context => {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch(); 
         const page = await browser.newPage();
 
         try {
