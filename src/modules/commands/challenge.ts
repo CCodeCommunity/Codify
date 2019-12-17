@@ -14,7 +14,7 @@ export default new CommandBuilder()
             await page.click(".button");
 
             const element = await page.$("#content");
-            const text = await page.evaluate(
+            const text = await page.evaluate( 
                 element => element.textContent,
                 element
             );
