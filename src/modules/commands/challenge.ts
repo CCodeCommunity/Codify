@@ -19,7 +19,7 @@ export default new CommandBuilder()
             const text = await page.evaluate(
                 element => element.textContent,
                 element
-            );
+            ); 
 
             return context.message.channel.send(
                 `**You have to make:** ${text}`
