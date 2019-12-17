@@ -52,9 +52,11 @@
         "@enitoni/gears-discordjs": "^2.0.1",
         "@types/knex": "^0.16.1",
         "@types/pg": "^7.11.2",
+        "@types/puppeteer": "^2.0.0",
         "discord.js": "^11.5.1",
         "express": "^4.17.1",
         "node-fetch": "^2.6.0",
-        "pg": "^7.14.0"
+        "pg": "^7.14.0",
+        "puppeteer": "^2.0.0"
     }
 }
