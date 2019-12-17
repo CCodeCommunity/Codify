@@ -6,12 +6,12 @@ import puppeteer from "puppeteer";
 export default new CommandBuilder()
     .match(matchPrefixesStrict("challenge"))
     .use(async context => {
-        const browser = await puppeteer.launch({
-            args: ["--no-sandbox", "--disable-setuid-sandbox"]
-        });
-        const page = await browser.newPage();
-
         try {
+            const browser = await puppeteer.launch({
+                args: ["--no-sandbox", "--disable-setuid-sandbox"]
+            });
+            const page = await browser.newPage();
+
             await page.goto("https://seblague.github.io/ideagenerator/");
             await page.click(".button");
 
