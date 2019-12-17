@@ -39,7 +39,7 @@ export default new CommandBuilder()
                             "This command will store a message in the bot's database. Use `cc!dbtest` to get the message back from the database. This command is temporary and it was set for testing our bot's database."
                     },
                     {
-                        name: "`cc!challenge",
+                        name: "`cc!challenge`",
                         value:
                             "Run this command to get a coding challenge, just try to make what it says lol."
                     }
