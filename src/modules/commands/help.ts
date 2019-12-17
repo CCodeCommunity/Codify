@@ -42,6 +42,10 @@ export default new CommandBuilder()
                         name: "`cc!challenge`",
                         value:
                             "Run this command to get a coding challenge, just try to make what it says lol."
+                    },
+                    {
+                        name: "`cc!anyway [text]`",
+                        value: "So anyway I started [text]. The better if you know the meme."
                     }
                 ]
             }
