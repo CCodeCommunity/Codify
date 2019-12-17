@@ -55,6 +55,7 @@
         "@types/puppeteer": "^2.0.0",
         "discord.js": "^11.5.1",
         "express": "^4.17.1",
+        "jimp": "^0.9.3",
         "node-fetch": "^2.6.0",
         "pg": "^7.14.0",
         "puppeteer": "^2.0.0"
