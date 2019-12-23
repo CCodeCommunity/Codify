@@ -66,6 +66,10 @@ export default new CommandBuilder()
                         name: "`cc!gamble [amount]`",
                         value:
                             "Use this to gamble, cuz virtual free gambling is fun."
+                    },
+                    {
+                        name: "`cc!pay [user]`",
+                        value: "Use ths command to send a user some money."
                     }
                 ]
             }
