@@ -24,7 +24,7 @@ export default new CommandBuilder()
                         value: "@Codify will say whatever you want."
                     },
                     {
-                        name: "`cc!meme [subreddit](optional)`",
+                        name: "`cc!meme <subreddit>`",
                         value:
                             "Use this for memes, the default subreddit is programmerHumour but you can choose other subreddits as well. ***WARING:*** *Using nsfw subreddits will result in a kick or a ban*"
                     },
@@ -45,7 +45,27 @@ export default new CommandBuilder()
                     },
                     {
                         name: "`cc!anyway [text]`",
-                        value: "So anyway I started [text]. The better if you know the meme."
+                        value:
+                            "So anyway I started [text]. The better if you know the meme."
+                    },
+                    {
+                        name: "`cc!profile <user>`",
+                        value:
+                            "Use this to see your profile or someone else's profile. You can set a description too."
+                    },
+                    {
+                        name: "`cc!desc [description]`",
+                        value:
+                            "Use this command to set a description to show on your profile :)"
+                    },
+                    {
+                        name: "`cc!daily`",
+                        value: "Claim your daily reward with this command."
+                    },
+                    {
+                        name: "`cc!gamble [amount]`",
+                        value:
+                            "Use this to gamble, cuz virtual free gambling is fun."
                     }
                 ]
             }
