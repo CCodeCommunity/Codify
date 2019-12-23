@@ -15,6 +15,7 @@ import profile from "./modules/commands/profile";
 import description from "./modules/commands/description";
 import daily from "./modules/commands/daily";
 import gamble from "./modules/commands/gamble";
+import pay from "./modules/commands/pay";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -30,6 +31,7 @@ const commands = new CommandGroupBuilder()
         gamble,
         meme,
         joke,
+        pay,
         anyway,
         dbtest,
         help
