@@ -45,7 +45,7 @@ const init = async (): Promise<void> => {
     await bot.start();
     console.info(`Logged in as ${bot.client.user.tag}`);
 
-    await bot.client.user.setActivity(`Hello ${process.env.COMMUNITY}!`);
+    await bot.client.user.setActivity(`🚰 Drinking water!`);
     console.info(`Bot activity is set up!`);
 
     console.info(`The bot is up and running!`);
