@@ -7,7 +7,6 @@ import { prefix, port, app } from "./modules/constants";
 import say from "./modules/commands/say";
 import meme from "./modules/commands/meme";
 import joke from "./modules/commands/joke";
-import dbtest from "./modules/commands/database test";
 import help from "./modules/commands/help";
 import challenge from "./modules/commands/challenge";
 import anyway from "./modules/commands/anyway";
@@ -33,7 +32,6 @@ const commands = new CommandGroupBuilder()
         joke,
         pay,
         anyway,
-        dbtest,
         help
     ) /// Make sure help is the last command or it will break things.
     .done();
