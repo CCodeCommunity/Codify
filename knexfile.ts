@@ -1,4 +1,5 @@
 import { Config } from "knex";
+import Knex from "knex";
 
 const options = {
     client: "pg",
@@ -27,3 +28,5 @@ const configs: Record<string, Config> = {
 };
 
 export const { development, production } = configs;
+const knex = Knex(production);
+export default knex;
