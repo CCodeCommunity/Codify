@@ -3,9 +3,7 @@ import { CommandBuilder } from "@enitoni/gears-discordjs";
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-import Knex from "knex";
-import { production } from "../../../knexfile";
-const knex = Knex(production);
+import knex from "../../../knexfile";
 
 async function insertData(id: string, message: string) {
     knex("user")

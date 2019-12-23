@@ -2,9 +2,7 @@ import { CommandBuilder } from "@enitoni/gears-discordjs";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-import Knex from "knex";
-import { production } from "../../../knexfile";
-const knex = Knex(production);
+import knex from "../../../knexfile";
 
 async function checkClaimed(id: string) {
     try {
