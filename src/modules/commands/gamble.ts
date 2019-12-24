@@ -23,10 +23,10 @@ async function updateBalance(amount: number, id: string) {
     await knex("user")
         .where({ userid: id })
         .update({
-            balance: win + balance
+            balance: win + parseInt(balance)
         });
 
-    const newBalance = win + balance;
+    const newBalance = win + parseInt(balance);
 
     return { dice, newBalance };
 }
