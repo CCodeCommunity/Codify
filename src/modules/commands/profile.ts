@@ -4,20 +4,10 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../knexfile";
+import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function pullData(id: string) {
-    await knex("user")
-        .where({ userid: id })
-        .then(async rows => {
-            if (rows.length === 0) {
-                await knex("user").insert({
-                    userid: id,
-                    description: "Nothing set yet.",
-                    balance: 0,
-                    lastdaily: "Never claimed."
-                });
-            }
-        });
+    checkAndInitProfile(id);
 
     return knex("user").where("userid", id);
 }

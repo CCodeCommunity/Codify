@@ -1,20 +1,20 @@
+import { Bot, matchPrefixes } from "@enitoni/gears";
 import { Adapter, CommandGroupBuilder } from "@enitoni/gears-discordjs";
-import { matchPrefixes, Bot } from "@enitoni/gears";
 
 import { parseArguments } from "./common/parsing/middleware/parseArguments";
-import { prefix, port, app } from "./modules/constants";
+import { app, port, prefix } from "./modules/constants";
 
-import say from "./modules/commands/say";
-import meme from "./modules/commands/meme";
-import joke from "./modules/commands/joke";
-import help from "./modules/commands/help";
-import challenge from "./modules/commands/challenge";
 import anyway from "./modules/commands/anyway";
-import profile from "./modules/commands/profile";
-import description from "./modules/commands/description";
+import challenge from "./modules/commands/challenge";
 import daily from "./modules/commands/daily";
+import description from "./modules/commands/description";
 import gamble from "./modules/commands/gamble";
+import help from "./modules/commands/help";
+import joke from "./modules/commands/joke";
+import meme from "./modules/commands/meme";
 import pay from "./modules/commands/pay";
+import profile from "./modules/commands/profile";
+import say from "./modules/commands/say";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 

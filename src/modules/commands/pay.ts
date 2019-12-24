@@ -4,15 +4,14 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../knexfile";
+import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function checkBalance(amount: number, id: string) {
     if (amount <= 0 || amount >= 10000) {
         return false;
     }
 
-    const balance = await knex("user")
-        .where({ userid: id })
-        .then(data => data[0].balance);
+    const balance = (await knex("user").where({ userid: id }))[0].balance;
 
     return parseInt(balance) >= amount;
 }
@@ -21,9 +20,9 @@ async function transferMoney(
     senderID: string,
     receiverID: string
 ) {
-    const senderBalance = await knex("user")
-        .where({ userid: senderID })
-        .then(data => data[0].balance);
+    const senderBalance = (await knex("user").where({ userid: senderID }))[0]
+        .balance;
+
     const senderNewBalance = senderBalance - amount;
     await knex("user")
         .where({ userid: senderID })
@@ -31,21 +30,12 @@ async function transferMoney(
             balance: senderNewBalance
         });
 
-    await knex("user")
-        .where({ userid: receiverID })
-        .then(async rows => {
-            if (rows.length === 0) {
-                await knex("user").insert({
-                    userid: receiverID,
-                    description: "Nothing set yet.",
-                    balance: 0,
-                    lastdaily: "Never claimed."
-                });
-            }
-        });
-    const receiverBalance = await knex("user")
-        .where({ userid: receiverID })
-        .then(data => data[0].balance);
+    await checkAndInitProfile(receiverID);
+
+    const receiverBalance = (
+        await knex("user").where({ userid: receiverID })
+    )[0].balance;
+
     const receiverNewBalance = parseInt(receiverBalance) + amount;
     await knex("user")
         .where({ userid: receiverID })

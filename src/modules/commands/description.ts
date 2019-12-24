@@ -4,24 +4,13 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../knexfile";
+import { checkAndInitProfile } from "../../common/knexCommon";
 
-async function insertData(id: string, message: string) {
-    knex("user")
-        .where({ userid: id })
-        .then(async rows => {
-            if (rows.length === 0) {
-                await knex("user").insert({
-                    userid: id,
-                    description: message,
-                    balance: 0,
-                    lastdaily: "Never claimed."
-                });
-            } else {
-                await knex("user")
-                    .where({ userid: id })
-                    .update({ description: message });
-            }
-        });
+async function insertData(userid: string, description: string) {
+    await checkAndInitProfile(userid, description);
+    await knex("user")
+        .where({ userid })
+        .update({ description });
 }
 
 export default new CommandBuilder()
