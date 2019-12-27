@@ -15,6 +15,7 @@ import meme from "./modules/commands/meme";
 import pay from "./modules/commands/pay";
 import profile from "./modules/commands/profile";
 import say from "./modules/commands/say";
+import topbalance from "./modules/commands/topbalance";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -29,6 +30,7 @@ const commands = new CommandGroupBuilder()
         daily,
         gamble,
         meme,
+        topbalance,
         joke,
         pay,
         anyway,
