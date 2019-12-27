@@ -7,7 +7,7 @@ import knex from "../../../knexfile";
 import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function pullData(id: string) {
-    checkAndInitProfile(id);
+    await checkAndInitProfile(id);
 
     return knex("user").where("userid", id);
 }
