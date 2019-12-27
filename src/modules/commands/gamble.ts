@@ -58,7 +58,9 @@ export default new CommandBuilder()
                             : dice >= 50
                             ? "won " + amount * 2
                             : "lost everything"
-                    }** and now you have **$${newBalance}**`
+                    }** and now you have **$${newBalance}**, <@${
+                        message.author.id
+                    }>`
                 );
             } else {
                 return message.channel.send("**Wait that's illegal.**");
