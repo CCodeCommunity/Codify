@@ -65,6 +65,11 @@ export default new CommandBuilder()
                     {
                         name: "`cc!pay [user]`",
                         value: "Use ths command to send a user some money."
+                    },
+                    {
+                        name: "`cc!topb`",
+                        value:
+                            "Use this command to get the top balance of all users."
                     }
                 ]
             }
