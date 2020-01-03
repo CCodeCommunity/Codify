@@ -11,13 +11,26 @@ async function generateTop(message: any) {
     let fill = "```css\n";
 
     for (let i = 0; i <= 9; i++) {
-        const memberName = await message.guild.members
-            .get(`${top[i].userid}`)
-            ?.displayName.replace(/[^\w\s]|\s+/gi, "");
+        let memberName;
+        do {
+            if (top[i] == undefined) {
+                i = 99;
+                break;
+            }
+
+            memberName = await message.guild.members
+                .get(`${top[i].userid}`)
+                ?.displayName.replace(/[^\w\s]|\s+/gi, "");
+
+            if (memberName == undefined) top.shift();
+        } while (memberName == undefined);
+
         const k = i + 1 == 10 ? "10" : `0${i + 1}`;
 
-        fill += `[${k}]  #${memberName} \n`;
-        fill += `      Level ${top[i].level}  :${top[i].xp}XP \n\n`;
+        if (i != 99) {
+            fill += `[${k}]  #${memberName} \n`;
+            fill += `      Level ${top[i].level}  :${top[i].xp}XP \n\n`;
+        }
     }
     fill += "```";
 

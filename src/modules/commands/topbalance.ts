@@ -8,15 +8,24 @@ async function fillFields(message: any) {
     const top = await knex("user").orderBy("balance", "desc");
 
     let fill = "```css\n";
-
     for (let i = 0; i <= 9; i++) {
-        const memberName = await message.guild.members
-            .get(`${top[i].userid}`)
-            ?.displayName.replace(/[^\w\s]|\s+/gi, "");
-        const k = i + 1 == 10 ? "10" : `0${i + 1}`;
+        let memberName;
+        do {
+            if (top[i] == undefined) {
+                i = 99;
+                break;
+            }
+            memberName = await message.guild.members
+                .get(`${top[i].userid}`)
+                ?.displayName.replace(/[^\w\s]|\s+/gi, "");
+            if (memberName == undefined) top.shift();
+        } while (memberName == undefined);
 
-        fill += `[${k}]  #${memberName} \n`;
-        fill += `      Balance: $${top[i].balance}\n\n`;
+        const k = i + 1 == 10 ? "10" : `0${i + 1}`;
+        if (i != 99) {
+            fill += `[${k}]  #${memberName} \n`;
+            fill += `      Balance: $${top[i].balance}\n\n`;
+        }
     }
     fill += "```";
 
