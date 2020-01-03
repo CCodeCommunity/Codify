@@ -19,91 +19,63 @@ export default new CommandBuilder()
         const { args } = context.state;
 
         try {
+            let profileData;
             if (args.length) {
-                const info = await pullData(message.mentions.users.first().id);
-                const profileData = info[0];
-
-                return message.channel.send({
-                    embed: {
-                        description: "**This is your buddy.**",
-                        color: 3447003,
-                        footer: {
-                            text: "👀"
-                        },
-                        fields: [
-                            {
-                                name: "😀 Nickname:",
-                                value: `${
-                                    message.guild.members.get(
-                                        `${profileData.userid}`
-                                    )?.displayName
-                                }`
-                            },
-                            {
-                                name: "💬 Description:",
-                                value: `${profileData.description}`
-                            },
-                            {
-                                name: "💰 Balance:",
-                                value: `${profileData.balance}`
-                            },
-                            {
-                                name: "📅 Last daily claim:",
-                                value:
-                                    profileData.lastdaily == "Never claimed."
-                                        ? "Never claimed."
-                                        : profileData.lastdaily +
-                                          "/" +
-                                          (new Date().getMonth() + 1) +
-                                          "/" +
-                                          new Date().getFullYear()
-                            }
-                        ]
-                    }
-                });
+                profileData = (
+                    await pullData(message.mentions.users.first().id)
+                )[0];
             } else {
-                const info = await pullData(message.author.id);
-                const profileData = info[0];
-
-                return message.channel.send({
-                    embed: {
-                        description: "**Here is your profile data.**",
-                        color: 3447003,
-                        footer: {
-                            text: "👍"
-                        },
-                        fields: [
-                            {
-                                name: "😀 Nickname:",
-                                value: `${
-                                    message.guild.members.get(
-                                        `${profileData.userid}`
-                                    )?.displayName
-                                }`
-                            },
-                            {
-                                name: "💬 Description:",
-                                value: `${profileData.description}`
-                            },
-                            {
-                                name: "💰 Balance:",
-                                value: `${profileData.balance}`
-                            },
-                            {
-                                name: "📅 Last daily claim:",
-                                value:
-                                    profileData.lastdaily == "Never claimed."
-                                        ? "Never claimed."
-                                        : profileData.lastdaily +
-                                          "/" +
-                                          (new Date().getMonth() + 1) +
-                                          "/" +
-                                          new Date().getFullYear()
-                            }
-                        ]
-                    }
-                });
+                profileData = (await pullData(message.author.id))[0];
             }
+            return message.channel.send({
+                embed: {
+                    description: "**This is your buddy.**",
+                    color: 3447003,
+                    fields: [
+                        {
+                            name: "😀 Nickname:",
+                            value: `${
+                                message.guild.members.get(
+                                    `${profileData.userid}`
+                                )?.displayName
+                            }`
+                        },
+                        {
+                            name: "↗️ Level:",
+                            value: `${profileData.level}`,
+                            inline: true
+                        },
+                        {
+                            name: "⭐ Xp until level up:",
+                            value: `${Math.floor(Math.sqrt(profileData.level)) *
+                                100 -
+                                profileData.xp}`,
+                            inline: true
+                        },
+                        {
+                            name: "💬 Description:",
+                            value: `${profileData.description}`
+                        },
+                        {
+                            name: "💰 Balance:",
+                            value: `${profileData.balance}`,
+                            inline: true
+                        },
+                        {
+                            name: "📅 Last daily claim:",
+                            value:
+                                profileData.lastdaily == "Never claimed."
+                                    ? "Never claimed."
+                                    : profileData.lastdaily +
+                                      "/" +
+                                      (new Date().getMonth() + 1) +
+                                      "/" +
+                                      new Date().getFullYear(),
+                            inline: true
+                        }
+                    ]
+                }
+            });
         } catch (e) {
             console.info(e);
             return message.channel.send(
