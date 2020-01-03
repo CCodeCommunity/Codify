@@ -33,11 +33,11 @@ export default new CommandBuilder()
                         value:
                             "Use this for seeing jokes from r/jokes. **Disclaimer:** The subreddit is full of bad jokes lol."
                     },
-                    {
-                        name: "`cc!challenge`",
-                        value:
-                            "Run this command to get a coding challenge, just try to make what it says lol."
-                    },
+                    // {
+                    //     name: "`cc!challenge`",
+                    //     value:
+                    //         "Run this command to get a coding challenge, just try to make what it says lol."
+                    // },
                     {
                         name: "`cc!anyway [text]`",
                         value:
