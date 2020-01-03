@@ -5,7 +5,6 @@ import { parseArguments } from "./common/parsing/middleware/parseArguments";
 import { app, port, prefix } from "./modules/constants";
 
 import anyway from "./modules/commands/anyway";
-import challenge from "./modules/commands/challenge";
 import daily from "./modules/commands/daily";
 import description from "./modules/commands/description";
 import gamble from "./modules/commands/gamble";
@@ -23,7 +22,6 @@ const commands = new CommandGroupBuilder()
     .match(matchPrefixes(prefix))
     .use(parseArguments)
     .setCommands(
-        challenge,
         description,
         profile,
         say,
