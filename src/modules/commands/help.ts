@@ -17,21 +17,25 @@ export default new CommandBuilder()
                     {
                         name: "`cc!help / cc!cmds / cc!commands`",
                         value:
-                            "List all the commands for the discord bot. Basically what you are seeing right now."
+                            "List all the commands for the discord bot. Basically what you are seeing right now.",
+                        inline: true
                     },
                     {
                         name: "`cc!say [text]`",
-                        value: "@Codify will say whatever you want."
+                        value: "@Codify will say whatever you want.",
+                        inline: true
                     },
                     {
                         name: "`cc!meme <subreddit>`",
                         value:
-                            "Use this for memes, the default subreddit is programmerHumour but you can choose other subreddits as well. ***WARING:*** *Using nsfw subreddits will result in a kick or a ban*"
+                            "Use this for memes, the default subreddit is programmerHumour but you can choose other subreddits as well. ***WARING:*** *Using nsfw subreddits will result in a kick or a ban*",
+                        inline: true
                     },
                     {
                         name: "`cc!joke`",
                         value:
-                            "Use this for seeing jokes from r/jokes. **Disclaimer:** The subreddit is full of bad jokes lol."
+                            "Use this for seeing jokes from r/jokes. **Disclaimer:** The subreddit is full of bad jokes lol.",
+                        inline: true
                     },
                     // {
                     //     name: "`cc!challenge`",
@@ -41,35 +45,47 @@ export default new CommandBuilder()
                     {
                         name: "`cc!anyway [text]`",
                         value:
-                            "So anyway I started [text]. The better if you know the meme."
+                            "So anyway I started [text]. The better if you know the meme.",
+                        inline: true
                     },
                     {
                         name: "`cc!profile <user>`",
                         value:
-                            "Use this to see your profile or someone else's profile. You can set a description too."
+                            "Use this to see your profile or someone else's profile. You can set a description too.",
+                        inline: true
                     },
                     {
                         name: "`cc!desc [description]`",
                         value:
-                            "Use this command to set a description to show on your profile :)"
+                            "Use this command to set a description to show on your profile :)",
+                        inline: true
                     },
                     {
                         name: "`cc!daily`",
-                        value: "Claim your daily reward with this command."
+                        value: "Claim your daily reward with this command.",
+                        inline: true
                     },
                     {
                         name: "`cc!gamble [amount]`",
                         value:
-                            "Use this to gamble, cuz virtual free gambling is fun."
+                            "Use this to gamble, cuz virtual free gambling is fun.",
+                        inline: true
                     },
                     {
                         name: "`cc!pay [user]`",
-                        value: "Use ths command to send a user some money."
+                        value: "Use ths command to send a user some money.",
+                        inline: true
+                    },
+                    {
+                        name: "`cc!top`",
+                        value: "Use this command to see the top users by xp.",
+                        inline: true
                     },
                     {
                         name: "`cc!topb`",
                         value:
-                            "Use this command to get the top balance of all users."
+                            "Use this command to get the top balance of all users.",
+                        inline: true
                     }
                 ]
             }
