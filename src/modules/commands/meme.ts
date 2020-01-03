@@ -4,6 +4,7 @@ import { matchPrefixes } from "@enitoni/gears";
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 
 import fetch from "node-fetch";
+import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 let loopIt = 0;
 
@@ -21,7 +22,7 @@ const loop = (type: "url" | "title" | "score") => {
 };
 
 export default new CommandBuilder()
-    .match(matchPrefixes("meme"))
+    .match(matchPrefixesStrict("meme"))
     .use<ParseArgumentsState>(async context => {
         const { args } = context.state;
         let subreddit = "ProgrammerHumor";

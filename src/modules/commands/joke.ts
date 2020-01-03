@@ -2,6 +2,7 @@ import { CommandBuilder } from "@enitoni/gears-discordjs";
 import { matchPrefixes } from "@enitoni/gears";
 
 import fetch from "node-fetch";
+import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 let loopIt = 0;
 
@@ -13,7 +14,7 @@ const loop = (type: "content" | "title" | "score") => {
 };
 
 export default new CommandBuilder()
-    .match(matchPrefixes("joke"))
+    .match(matchPrefixesStrict("joke"))
     .use(async context => {
         try {
             const response = await fetch(
