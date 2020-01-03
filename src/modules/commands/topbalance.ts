@@ -11,7 +11,8 @@ async function fillFields() {
     for (let i = 0; i <= 9; i++) {
         fill[i] = {
             name: `\`TOP ${i + 1}\``,
-            value: `<@${top[i].userid}> with **$${top[i].balance}**`
+            value: `<@${top[i].userid}>\n with **$${top[i].balance}**`,
+            inline: true
         };
     }
 
