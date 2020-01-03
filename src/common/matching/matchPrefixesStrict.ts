@@ -1,5 +1,6 @@
 import { Matcher } from "@enitoni/gears-discordjs";
 import { Message } from "discord.js";
+import { autoXpClaim } from "../knexCommon";
 
 const symbols = ["-", "."] as const;
 
@@ -20,6 +21,8 @@ export const matchPrefixesStrict = (
                 `**Invalid command, try:** \`cc!help\`**!**`
             );
         return;
+    } else {
+        autoXpClaim(context.message.author.id, context);
     }
 
     const newContent = context.content.replace(regex, "").trim();
