@@ -47,9 +47,9 @@ export default new CommandBuilder()
                         },
                         {
                             name: "⭐ Xp until level up:",
-                            value: `${Math.floor(Math.sqrt(profileData.level)) *
-                                100 -
-                                profileData.xp}`,
+                            value: `${Math.floor(
+                                Math.sqrt(profileData.level) * 100
+                            ) - profileData.xp}`,
                             inline: true
                         },
                         {
