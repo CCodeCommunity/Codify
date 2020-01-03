@@ -10,17 +10,18 @@ This bot was created for my comunity on discord because I wanted to provide them
 - `cc!say [text]`: Makes the bot say something. 
 - `cc!meme <subreddit>`: Sends an embed message with a meme from a desired subreddit, you can leave that empty to get a meme from r/programmerHumour
 - `cc!joke`: Sends a joke straight from r/jokes
-- `cc!challenge`: Sends a challenge idea from [here](https://seblague.github.io/ideagenerator/). Huge thanks for the creator.
+- `cc!challenge`: Sends a challenge idea from [here](https://seblague.github.io/ideagenerator/). Huge thanks for the creator. (Temporarily disabled)
 - `cc!anyway [text]`: Another funny command, funnier if you know the meme. This command will send an [image](https://www.google.com/search?q=so+anyway+I+started+blasting&safe=active&rlz=1C1CHBF_enRO859RO859&sxsrf=ACYBGNTs8kLdA8mQSOFItc70BK3hMsQ_TQ:1576777514637&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiR9Zj9ocLmAhXC-yoKHVBjD9IQ_AUoAXoECAoQAw&biw=1920&bih=937) with a custom text set.
-
-### Commands planned for the future
 - `cc!profile <user>`: Sends your or someone else's profile data as an embed message.
 - `cc!description <user>`: Set a description for your profile or someone else's description. 
 - `cc!balance <user>`: See your or someone else's balance.
 - `cc!daily`: Claim your daily reward. (Some money to put in your balance. And maybe an inspirational quote)
 - `cc!pay [user]`: Give some money to someone else.
 - `cc!gamble [amount]`: Bet some of your money and see if you win something hehe.
-
+- `cc!top`: Top users by level and xp
+- `cc!topb`: TOp users by balance
+### Commands planned for the future
+- `cc!bj`: Blackjack
 ### Experimental commands that already exist
 - `cc!dbtest <text>`: This command was set to test the connection to the database by storing a message per user in the database, leaving the field empty will make the bot send back the text you previously stored in the database.
 
