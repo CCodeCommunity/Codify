@@ -23,7 +23,7 @@ This bot was created for my comunity on discord because I wanted to provide them
 ### Commands planned for the future
 - `cc!bj`: Blackjack
 ### Experimental commands that already exist
-- `cc!dbtest <text>`: This command was set to test the connection to the database by storing a message per user in the database, leaving the field empty will make the bot send back the text you previously stored in the database.
+- `cc!dbtest <text>`: This command was set to test the connection to the database by storing a message per user in the database, leaving the field empty will make the bot send back the text you previously stored in the database. (Command disabled, because it's no longer needed)
 
 ## How to install
 
