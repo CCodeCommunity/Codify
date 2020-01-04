@@ -16,6 +16,7 @@ import profile from "./modules/commands/profile";
 import say from "./modules/commands/say";
 import topbalance from "./modules/commands/topbalance";
 import toplevel from "./modules/commands/toplevel";
+import { autoXpClaim } from "./common/knexCommon";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -41,6 +42,13 @@ const commands = new CommandGroupBuilder()
 const bot = new Bot({ adapter, commands: [commands] });
 
 bot.on("error", err => console.log("Error ", err));
+
+bot.client.on("message", ctx => {
+    if (ctx.author == bot.client.user) {
+        return;
+    }
+    autoXpClaim(ctx.author.id, ctx);
+});
 
 const init = async (): Promise<void> => {
     console.info(`Connecting to discord...`);
