@@ -5,6 +5,10 @@ A discord bot for the [Code Community Discord Server](https://discord.gg/2JPhJxM
 
 This bot was created for my comunity on discord because I wanted to provide them a fun bot with a lot of functionalities designed especially for my discord server.
 
+# Add my bot to your discord server
+
+[Just click this link](https://discordapp.com/api/oauth2/authorize?client_id=650637687451156481&permissions=8&scope=bot)
+
 ## Commands
 - `cc!help`: Displays a list of commands for the bot.
 - `cc!say [text]`: Makes the bot say something. 
