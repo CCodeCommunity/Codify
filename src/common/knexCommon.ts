@@ -38,7 +38,7 @@ async function checkLevelup(userid: string, ctx: any) {
                 level: parseInt(user.level) + 1,
                 balance: parseInt(user.balance) + gain
             });
-        ctx.message.channel.send(
+        ctx.channel.send(
             `🕶️ <@${user.userid}> leveled up, he is now level **${parseInt(
                 user.level
             ) + 1}** and he got **$${gain}**`
