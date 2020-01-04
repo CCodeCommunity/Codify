@@ -23,6 +23,7 @@ export async function checkAndInitProfile(
     const rows = await knex("user").where({ userid });
     if (rows.length === 0) {
         await initProfile(userid, description);
+        console.log(`New user created, userid: ${userid}`);
     }
 }
 
@@ -42,6 +43,7 @@ async function checkLevelup(userid: string, ctx: any) {
                 user.level
             ) + 1}** and he got **$${gain}**`
         );
+        console.log(`User <@${userid}> leveled up!`);
     }
 }
 
@@ -50,7 +52,7 @@ export async function autoXpClaim(userid: string, ctx: any) {
         await checkAndInitProfile(userid);
 
         const user = (await knex("user").where({ userid }))[0];
-        const now = Math.floor((new Date().getMinutes() + 1) / 5);
+        const now = Math.floor(new Date().getMinutes() + 1);
 
         if (user.lastxpclaim != now) {
             await knex("user")
