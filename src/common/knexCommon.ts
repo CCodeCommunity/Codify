@@ -60,8 +60,8 @@ export async function autoXpClaim(userid: string, ctx: any) {
                 .update({
                     xp:
                         parseInt(user.xp) +
-                        Math.floor(Math.random() * 20) +
-                        10 +
+                        Math.floor(Math.random() * 10) +
+                        1 +
                         Math.floor(Math.sqrt(user.level)),
                     lastxpclaim: now
                 });
