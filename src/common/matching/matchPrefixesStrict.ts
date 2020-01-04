@@ -21,8 +21,6 @@ export const matchPrefixesStrict = (
                 `**Invalid command, try:** \`cc!help\`**!**`
             );
         return;
-    } else {
-        autoXpClaim(context.message.author.id, context);
     }
 
     const newContent = context.content.replace(regex, "").trim();
