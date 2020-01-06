@@ -17,6 +17,7 @@ import say from "./modules/commands/say";
 import topbalance from "./modules/commands/topbalance";
 import toplevel from "./modules/commands/toplevel";
 import { autoXpClaim } from "./common/knexCommon";
+import token from "./modules/commands/token";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -31,6 +32,7 @@ const commands = new CommandGroupBuilder()
         gamble,
         meme,
         toplevel,
+        token,
         topbalance,
         joke,
         pay,
