@@ -27,6 +27,11 @@ export default new CommandBuilder()
             } else {
                 profileData = (await pullData(message.author.id))[0];
             }
+
+            if (message.mentions.users.first().bot) {
+                return message.channel.send(`**OOPS:** Looks like bots can't have profiles.`)
+            }
+
             return message.channel.send({
                 embed: {
                     description: "**This is your buddy.**",
@@ -38,7 +43,7 @@ export default new CommandBuilder()
                                 message.guild.members.get(
                                     `${profileData.userid}`
                                 )?.displayName
-                            }`
+                                }`
                         },
                         {
                             name: "↗️ Level:",
@@ -67,15 +72,16 @@ export default new CommandBuilder()
                                 profileData.lastdaily == "Never claimed."
                                     ? "Never claimed."
                                     : profileData.lastdaily +
-                                      "/" +
-                                      (new Date().getMonth() + 1) +
-                                      "/" +
-                                      new Date().getFullYear(),
+                                    "/" +
+                                    (new Date().getMonth() + 1) +
+                                    "/" +
+                                    new Date().getFullYear(),
                             inline: true
                         }
                     ]
                 }
             });
+
         } catch (e) {
             console.info(e);
             return message.channel.send(
