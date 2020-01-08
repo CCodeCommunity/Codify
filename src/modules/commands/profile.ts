@@ -21,16 +21,17 @@ export default new CommandBuilder()
         try {
             let profileData;
             if (args.length) {
-                profileData = (
-                    await pullData(message.mentions.users.first().id)
-                )[0];
+                if (message.mentions.users.first().bot) {
+                    return message.channel.send(`**OOPS:** Looks like bots can't have profiles.`)
+                } else
+                    profileData = (
+                        await pullData(message.mentions.users.first().id)
+                    )[0];
             } else {
                 profileData = (await pullData(message.author.id))[0];
             }
 
-            if (message.mentions.users.first().bot) {
-                return message.channel.send(`**OOPS:** Looks like bots can't have profiles.`)
-            }
+
 
             return message.channel.send({
                 embed: {
