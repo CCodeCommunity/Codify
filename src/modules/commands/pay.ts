@@ -51,6 +51,10 @@ export default new CommandBuilder()
         const { args } = context.state;
         const amount = parseInt(args.join(" ").slice(23));
         try {
+            if (message.mentions.users.first().bot) {
+                return message.channel.send(`**OOPS:** Looks like you can't give money to bots.`)
+            }
+
             if (message.author.id != message.mentions.users.first().id) {
                 if (await checkBalance(amount, message.author.id)) {
                     await transferMoney(
