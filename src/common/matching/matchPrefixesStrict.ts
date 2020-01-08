@@ -14,9 +14,9 @@ export const matchPrefixesStrict = (
         "i"
     );
 
-    const isMatching = !!context.content.match(regex);
+    const isMatching = !!context.content.match(regex) && !context.message.author.bot;
     if (!isMatching) {
-        if (keywords[0] === "help|cmds|commands")
+        if (keywords[0] === "help|cmds|commands" && !context.message.author.bot)
             context.message.channel.send(
                 `**Invalid command, try:** \`cc!help\`**!**`
             );
