@@ -4,6 +4,7 @@ import { Adapter, CommandGroupBuilder } from "@enitoni/gears-discordjs";
 import { parseArguments } from "./common/parsing/middleware/parseArguments";
 import { app, port, prefix } from "./modules/constants";
 
+
 import anyway from "./modules/commands/anyway";
 import daily from "./modules/commands/daily";
 import description from "./modules/commands/description";
@@ -46,7 +47,7 @@ const bot = new Bot({ adapter, commands: [commands] });
 bot.on("error", err => console.log("Error ", err));
 
 bot.client.on("message", ctx => {
-    if (ctx.author == bot.client.user) {
+    if (ctx.author.bot) {
         return;
     }
     autoXpClaim(ctx.author.id, ctx);
