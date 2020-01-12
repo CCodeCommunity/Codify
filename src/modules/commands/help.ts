@@ -86,6 +86,11 @@ export default new CommandBuilder()
                         value:
                             "Use this command to get the top balance of all users.",
                         inline: true
+                    },
+                    {
+                        name: "`cc!googleit`",
+                        value: "Useful to use when some noob asks a noob question",
+                        inline: true
                     }
                 ]
             }
