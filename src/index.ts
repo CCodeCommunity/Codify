@@ -19,6 +19,7 @@ import topbalance from "./modules/commands/topbalance";
 import toplevel from "./modules/commands/toplevel";
 import { autoXpClaim } from "./common/knexCommon";
 import token from "./modules/commands/token";
+import googleit from "./modules/commands/googleit";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -34,6 +35,7 @@ const commands = new CommandGroupBuilder()
         meme,
         toplevel,
         token,
+        googleit,
         topbalance,
         joke,
         pay,
