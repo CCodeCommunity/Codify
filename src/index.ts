@@ -3,7 +3,7 @@ import { Adapter, CommandGroupBuilder } from "@enitoni/gears-discordjs";
 
 import { parseArguments } from "./common/parsing/middleware/parseArguments";
 import { app, port, prefix } from "./modules/constants";
-
+import { autoXpClaim } from "./common/knexCommon";
 
 import anyway from "./modules/commands/anyway";
 import daily from "./modules/commands/daily";
@@ -17,7 +17,6 @@ import profile from "./modules/commands/profile";
 import say from "./modules/commands/say";
 import topbalance from "./modules/commands/topbalance";
 import toplevel from "./modules/commands/toplevel";
-import { autoXpClaim } from "./common/knexCommon";
 import token from "./modules/commands/token";
 import googleit from "./modules/commands/googleit";
 
