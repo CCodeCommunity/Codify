@@ -1,6 +1,6 @@
 import knex from "../../knexfile";
 
-import { randomMessage } from './levelUpMessages'
+import randomMessage from './levelUpMessages'
 
 const defaultDesc = "Hi guys, I'm using the Codify bot!";
 
@@ -40,7 +40,7 @@ async function checkLevelup(userid: string, ctx: any) {
                 level: parseInt(user.level) + 1,
                 balance: parseInt(user.balance) + gain
             });
-        await ctx.channel.send(`**__${randomMessage}__**`);
+        await ctx.channel.send(`**__${randomMessage()}__**`);
         ctx.channel.send(
             `<@${user.userid}> you are now level **${parseInt(
                 user.level
