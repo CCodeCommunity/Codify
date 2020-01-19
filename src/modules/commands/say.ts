@@ -9,6 +9,8 @@ export default new CommandBuilder()
         const { message } = context;
         const { args } = context.state;
 
+        message.delete();
+
         if (!args.length) {
             return message.channel.send(`Absolutely nothing.`);
         }
