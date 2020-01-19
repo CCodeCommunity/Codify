@@ -30,8 +30,23 @@ const messages = [
     `Access denied.`,
     `The legend says that Vyctor661 is still changing his role color.`,
     `I love PIZZA`,
-    `https://tenor.com/view/level-up-sparkle-gif-14592228. Sorry to interrupt your conversation but look at this.`,
-    `Actually quantum mechanics forbids this.`
+    `This custom message was deleted and replaced.`,
+    `Actually quantum mechanics forbids this.`,
+    `Waffles everywhere.`,
+    `The AI will take over the world.`,
+    `I like trains`,
+    `Those messages are scary sometimes.`,
+    `This message was sponsored by Raid Shadow Legends`,
+    `Club Penguin is kil`,
+    `Alright`,
+    `U ok?`,
+    `If your new level is an odd number you gay.`,
+    `Calculating the mass of the sun.`,
+    `Mithocondria is the powerhouse of the cell.`,
+    `Hah I made you lose the game.`,
+    `"lmao" - 2020 - Hoofersnatch Kimpa Reindooble`,
+    `Math.floor(Math.random() * messages.length)`,
+    `Stonks`
 ]
 
 
