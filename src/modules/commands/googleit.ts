@@ -7,6 +7,7 @@ export default new CommandBuilder()
     .use(context => {
         const { message } = context;
 
+        message.delete();
         return message.channel.send("", {
             file: "src/common/images/googleit.png"
         });
