@@ -46,7 +46,21 @@ const messages = [
     `Hah I made you lose the game.`,
     `"lmao" - 2020 - Hoofersnatch Kimpa Reindooble`,
     `Math.floor(Math.random() * messages.length)`,
-    `Stonks`
+    `Stonks`,
+    `no u`,
+    `I'm not paid enough for this, I need arrays.`,
+    `You should grow a beard.`,
+    `Help me, this is a message from my coder. I am in great danger and I need help (not joking please call 911) ||Someone drank all my water||`,
+    `Please never say that again...`,
+    `Tell <@444585539715465240>.`,
+    `You should check the edge cases.`,
+    `Making nothing again.`,
+    `Over 100 wpm.`,
+    `Break that keyboard!!`,
+    `[1]`,
+    `<https://youtu.be/dQw4w9WgXcQ> this is for you.`,
+    `We need more opinions on that.`,
+    `You don't get to decide.`
 ]
 
 
