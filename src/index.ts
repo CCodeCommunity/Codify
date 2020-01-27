@@ -19,6 +19,7 @@ import topbalance from "./modules/commands/topbalance";
 import toplevel from "./modules/commands/toplevel";
 import token from "./modules/commands/token";
 import googleit from "./modules/commands/googleit";
+import javaistojs from "./modules/commands/javaistojs";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -31,6 +32,7 @@ const commands = new CommandGroupBuilder()
         say,
         daily,
         gamble,
+        javaistojs,
         meme,
         toplevel,
         token,
