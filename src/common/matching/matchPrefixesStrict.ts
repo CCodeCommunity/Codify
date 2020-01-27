@@ -16,10 +16,12 @@ export const matchPrefixesStrict = (
 
     const isMatching = !!context.content.match(regex) && !context.message.author.bot;
     if (!isMatching) {
-        if (keywords[0] === "help|cmds|commands" && !context.message.author.bot)
+        if (keywords[0] === "help|cmds|commands" && !context.message.author.bot) {
+            context.message.delete(1000);
             context.message.channel.send(
                 `**Invalid command, try:** \`cc!help\`**!**`
-            );
+            ).then((msg: any) => msg.delete(10000)); //yes pls kill me for using then
+        }
         return;
     }
 
