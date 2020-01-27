@@ -91,6 +91,11 @@ export default new CommandBuilder()
                         name: "`cc!googleit`",
                         value: "Useful to use when some noob asks a noob question",
                         inline: true
+                    },
+                    {
+                        name: "`cc!javaistojs`",
+                        value: "Java is to javascript as ham is to hamster.",
+                        inline: true
                     }
                 ]
             }
