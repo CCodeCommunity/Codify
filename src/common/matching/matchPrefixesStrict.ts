@@ -1,12 +1,12 @@
 import { Matcher } from "@enitoni/gears-discordjs";
-import { Message } from "discord.js";
-import { autoXpClaim } from "../knexCommon";
+
+import { resolveArrayToOne } from "../../modules/constants";
 
 const symbols = ["-", "."] as const;
 
 export const matchPrefixesStrict = (
     ...keywords: string[]
-): Matcher => context => {
+): Matcher => async context => {
     const regex = new RegExp(
         `^(${keywords.join("|")})([^\\w]|$)( |[\\w]|(<@!?\\d+>)|${symbols.join(
             "|"
@@ -18,9 +18,10 @@ export const matchPrefixesStrict = (
     if (!isMatching) {
         if (keywords[0] === "help|cmds|commands" && !context.message.author.bot) {
             context.message.delete(1000);
-            context.message.channel.send(
+            const newMessage = await context.message.channel.send(
                 `**Invalid command, try:** \`cc!help\`**!**`
-            ).then((msg: any) => msg.delete(10000)); //yes pls kill me for using then
+            )
+            resolveArrayToOne(newMessage).delete(3000)
         }
         return;
     }
