@@ -15,6 +15,7 @@ export default new CommandBuilder()
             return message.channel.send(`Absolutely nothing.`);
         }
 
+        console.info(`${message.author.username} said "${args.join(" ")}"`);
         return message.channel.send(`${args.join(" ")}`);
     })
     .done();
