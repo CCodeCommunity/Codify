@@ -22,7 +22,7 @@ export default new CommandBuilder()
             const options = args.join(" ").split("|");
             let generatedMessage: string = "";
 
-            if (options.length > 27) {
+            if (options.length > 21) {
                 return { message: ":x: **Oops,** looks like you have too many pool options.", numberOfReactions: 0 };
             }
 
@@ -39,7 +39,7 @@ export default new CommandBuilder()
         const messageToSend = await message.channel.send(`${pollInfo.message}`)
 
         for (let i = 1; i <= pollInfo.numberOfReactions; i++) {
-            await resolveArrayToOne(messageToSend).react(emojiLetters[i-1])
+            await resolveArrayToOne(messageToSend).react(emojiLetters[i - 1])
         }
 
 
