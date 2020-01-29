@@ -19,18 +19,20 @@ export default new CommandBuilder()
 
 
         const getPollMessage = () => {
-            const options = args.join(" ").split("|");
+            const options: string[] = args.join(" ").split("|");
             let generatedMessage: string = "";
 
             if (options.length > 21) {
                 return { message: ":x: **Oops,** looks like you have too many pool options.", numberOfReactions: 0 };
             }
-
+            if (options[0] == "" || options[0] == " ") {
+                return { message: ":x: **Oops,** looks like you forgot to add a title.", numberOfReactions: 0 };
+            }
             for (const [i, v] of options.entries()) {
                 if (v === options[0]) {
                     generatedMessage += `**${v}**\n`;
                 } else {
-                    generatedMessage += `:regional_indicator_${alphabet[i - 1]}:  ${v} \n`;
+                    generatedMessage += `:regional_indicator_${alphabet[i - 1]}:  ${v != "" && v != " " ? v : "Empty option."} \n`;
                 }
             }
             return { message: options.length > 1 ? generatedMessage.length <= 1900 ? generatedMessage : ":x: **Oops**, looks like your poll is bigger than the message character limit." : ":x: **Oops**, looks like you did something wrong.", numberOfReactions: options.length - 1 }
