@@ -96,6 +96,10 @@ export default new CommandBuilder()
                         name: "`cc!javaistojs`",
                         value: "Java is to javascript as ham is to hamster.",
                         inline: true
+                    },{
+                        name: "`cc!poll [Question] | [Option 1] | <Option 2> ...`",
+                        value: "This command creates a poll with up to 26 options, you need to have a question and at least one option, the question and the options are separated by the \"|\"",
+                        inline: true
                     }
                 ]
             }
