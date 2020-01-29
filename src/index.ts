@@ -20,6 +20,7 @@ import toplevel from "./modules/commands/toplevel";
 import token from "./modules/commands/token";
 import googleit from "./modules/commands/googleit";
 import javaistojs from "./modules/commands/javaistojs";
+import poll from "./modules/commands/poll";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -35,6 +36,7 @@ const commands = new CommandGroupBuilder()
         javaistojs,
         meme,
         toplevel,
+        poll,
         token,
         googleit,
         topbalance,
