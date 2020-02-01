@@ -7,7 +7,7 @@ import knex from "../../../knexfile";
 import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function checkBalance(amount: number, id: string) {
-    if (amount <= 0 || amount >= 10000) {
+    if (amount <= 0) {
         return false;
     }
 
