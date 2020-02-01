@@ -6,7 +6,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../knexfile";
 
 async function checkBalance(amount: number, id: string) {
-    if (amount <= 0 || amount >= 10000) {
+    if (amount <= 0 || amount >= 100001) {
         return false;
     }
 
@@ -53,13 +53,13 @@ export default new CommandBuilder()
                 );
                 return message.channel.send(
                     `🎲 You rolled **${dice}** and **${
-                        dice === 100
-                            ? "won " + amount * 3
-                            : dice >= 50
+                    dice === 100
+                        ? "won " + amount * 3
+                        : dice >= 50
                             ? "won " + amount * 2
                             : "lost everything"
                     }** and now you have **$${newBalance}**, <@${
-                        message.author.id
+                    message.author.id
                     }>`
                 );
             } else {
