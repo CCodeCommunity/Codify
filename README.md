@@ -24,6 +24,9 @@ This bot was created for my comunity on discord because I wanted to provide them
 - `cc!gamble [amount]`: Bet some of your money and see if you win something hehe.
 - `cc!top`: Top users by level and xp
 - `cc!topb`: TOp users by balance
+- `cc!poll [Question]|[option 1]|[option 2] ...`: Simple poll command using reactions.
+- `cc!googleit`: Will send an imagine with a quote from code bullet. Nice for telling people to google something.
+- `cc!javaistojs`: This will send an image with a simple explanation for the difference between js and java.
 ### Commands planned for the future
 - `cc!bj`: Blackjack
 ### Experimental commands that already exist
