@@ -35,7 +35,7 @@ export default new CommandBuilder()
 
             return message.channel.send({
                 embed: {
-                    description: "**This is your buddy.**",
+                    description: "**Here you go!**",
                     color: 3447003,
                     fields: [
                         {
