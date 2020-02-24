@@ -21,6 +21,7 @@ import token from "./modules/commands/token";
 import googleit from "./modules/commands/googleit";
 import javaistojs from "./modules/commands/javaistojs";
 import poll from "./modules/commands/poll";
+import createWebhook from "./modules/commands/createWebhook";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -36,6 +37,7 @@ const commands = new CommandGroupBuilder()
         javaistojs,
         meme,
         toplevel,
+        createWebhook,
         poll,
         token,
         googleit,
