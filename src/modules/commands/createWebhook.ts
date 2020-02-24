@@ -1,7 +1,6 @@
 import { CommandBuilder } from "@enitoni/gears-discordjs";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
-import { GuildMember } from "discord.js";
 
 export default new CommandBuilder()
     .match(matchPrefixesStrict("webhook|createwebhook"))

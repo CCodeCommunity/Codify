@@ -1,5 +1,4 @@
 import { CommandBuilder } from "@enitoni/gears-discordjs";
-import { matchPrefixes } from "@enitoni/gears";
 
 import fetch from "node-fetch";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -28,14 +27,14 @@ export default new CommandBuilder()
                     title: `${data.data.children[loop("title")].data.title}`,
                     description: `${
                         data.data.children[loop("content")].data.selftext
-                    }`,
+                        }`,
 
                     footer: {
                         text: `👍 ${
                             data.data.children[loop("score")].data.score
-                        } | 💬 ${
+                            } | 💬 ${
                             data.data.children[loop("score")].data.num_comments
-                        }`
+                            }`
                     }
                 }
             });
