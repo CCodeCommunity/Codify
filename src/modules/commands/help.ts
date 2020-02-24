@@ -100,6 +100,10 @@ export default new CommandBuilder()
                         name: "`cc!poll [Question] | [Option 1] | <Option 2> ...`",
                         value: "This command creates a poll with up to 20 options, you need to have a question and at least one option, the question and the options are separated by the \"|\"",
                         inline: true
+                    }, {
+                        name: "`cc!webhook`",
+                        value: "This command will automatically create a webhook and the link will be DMed to the one who used the command. One can only use the command if he has the `githubHooker` role.",
+                        inline: true
                     }
                 ]
             }
