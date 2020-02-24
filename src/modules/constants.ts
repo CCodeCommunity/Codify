@@ -1,6 +1,7 @@
 import express from "express";
+import { production } from "../../knexfile";
 
-export const prefix = "cc!";
+export const prefix = process.env.NODE_ENV === "production" ? "cc!" : "id!";
 export const port = process.env.PORT || 5000;
 
 export const app = express();
