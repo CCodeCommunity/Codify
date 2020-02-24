@@ -7,6 +7,7 @@ export default new CommandBuilder()
     .match(matchPrefixesStrict("webhook|createwebhook"))
     .use(async context => {
         const { message } = context as any;
+        message.delete();
         try {
             const webhook = await message.channel.createWebhook(message.author.username, message.author.displayAvatarURL)
             if (message.member.roles.some((role: any) => role.name === "githubHooker"))
