@@ -56,6 +56,8 @@ const messages = [
     `You should check the edge cases.`,
     `Making nothing again.`,
     `Over 100 wpm.`,
+    `tennis`,
+    `pphp`,
     `Break that keyboard!!`,
     `[1]`,
     `<https://youtu.be/dQw4w9WgXcQ> this is for you.`,
@@ -159,9 +161,8 @@ const messages = [
     `When life gives you lemons, chuck them at people you hate`,
     `The cake is not a lie for some reason`,
     `Yo Darth Vader`
+];
 
-]
-
-
-
-export default () => { return messages[Math.floor(Math.random() * messages.length)]; }
+export default () => {
+    return messages[Math.floor(Math.random() * messages.length)];
+};
