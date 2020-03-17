@@ -5,6 +5,7 @@ import { parseArguments } from "./common/parsing/middleware/parseArguments";
 import { app, port, prefix } from "./modules/constants";
 import { autoXpClaim } from "./common/knexCommon";
 
+import a from "./modules/commands/a";
 import anyway from "./modules/commands/anyway";
 import daily from "./modules/commands/daily";
 import description from "./modules/commands/description";
@@ -45,6 +46,7 @@ const commands = new CommandGroupBuilder()
         joke,
         pay,
         anyway,
+        a,
         help
     ) /// Make sure help is the last command or it will break things.
     .done();
