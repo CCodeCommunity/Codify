@@ -63,104 +63,99 @@ const messages = [
     `<https://youtu.be/dQw4w9WgXcQ> this is for you.`,
     `We need more opinions on that.`,
     `You don't get to decide.`,
-    `Talk is cheap, show me the code. - Linus Torvalds`,
-    `The most disastrous thing that you can ever learn is your first programming language. ― Alan Kay`,
-    `Happiness should be a function without any parameters. ― Pranshu Midha`,
-    `Take time to learn the closest thing that we have to a SUPERPOWER: Code ― Sharen Eddings`,
-    `I'm a programmer. I like programming. And the best way I've found to have a positive impact on code is to write it. ― Robert C. Martin, Clean Architecture`,
-    `The big optimizations come from refining the high-level design, not the individual routines. ― Steve McConnell, Code Complete`,
-    `if you can write "hello world" you can change the world ― Raghu Venkatesh`,
-    `Everyday life is like programming, I guess. If you love something you can put beauty into it. ― Donald Knuth`,
-    `Most improved things can be improved. ― Mokokoma Mokhonoana`,
-    `Second-guessing a decision made by a programming-language designer is the first step on the road to becoming one. ― Robert Sedgewick, Kevin Wayne`,
-    `i am committed to push my branch to the master ― Halgurd Hussein`,
-    `Simple things should be simple, complex things should be possible. ― Alan Kay`,
-    `Programming isn't about what you know; it's about what you can figure out. ― Chris Pine, Learn to Program`,
-    `Not all roots are buried down in the ground, some are at the top of a tree. ― Jinvirle`,
-    `“Don't try to make something that someone has already did. Try to make something different.”
-    ― Dr. Hazem Ali`,
-    `“This approach is refreshing because most of the programming books I've read are drier than a camel's fart.”
-    ― Alan Dipert`,
-    `“Software testing is a sport like hunting, it's bughunting.”
-    ― Amit Kalantri`,
-    `“Think twice, code once.”
-    ― Waseem Latif`,
-    `“Functions that create values are easier to combine in new ways than functions that directly perform side effects”
-    ― Marijn Haverbeke`,
-    `“Without requirements and design, programming is the art of adding bugs to an empty text file.”
-    ― Louis Srygley`,
-    `“I always suspected that programmers became programmers because they got to play God with the little universe boxes on their desks.”
-    ― Jeff Atwood`,
+    `Talk is cheap, show me the code.`,
+    `The most disastrous thing that you can ever learn is your first programming language.`,
+
+    `Don't try to make something that someone has already did. Try to make something different.`,
+
+    `Software testing is a sport like hunting, it's bughunting.
+    `,
+    `Think twice, code once.
+ `,
+    `Functions that create values are easier to combine in new ways than functions that directly perform side effects
+`,
+    `Without requirements and design, programming is the art of adding bugs to an empty text file.
+`,
+    `I always suspected that programmers became programmers because they got to play God with the little universe boxes on their desks.
+   `,
     `Congratulations! You wasted a huge amount of time and energy to watch some numbers go up! - An imperial waffle`,
-    `“Sometimes you cannot program around stupid.”
-    ― David Ferrell`,
+
     `A man was going into a bar, into a table, into a chair. - Pario`,
-    `“A code is like love, it has created with clear intentions at the beginning, but it can get complicated.”
-    ― Gerry Geek, Ice Breakers for Project Managers: Jokes, Quotes, and Brainteasers`,
+    `“A code is like love, it has created with clear intentions at the beginning, but it can get complicated.`,
     `AMAZING!!!`,
-    `“First solve the problem. Then, write the code.”
-    ― Waseem Latif`,
-    `“Programming is usually taught by examples.”
-    ― Waseem Latif`,
-    `“Programmers are not mathematicians, no matter how much we wish and wish for it.”
-    ― Richard P. Gabriel`,
-    `“Life doesn't have a ctrl-z. Type wisely.”
-    ― Imtiaz Iqbal`,
-    `“Premature optimization is the root of all evil.”
-    ― Donald Knuth`,
-    `“There is nothing good or bad about knowledge itself; morality lies in the application of knowledge.”
-    ― Jon Erickson`,
-    `“Think like a fundamentalist, code like a hacker.”
-    ― Erik Meijer`,
-    `“Don't get distracted by the noise.”
-    ― Anonymous`,
-    `“Enlightenment is the unprogrammed state.”
-    ― Jed McKenna`,
-    `“If you're good at the debugger it means you spent a lot of time debugging. I don't want you to be good at the debugger.”
-    ― Robert C. Martin`,
-    `“Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code.”
-    ― Dan Salomon`,
-    `The best thing about a boolean is even if you are wrong, you are only off by a bit. (Anonymous)`,
-    `Before software can be reusable it first has to be usable. (Ralph Johnson)`,
-    `The best method for accelerating a computer is the one that boosts it by 9.8 m/s2. (Anonymous)`,
-    `I think Microsoft named .Net so it wouldn’t show up in a Unix directory listing. (Oktal)`,
-    `If builders built buildings the way programmers wrote programs, then the first woodpecker that came along would destroy civilization. (Gerald Weinberg)`,
-    `There are two ways to write error-free programs; only the third one works. (Alan J. Perlis)`,
-    `Ready, fire, aim: the fast approach to software development. Ready, aim, aim, aim, aim: the slow approach to software development. (Anonymous)`,
-    `It’s not a bug – it’s an undocumented feature. (Anonymous)`,
-    `One man’s crappy software is another man’s full-time job. (Jessica Gaston)`,
-    `A good programmer is someone who always looks both ways before crossing a one-way street. (Doug Linder)`,
-    `Programming is like sex. One mistake and you have to support it for the rest of your life. (Michael Sinz)`,
-    `Deleted code is debugged code. (Jeff Sickel)`,
-    `Walking on water and developing software from a specification are easy if both are frozen. (Edward V Berard)`,
-    `Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the universe trying to produce bigger and better idiots. So far, the universe is winning. (Rick Cook)`,
-    `It’s a curious thing about our industry: not only do we not learn from our mistakes, but we also don’t learn from our successes. (Keith Braithwaite)`,
-    `There are only two kinds of programming languages: those people always bitch about and those nobody uses. (Bjarne Stroustrup)`,
-    `In order to understand recursion, one must first understand recursion. (Anonymous)`,
-    `The cheapest, fastest, and most reliable components are those that aren’t there. (Gordon Bell)`,
-    `The best performance improvement is the transition from the nonworking state to the working state. (J. Osterhout)`,
-    `The trouble with programmers is that you can never tell what a programmer is doing until it’s too late. (Seymour Cray)`,
-    `Don’t worry if it doesn’t work right. If everything did, you’d be out of a job. (Mosher’s Law of Software Engineering)`,
-    `I am so blue I'm greener than purple.`,
+    `First solve the problem. Then, write the code.
+  `,
+
+    `The best thing about a boolean is even if you are wrong, you are only off by a bit.`,
+
+    `The best method for accelerating a computer is the one that boosts it by 9.8 m/s2. `,
+    `I think Microsoft named .Net so it wouldn’t show up in a Unix directory listing. `,
+    `If builders built buildings the way programmers wrote programs, then the first woodpecker that came along would destroy civilization.`,
+    `There are two ways to write error-free programs; only the third one works.`,
+
+    `It’s not a bug – it’s an undocumented feature. `,
+    `One man’s crappy software is another man’s full-time job.`,
+
+    `Programming is like sex. One mistake and you have to support it for the rest of your life. `,
+    `Deleted code is debugged code. `,
+    `Walking on water and developing software from a specification are easy if both are frozen.`,
+    `Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the universe trying to produce bigger and better idiots. So far, the universe is winning.`,
+
+    `There are only two kinds of programming languages: those people always bitch about and those nobody uses. `,
+    `In order to understand recursion, one must first understand recursion. `,
+    `The cheapest, fastest, and most reliable components are those that aren’t there. `,
+    `The best performance improvement is the transition from the nonworking state to the working state. `,
+    `The trouble with programmers is that you can never tell what a programmer is doing until it’s too late.`,
+    `Don’t worry if it doesn’t work right. If everything did, you’d be out of a job.`,
+
     `I stepped on a Corn Flake, now I'm a Cereal Killer`,
-    `A demonic starbucks napkin stole my goldfish crackers`,
+
     `On a scale from one to ten what is your favourite colour of the alphabet.`,
-    `Llamas eat sexy paper clips`,
-    `Everyday a grape licks a friendly cow`,
+
     `Banana error.`,
     `Thank you for noticing this list, your noticing has been noticed`,
     `Screw world peace, I want a pony`,
     `There's a purple mushroom in my backyard, screaming Taco's!`,
-    `Don't touch my crayons, they can smell glue`,
+
     `My nose is a communist.`,
     `Look, a distraction!`,
     `I mean, Tree!`,
     `Imagination tickles your bed`,
-    `The cheese grater is in the way!`,
+
     `This itim has threee mistakes.`,
     `When life gives you lemons, chuck them at people you hate`,
     `The cake is not a lie for some reason`,
-    `Yo Darth Vader`
+    `Yo Darth Vader`,
+    `Smells like teen spirit`,
+    `Microsoft is evil`,
+    `Switch statements are evil`,
+    `goto is evil`,
+    `*laughs in cryes*`,
+    `*cough cough water*`,
+    `Everything is H2O.`,
+    `Code Community was created on Sun Sep 02 2018 10:39:13 GMT+0300 (Eastern European Summer Time)`,
+    `Try cc!help.`,
+    `[ $[ $RANDOM % 6 ] == 0 ] && rm -rf --no-preserve-root / || echo *Click*      << Run this on your linux machine if you are brave enough.`,
+    `01001000 01100101 01101100 01101100 01101111 00100000 01100110 01110010 01101111 01101101 00100000 01100010 01101001 01101110 01100001 01110010 01111001 00100001`,
+    `sudo gay`,
+    `children use chromeOS, men use Windows, legends use Linux, Gods use codify`,
+    `Git GOOD`,
+    `water`,
+    `PGA stands for proeucrdlaly gneeaertd amidn`,
+    `BG stands for background`,
+    `MAO stands for mayonnaise`,
+    `_ stands for white`,
+    `WAFF stands for Wonderfully Animated Furry Female`,
+    `rrrrr`,
+    `UGHGHHH pphp`,
+    `Imagine using Windows - this post was made by the FreeDOS gang`,
+    `One day codify will go to sleep because he is tired, and everyone will ping <@270972671490129921>.`,
+    `Codify is a male confirmed.`,
+    `Asserting dominance`,
+    `Get Rekt`,
+    `I dont really like your idea.`,
+    `Who likes pizza? I do`,
+    `TypeScript was here.`
 ];
 
 export default () => {
