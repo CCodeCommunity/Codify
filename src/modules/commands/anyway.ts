@@ -18,6 +18,8 @@ export default new CommandBuilder()
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
+    
+        message.delete();
 
         if (!args.length) {
             return message.channel.send(
