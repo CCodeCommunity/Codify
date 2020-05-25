@@ -71,6 +71,7 @@ const init = async (): Promise<void> => {
     console.info(`Bot activity is set up!`);
 
     console.info(`The bot is up and running!`);
+    console.info(process.env.DATABASE_URL);
 };
 
 app.listen(port, init);
