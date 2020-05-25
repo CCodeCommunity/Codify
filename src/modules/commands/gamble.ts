@@ -52,7 +52,7 @@ export default new CommandBuilder()
                     message.author.id
                 );
                 return message.channel.send(
-                    `🎲 You rolled **${dice}** and **${
+                    `🎲 You rolled **${dice} {dice === 69 ? "nice" : ""}** and **${
                     dice === 100
                         ? "won " + amount * 3
                         : dice >= 50
