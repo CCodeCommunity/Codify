@@ -48,8 +48,8 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
-        "@enitoni/gears": "^3.0.4",
-        "@enitoni/gears-discordjs": "^2.0.1",
+        "@enitoni/gears": "3.0.4",
+        "@enitoni/gears-discordjs": "2.0.1",
         "@types/knex": "^0.16.1",
         "@types/pg": "^7.11.2",
         "@types/puppeteer": "^2.0.0",
