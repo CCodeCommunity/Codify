@@ -62,9 +62,9 @@ export async function autoXpClaim(userid: string, ctx: any) {
                 .update({
                     xp:
                         parseInt(user.xp) +
-                        Math.sqrt(user.level) +
                         Math.floor(Math.random() * 10) +
-                        1,
+                        1 +
+                        Math.floor(Math.sqrt(user.level)),
                     lastxpclaim: now
                 });
             checkLevelup(userid, ctx);
