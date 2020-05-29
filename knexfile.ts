@@ -10,8 +10,7 @@ const options: Config = {
         filename: "db/db.sqlite3"
     },
     debug: process.env.NODE_ENV === "development",
-    useNullAsDefault: process.env.DB_CLIENT === "sqlite3",
-    pool: process.env.DB_CLIENT !== "sqlite3" ? { min: 2, max: 10 } : undefined
+    useNullAsDefault: process.env.DB_CLIENT === "sqlite3"
 };
 
 const configs: Record<string, Config> = {
