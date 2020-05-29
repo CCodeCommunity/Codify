@@ -3,7 +3,7 @@ import { CommandBuilder } from "@enitoni/gears-discordjs";
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../knexfile";
+import knex from "../../../db/knex";
 
 async function checkBalance(amount: number, id: string) {
     if (amount <= 0 || amount >= 1001) {

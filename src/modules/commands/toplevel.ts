@@ -2,7 +2,7 @@ import { CommandBuilder } from "@enitoni/gears-discordjs";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../knexfile";
+import knex from "../../../db/knex";
 
 async function generateTop(message: any) {
     const top = await knex("user")

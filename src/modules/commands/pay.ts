@@ -3,7 +3,7 @@ import { CommandBuilder } from "@enitoni/gears-discordjs";
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../knexfile";
+import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function checkBalance(amount: number, id: string) {
@@ -52,7 +52,9 @@ export default new CommandBuilder()
         const amount = parseInt(args.join(" ").slice(23));
         try {
             if (message.mentions.users.first().bot) {
-                return message.channel.send(`**OOPS:** Looks like you can't give money to bots.`)
+                return message.channel.send(
+                    `**OOPS:** Looks like you can't give money to bots.`
+                );
             }
 
             if (message.author.id != message.mentions.users.first().id) {

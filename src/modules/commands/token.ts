@@ -4,7 +4,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import { randomBytes } from "crypto";
 
-import knex from "../../../knexfile";
+import knex from "../../../db/knex";
 
 export default new CommandBuilder()
     .match(matchPrefixesStrict("gettoken"))

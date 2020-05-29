@@ -24,6 +24,3 @@ const configs: Record<string, Config> = {
 };
 
 export const { development, production } = configs;
-
-const knex = Knex(production);
-export default knex;
