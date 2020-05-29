@@ -13,8 +13,8 @@ const checkBalance = async (id: string) => {
     return parseInt(balance) >= 10000;
 };
 
-const addQuote = async (quote: string) => {
-    await knex("quotes").insert({ quote });
+const addQuote = async (quote: string, username: string) => {
+    await knex("quotes").insert({ quote, username });
 };
 const updateBalance = async (id: string, addExtract: number) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -87,7 +87,10 @@ export default new CommandBuilder()
                     async (reaction: any, collected: any) => {
                         if (reaction.emoji.name === "👍") {
                             // we add the quote to the database
-                            await addQuote(args.join(" "));
+                            await addQuote(
+                                args.join(" "),
+                                message.author.username
+                            );
                             message.client.users
                                 .get("270972671490129921")
                                 ?.send(
