@@ -14,11 +14,11 @@ async function manipulateImage(text: string) {
 }
 
 export default new CommandBuilder()
-    .match(matchPrefixesStrict("anyway"))
+    .match(matchPrefixesStrict("anyway|anyways"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
-    
+
         message.delete();
 
         if (!args.length) {
