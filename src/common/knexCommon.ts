@@ -60,7 +60,11 @@ export async function autoXpClaim(userid: string, ctx: any) {
             await knex("user")
                 .where({ userid })
                 .update({
-                    xp: parseInt(user.xp) + Math.floor(Math.random() * 50) + 1,
+                    xp:
+                        parseInt(user.xp) +
+                        Math.sqrt(user.level) +
+                        Math.floor(Math.random() * 10) +
+                        1,
                     lastxpclaim: now
                 });
             checkLevelup(userid, ctx);
