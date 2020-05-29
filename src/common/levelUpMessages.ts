@@ -6,8 +6,6 @@ const randomMessage = async () => {
         .orderByRaw("RANDOM()")
         .first();
 
-    console.log(randomRowFromQuotes.quote);
-
     return randomRowFromQuotes.quote;
 };
 export default randomMessage;
