@@ -10,7 +10,8 @@ const options: Config = {
         filename: "db/db.sqlite3"
     },
     debug: process.env.NODE_ENV === "development",
-    useNullAsDefault: process.env.DB_CLIENT === "sqlite3"
+    useNullAsDefault: process.env.DB_CLIENT === "sqlite3",
+    pool: process.env.DB_CLIENT !== "sqlite3" ? { min: 2, max: 10 } : undefined
 };
 
 const configs: Record<string, Config> = {
@@ -18,7 +19,7 @@ const configs: Record<string, Config> = {
 
     production: {
         ...options,
-        connection: process.env.DATABASE_URL + "?ssl=true"
+        connection: process.env.DATABASE_URL + "?ssl=no-verify"
     }
 };
 
