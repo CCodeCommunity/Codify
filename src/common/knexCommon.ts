@@ -40,7 +40,7 @@ async function checkLevelup(userid: string, ctx: any) {
                 level: parseInt(user.level) + 1,
                 balance: parseInt(user.balance) + gain
             });
-        await ctx.channel.send(`**__${randomMessage()}__**`);
+        await ctx.channel.send(`*${await randomMessage()}*`);
         ctx.channel.send(
             `<@${user.userid}> you are now level **${parseInt(user.level) +
                 1}** here's **$${gain}** for you. 🕶️`
@@ -60,11 +60,7 @@ export async function autoXpClaim(userid: string, ctx: any) {
             await knex("user")
                 .where({ userid })
                 .update({
-                    xp:
-                        parseInt(user.xp) +
-                        Math.floor(Math.random() * 10) +
-                        1 +
-                        Math.floor(Math.sqrt(user.level)),
+                    xp: parseInt(user.xp) + Math.floor(Math.random() * 50) + 1,
                     lastxpclaim: now
                 });
             checkLevelup(userid, ctx);
