@@ -116,6 +116,12 @@ export default new CommandBuilder()
                         value:
                             "Want to add a level up quote? It's simple, if you have 10k and a good idea you can submit your quote using this command. Make sure to spell your quote right because you will lose 5k if the quote is rejected.",
                         inline: true
+                    },
+                    {
+                        name: "`cc!disablelevelupmessages/cc!dlum`",
+                        value:
+                            "This command will disable or enable your level up messages, don't worry you will still level up even if the messages are disabled, you can always check your profile with `cc!profile`",
+                        inline: true
                     }
                 ]
             }
