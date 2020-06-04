@@ -25,6 +25,7 @@ import poll from "./modules/commands/poll";
 import createWebhook from "./modules/commands/createWebhook";
 import addQuote from "./modules/commands/addquote";
 import disableLevelupMessages from "./modules/commands/disableLevelupMessages";
+import trivia from "./modules/commands/trivia";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -42,6 +43,7 @@ const commands = new CommandGroupBuilder()
         toplevel,
         createWebhook,
         poll,
+        trivia,
         disableLevelupMessages,
         token,
         googleit,

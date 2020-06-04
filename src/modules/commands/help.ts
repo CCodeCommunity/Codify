@@ -122,6 +122,12 @@ export default new CommandBuilder()
                         value:
                             "This command will disable or enable your level up messages, don't worry you will still level up even if the messages are disabled, you can always check your profile with `cc!profile`",
                         inline: true
+                    },
+                    {
+                        name: "`cc!trivia`",
+                        value:
+                            "Trivia, if you answer correctly you get money. You have to be the first to answer though and you have 1 minute.",
+                        inline: true
                     }
                 ]
             }
