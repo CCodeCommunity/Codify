@@ -40,7 +40,7 @@ export default new CommandBuilder()
                     title: `${data.data.children[loop("title")].data.title}`,
                     url: `https://www.reddit.com${
                         data.data.children[loop("url")].data.permalink
-                        }`,
+                    }`,
 
                     image: {
                         url: `${data.data.children[loop("url")].data.url}`
@@ -49,9 +49,9 @@ export default new CommandBuilder()
                     footer: {
                         text: `👍 ${
                             data.data.children[loop("score")].data.score
-                            } | 💬 ${
+                        } | 💬 ${
                             data.data.children[loop("score")].data.num_comments
-                            }`
+                        }`
                     }
                 }
             });

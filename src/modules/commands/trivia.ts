@@ -110,10 +110,13 @@ export default new CommandBuilder()
                 reaction.emoji.name === "🇨" ||
                 reaction.emoji.name === "🇩";
 
-            let collector = await messageSent.createReactionCollector(filter, {
-                max: 1,
-                time: 60000
-            });
+            const collector = await messageSent.createReactionCollector(
+                filter,
+                {
+                    max: 1,
+                    time: 60000
+                }
+            );
             collector.on("collect", async (reaction: any, collected: any) => {
                 const user = [...reaction.users.values()][1];
                 console.log(user.username + " answered a trivia question.");

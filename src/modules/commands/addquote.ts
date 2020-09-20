@@ -75,7 +75,7 @@ export default new CommandBuilder()
                     reaction.emoji.name === "👍" ||
                     reaction.emoji.name === "👎";
 
-                let collector = await messageSent.createReactionCollector(
+                const collector = await messageSent.createReactionCollector(
                     filter,
                     {
                         max: 1,

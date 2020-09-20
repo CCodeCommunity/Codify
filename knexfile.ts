@@ -1,6 +1,5 @@
-import { Config } from "knex";
+import Knex, { Config } from "knex";
 import { config } from "dotenv";
-import Knex from "knex";
 
 config();
 

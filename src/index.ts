@@ -54,7 +54,7 @@ const commands = new CommandGroupBuilder()
         anyway,
         a,
         help
-    ) /// Make sure help is the last command or it will break things.
+    ) // / Make sure help is the last command or it will break things.
     .done();
 
 const bot = new Bot({ adapter, commands: [commands] });

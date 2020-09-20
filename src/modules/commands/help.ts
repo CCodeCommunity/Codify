@@ -2,7 +2,7 @@ import { CommandBuilder } from "@enitoni/gears-discordjs";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 export default new CommandBuilder()
-    .match(matchPrefixesStrict("help|cmds|commands")) /// If you change command prefix also change it in matchPrefixesStrict.ts or you'll break things
+    .match(matchPrefixesStrict("help|cmds|commands")) // / If you change command prefix also change it in matchPrefixesStrict.ts or you'll break things
     .use(context => {
         const { message } = context;
         return message.channel.send({
