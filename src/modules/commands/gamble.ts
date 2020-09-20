@@ -15,6 +15,13 @@ async function checkBalance(amount: number, id: string) {
     return parseInt(balance) >= amount;
 }
 
+async function gamble(amount: number) {
+    const dice = Math.floor(Math.random() * 100) + 1;
+    const win = dice === 100 ? amount * 2 : dice >= 50 ? amount : -amount;
+
+    return { win, dice };
+}
+
 async function updateBalance(amount: number, id: string) {
     const { win, dice } = await gamble(amount);
 
@@ -29,13 +36,6 @@ async function updateBalance(amount: number, id: string) {
     const newBalance = win + parseInt(balance);
 
     return { dice, newBalance };
-}
-
-async function gamble(amount: number) {
-    const dice = Math.floor(Math.random() * 100) + 1;
-    const win = dice === 100 ? amount * 2 : dice >= 50 ? amount : -amount;
-
-    return { win, dice };
 }
 
 export default new CommandBuilder()

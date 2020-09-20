@@ -1,20 +1,22 @@
 import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Role, TextChannel } from "discord.js";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 export default new CommandBuilder()
     .match(matchPrefixesStrict("webhook|createwebhook"))
     .use(async context => {
-        const { message } = context as any;
+        const { message } = context;
+        const channel = message.channel as TextChannel;
         message.delete();
         try {
-            const webhook = await message.channel.createWebhook(
+            const webhook = await channel.createWebhook(
                 message.author.username,
                 message.author.displayAvatarURL
             );
             if (
                 message.member.roles.some(
-                    (role: any) => role.name === "githubHooker"
+                    (role: Role) => role.name === "githubHooker"
                 )
             )
                 message.author.send(

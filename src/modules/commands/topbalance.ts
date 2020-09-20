@@ -3,8 +3,9 @@ import { CommandBuilder } from "@enitoni/gears-discordjs";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
+import { Message } from "discord.js";
 
-async function fillFields(message: any) {
+async function fillFields(message: Message) {
     const top = await knex("user").orderBy("balance", "desc");
 
     let fill = "```css\n";

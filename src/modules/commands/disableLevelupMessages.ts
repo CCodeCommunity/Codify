@@ -4,7 +4,6 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
-import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function insertData(userid: string) {
     const levelupmessages = (await knex("user").where({ userid }))[0]
@@ -19,7 +18,6 @@ export default new CommandBuilder()
     .match(matchPrefixesStrict("disablelevelupmessages|dlum"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
-        const { args } = context.state;
 
         try {
             const isDisabled = await insertData(message.author.id);

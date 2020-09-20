@@ -10,6 +10,7 @@ import he from "he";
 import knex from "../../../db/knex";
 
 import fetch from "node-fetch";
+import { Collection, Message, MessageReaction } from "discord.js";
 
 const updateBalance = async (id: string, addExtract: number) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -53,9 +54,8 @@ const shuffleArray = (array: Array<string>) => {
 
 export default new CommandBuilder()
     .match(matchPrefixesStrict("trivia"))
-    .use<ParseArgumentsState>(async (context: any) => {
+    .use<ParseArgumentsState>(async context => {
         const { message } = context;
-        const { args } = context.state;
 
         message.delete();
         const data = (await getQuestion()).results[0];
@@ -81,7 +81,7 @@ export default new CommandBuilder()
                 ? "🇨"
                 : "🇩";
 
-        const messageSent = await message.channel.send(
+        const messageSent = (await message.channel.send(
             `**Category:** ${data.category}\n**Type:** ${
                 data.type
             }\n**Difficulty:** ${data.difficulty}\n**Question:** ${he.decode(
@@ -91,7 +91,7 @@ export default new CommandBuilder()
                     ? `🇦 True\n🇧 False`
                     : `🇦 ${answers[0]}\n🇧 ${answers[1]}\n🇨 ${answers[2]}\n🇩 ${answers[3]}`
             }`
-        );
+        )) as Message;
 
         if (data.type === "boolean") {
             await resolveArrayToOne(messageSent).react("🇦");
@@ -104,7 +104,7 @@ export default new CommandBuilder()
         }
 
         setTimeout(async () => {
-            const filter = (reaction: any) =>
+            const filter = (reaction: MessageReaction) =>
                 reaction.emoji.name === "🇦" ||
                 reaction.emoji.name === "🇧" ||
                 reaction.emoji.name === "🇨" ||
@@ -117,7 +117,7 @@ export default new CommandBuilder()
                     time: 60000
                 }
             );
-            collector.on("collect", async (reaction: any, collected: any) => {
+            collector.on("collect", async (reaction: MessageReaction) => {
                 const user = [...reaction.users.values()][1];
                 console.log(user.username + " answered a trivia question.");
 
@@ -139,7 +139,7 @@ export default new CommandBuilder()
                     );
                 }
             });
-            collector.on("end", async (collected: any) => {
+            collector.on("end", async <K, V>(collected: Collection<K, V>) => {
                 if (collected.size === 0) {
                     return message.channel.send(
                         "**Nobody answered the question.** :frowning:"
