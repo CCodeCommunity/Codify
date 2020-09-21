@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
@@ -38,11 +38,10 @@ async function generateTop(message: Message) {
     return fill;
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("top|toplevel|topl"))
     .use(async context => {
         const { message } = context;
         const list = await generateTop(message);
         return message.channel.send(list);
-    })
-    .done();
+    });

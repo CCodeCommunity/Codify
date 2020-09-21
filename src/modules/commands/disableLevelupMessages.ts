@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -14,7 +14,7 @@ async function insertData(userid: string) {
     return levelupmessages;
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("disablelevelupmessages|dlum"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -30,5 +30,4 @@ export default new CommandBuilder()
             console.info(e);
             return message.channel.send(`**ERROR:** Something went wrong.`);
         }
-    })
-    .done();
+    });

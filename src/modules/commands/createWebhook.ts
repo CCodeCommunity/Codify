@@ -1,9 +1,9 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 import { Role, TextChannel } from "discord.js";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("webhook|createwebhook"))
     .use(async context => {
         const { message } = context;
@@ -30,5 +30,4 @@ export default new CommandBuilder()
             console.log(e);
             return message.channel.send("500: Internal server error.");
         }
-    })
-    .done();
+    });

@@ -1,9 +1,9 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("a"))
     .use<ParseArgumentsState>(context => {
         const { message } = context;
@@ -17,5 +17,4 @@ export default new CommandBuilder()
         } else {
             return message.channel.send(`${"".padStart(randNum, "A")}`);
         }
-    })
-    .done();
+    });

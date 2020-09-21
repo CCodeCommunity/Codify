@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -44,7 +44,7 @@ async function transferMoney(
         });
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("pay"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -76,5 +76,4 @@ export default new CommandBuilder()
         } catch (e) {
             console.info(e);
         }
-    })
-    .done();
+    });

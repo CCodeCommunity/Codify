@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -12,7 +12,7 @@ async function pullData(id: string) {
     return knex("user").where("userid", id);
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("profile"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -88,5 +88,4 @@ export default new CommandBuilder()
                 `**ERROR:** Something went wrong. Try \`cc!help\` for more info.`
             );
         }
-    })
-    .done();
+    });

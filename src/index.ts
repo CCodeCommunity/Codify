@@ -1,5 +1,5 @@
-import { Bot, matchPrefixes } from "@enitoni/gears";
-import { Adapter, CommandGroupBuilder } from "@enitoni/gears-discordjs";
+import { matchPrefixes } from "@enitoni/gears";
+import { Bot, Adapter, CommandGroup } from "@enitoni/gears-discordjs";
 
 import { parseArguments } from "./common/parsing/middleware/parseArguments";
 import { app, port, prefix } from "./modules/constants";
@@ -29,7 +29,7 @@ import trivia from "./modules/commands/trivia";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
-const commands = new CommandGroupBuilder()
+const commands = new CommandGroup()
     .match(matchPrefixes(prefix))
     .use(parseArguments)
     .setCommands(
@@ -54,8 +54,7 @@ const commands = new CommandGroupBuilder()
         anyway,
         a,
         help
-    ) // / Make sure help is the last command or it will break things.
-    .done();
+    ); // / Make sure help is the last command or it will break things.
 
 const bot = new Bot({ adapter, commands: [commands] });
 

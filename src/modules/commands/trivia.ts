@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -52,7 +52,7 @@ const shuffleArray = (array: Array<string>) => {
     return array;
 };
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("trivia"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -149,5 +149,4 @@ export default new CommandBuilder()
         }, 1000);
 
         return;
-    })
-    .done();
+    });

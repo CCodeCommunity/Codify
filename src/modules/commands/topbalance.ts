@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
@@ -33,11 +33,10 @@ async function fillFields(message: Message) {
     return fill;
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("topb|topbalance|balancetop"))
     .use(async context => {
         const { message } = context;
         const fields = await fillFields(message);
         return message.channel.send(fields);
-    })
-    .done();
+    });

@@ -1,11 +1,11 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import { alphabet, resolveArrayToOne, emojiLetters } from "../constants";
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("poll"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -64,5 +64,4 @@ export default new CommandBuilder()
         }
 
         return;
-    })
-    .done();
+    });

@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -27,7 +27,7 @@ const updateBalance = async (id: string, addExtract: number) => {
         });
 };
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("addquote"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -140,5 +140,4 @@ export default new CommandBuilder()
         } catch (e) {
             return message.channel.send("**Error**: Something went wrong.");
         }
-    })
-    .done();
+    });
