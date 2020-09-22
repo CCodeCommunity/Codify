@@ -12,9 +12,7 @@ export default new Command()
 
         const randNum = Math.floor(Math.random() * 100) + 1;
 
-        if (randNum === 1) {
-            return message.channel.send(`a`);
-        } else {
-            return message.channel.send(`${"".padStart(randNum, "A")}`);
-        }
+        return message.channel.send(
+            randNum === 1 ? "a" : `${"".padStart(randNum, "A")}`
+        );
     });

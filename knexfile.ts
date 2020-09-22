@@ -8,6 +8,10 @@ const options: Config = {
     connection: process.env.CONNECTION || {
         filename: "db/db.sqlite3"
     },
+    migrations: {
+        directory: "db/migrations",
+        tableName: "migrations"
+    },
     debug: process.env.NODE_ENV === "development",
     useNullAsDefault: process.env.DB_CLIENT === "sqlite3",
     pool: process.env.DB_CLIENT !== "sqlite3" ? { min: 2, max: 10 } : undefined
