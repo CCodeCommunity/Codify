@@ -56,10 +56,11 @@ export default new Command()
                     dice === 100 ? amount * 3 : dice >= 50 ? amount * 2 : 0;
                 const response = (() => {
                     if (dice !== 69) {
-                        return `🎲 You rolled **${dice}** and **${winAmount === 0
+                        return `🎲 You rolled **${dice}** and **${
+                            winAmount === 0
                                 ? "lost everything"
                                 : `won ${winAmount}`
-                            }${ending}`;
+                        }${ending}`;
                     } else {
                         return `🎲 You rolled **69** (Nice :sunglasses:) and **${"won " +
                             amount * 2}${ending}>`;

@@ -41,8 +41,9 @@ export default new Command()
                 if (v === options[0]) {
                     generatedMessage += `**${v}**\n`;
                 } else {
-                    generatedMessage += `:regional_indicator_${alphabet[i - 1]
-                        }:  ${v != "" && v != " " ? v : "Empty option."} \n`;
+                    generatedMessage += `:regional_indicator_${
+                        alphabet[i - 1]
+                    }:  ${v != "" && v != " " ? v : "Empty option."} \n`;
                 }
             }
             return {
