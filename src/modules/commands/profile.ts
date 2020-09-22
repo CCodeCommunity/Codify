@@ -40,11 +40,10 @@ export default new Command()
                     fields: [
                         {
                             name: "😀 Nickname:",
-                            value: `${
-                                message.guild.members.get(
-                                    `${profileData.userid}`
-                                )?.displayName
-                            }`
+                            value: `${message.guild.members.get(
+                                `${profileData.userid}`
+                            )?.displayName
+                                }`
                         },
                         {
                             name: "↗️ Level:",
@@ -70,13 +69,13 @@ export default new Command()
                         {
                             name: "📅 Last daily claim:",
                             value:
-                                profileData.lastdaily == "Never claimed."
+                                profileData.lastdaily === "Never claimed."
                                     ? "Never claimed."
                                     : profileData.lastdaily +
-                                      "/" +
-                                      (new Date().getMonth() + 1) +
-                                      "/" +
-                                      new Date().getFullYear(),
+                                    "/" +
+                                    (new Date().getMonth() + 1) +
+                                    "/" +
+                                    new Date().getFullYear(),
                             inline: true
                         }
                     ]
