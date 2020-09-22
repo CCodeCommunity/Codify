@@ -1,4 +1,4 @@
-interface User {
+export default interface User {
     // shut up ik I should name it users or name the quotes one quote or whatever
     userid: string; // length 25 can be null but it shouldnt
     description: string; // length 1000 can be null but it shouldnt
