@@ -29,6 +29,8 @@ import trivia from "./modules/commands/trivia";
 import store from "./modules/commands/store";
 import addStoreItem from "./modules/commands/addStoreItem";
 import buy from "./modules/commands/buy";
+import purchases from "./modules/commands/purchases";
+import unsubscribe from "./modules/commands/unsubscribe";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -59,6 +61,8 @@ const commands = new CommandGroup()
         addStoreItem,
         store,
         buy,
+        purchases,
+        unsubscribe,
         help
     ); // / Make sure help is the last command or it will break things.
 

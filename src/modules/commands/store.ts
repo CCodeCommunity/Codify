@@ -30,10 +30,13 @@ export default new Command()
                 const role = message.guild.roles.get(l.roleId)!;
                 return {
                     name: `**${role.name}** - ID: ${idx + 1}`,
-                    value: `Color - ${role.color} | Price - ${l.price} ${l.subscription
+                    value: `Color - #${role.color.toString(16)} | Price - ${
+                        l.price
+                    } ${
+                        l.subscription
                             ? `every ${l.subscriptionInterval} days`
                             : ""
-                        }`
+                    }`
                 };
             });
             return message.channel.send({

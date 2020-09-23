@@ -1,4 +1,4 @@
-import { Client, Message, User } from "discord.js";
+import { Client, Message } from "discord.js";
 import knex from "../../db/knex";
 
 import randomMessage from "./levelUpMessages";
@@ -92,7 +92,6 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
     });
     await Promise.all(
         userSubscriptions.map(async l => {
-            console.log(Math.floor(Date.now() / 1000), Number(l.expiration));
             if (Math.floor(Date.now() / 1000) > Number(l.expiration)) {
                 const store: Store = await knex("store")
                     .where({ id: l.storeId })
@@ -103,9 +102,10 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
                     .first();
                 if (dbUser.balance < store.price) {
                     user?.send(
-                        `:timer: Looks like your subscription to ${client.guilds
-                            .get(store.serverId)
-                            ?.roles.get(store.roleId)?.name
+                        `:timer: Looks like your subscription to ${
+                            client.guilds
+                                .get(store.serverId)
+                                ?.roles.get(store.roleId)?.name
                         } on ${client.guilds.get(
                             store.serverId
                         )} has expired and you do not have the sufficient funds to pay for another subscription. Your subscription will be cancelled until you restart it.`
@@ -121,9 +121,10 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
                         .where({ id: l.id });
                 } else {
                     user?.send(
-                        `:timer: Looks like your subscription to ${client.guilds
-                            .get(store.serverId)
-                            ?.roles.get(store.roleId)?.name
+                        `:timer: Looks like your subscription to ${
+                            client.guilds
+                                .get(store.serverId)
+                                ?.roles.get(store.roleId)?.name
                         } on ${client.guilds.get(
                             store.serverId
                         )} has expired, but you have the sufficient funds to pay for another subscription. Your subscription will continue and automatically renew when it next expires unless you have insufficient funds.`
