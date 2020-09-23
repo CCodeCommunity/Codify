@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -6,6 +6,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import { resolveArrayToOne } from "../constants";
 
 import knex from "../../../db/knex";
+import { Collection, Message, MessageReaction } from "discord.js";
 
 const checkBalance = async (id: string) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -26,9 +27,9 @@ const updateBalance = async (id: string, addExtract: number) => {
         });
 };
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("addquote"))
-    .use<ParseArgumentsState>(async (context: any) => {
+    .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
         try {
@@ -60,87 +61,83 @@ export default new CommandBuilder()
                 ?.send(
                     `---------------------------------------------------------------------------`
                 );
-            const messageSent = await message.client.users
+            const messageSent = (await message.client.users
                 .get("270972671490129921")
                 ?.send(
                     `${args.join(
                         " "
                     )}\n---------------------------------------------------------------------------`
-                );
+                )!) as Message;
             console.log(`New quote request from: ${message.author.username}`);
             await resolveArrayToOne(messageSent).react("👍");
             await resolveArrayToOne(messageSent).react("👎");
             setTimeout(async () => {
-                const filter = (reaction: any) =>
+                const filter = (reaction: MessageReaction) =>
                     reaction.emoji.name === "👍" ||
                     reaction.emoji.name === "👎";
 
-                let collector = await messageSent.createReactionCollector(
+                const collector = await messageSent.createReactionCollector(
                     filter,
                     {
                         max: 1,
                         time: 3600000 * 24
                     }
                 );
-                collector.on(
-                    "collect",
-                    async (reaction: any, collected: any) => {
-                        if (reaction.emoji.name === "👍") {
-                            // we add the quote to the database
-                            await addQuote(
-                                args.join(" "),
-                                message.author.username
+                collector.on("collect", async (reaction: MessageReaction) => {
+                    if (reaction.emoji.name === "👍") {
+                        // we add the quote to the database
+                        await addQuote(args.join(" "), message.author.username);
+                        message.client.users
+                            .get("270972671490129921")
+                            ?.send(
+                                "Successfully added the new quote. :white_check_mark:"
                             );
-                            message.client.users
-                                .get("270972671490129921")
-                                ?.send(
-                                    "Successfully added the new quote. :white_check_mark:"
-                                );
-                            message.author.send(
-                                `Your quote was approved by the administrator. :white_check_mark: \n**Your quote:**\n${args.join(
-                                    " "
-                                )}`
-                            );
-                        }
-                        if (reaction.emoji.name === "👎") {
-                            // we dont add the quote and we return half the money
-                            await updateBalance(message.author.id, 5000);
+                        message.author.send(
+                            `Your quote was approved by the administrator. :white_check_mark: \n**Your quote:**\n${args.join(
+                                " "
+                            )}`
+                        );
+                    }
+                    if (reaction.emoji.name === "👎") {
+                        // we dont add the quote and we return half the money
+                        await updateBalance(message.author.id, 5000);
 
+                        message.client.users
+                            .get("270972671490129921")
+                            ?.send(
+                                "The quote has been successfully rejected. :x:"
+                            );
+                        message.author.send(
+                            `Your quote was rejected by the administrator. :x:\n**Your quote:**\n${args.join(
+                                " "
+                            )}`
+                        );
+                    }
+                });
+                collector.on(
+                    "end",
+                    async <K, V>(collected: Collection<K, V>) => {
+                        if (collected.size === 0) {
+                            // we return the money and send a dm to the guy
+                            await updateBalance(message.author.id, 10000);
                             message.client.users
                                 .get("270972671490129921")
                                 ?.send(
-                                    "The quote has been successfully rejected. :x:"
+                                    `Failed to react to the quote in time. :x: \n**The quote:**\n${args.join(
+                                        " "
+                                    )}`
                                 );
                             message.author.send(
-                                `Your quote was rejected by the administrator. :x:\n**Your quote:**\n${args.join(
+                                `Sorry but the administrator didn't see your quote in time. :x:\n**Your quote:**\n${args.join(
                                     " "
                                 )}`
                             );
                         }
                     }
                 );
-                collector.on("end", async (collected: any) => {
-                    if (collected.size === 0) {
-                        // we return the money and send a dm to the guy
-                        await updateBalance(message.author.id, 10000);
-                        message.client.users
-                            .get("270972671490129921")
-                            ?.send(
-                                `Failed to react to the quote in time. :x: \n**The quote:**\n${args.join(
-                                    " "
-                                )}`
-                            );
-                        message.author.send(
-                            `Sorry but the administrator didn't see your quote in time. :x:\n**Your quote:**\n${args.join(
-                                " "
-                            )}`
-                        );
-                    }
-                });
                 message.delete();
             }, 1000);
         } catch (e) {
             return message.channel.send("**Error**: Something went wrong.");
         }
-    })
-    .done();
+    });

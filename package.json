@@ -47,8 +47,8 @@
         "typescript": "3.7.2"
     },
     "dependencies": {
-        "@enitoni/gears": "3.0.4",
-        "@enitoni/gears-discordjs": "2.0.1",
+        "@enitoni/gears": "^4.0.2",
+        "@enitoni/gears-discordjs": "^3.0.1",
         "@types/he": "^1.1.1",
         "@types/knex": "0.16.1",
         "@types/pg": "7.14.3",
@@ -57,6 +57,7 @@
         "express": "4.17.1",
         "he": "^1.2.0",
         "jimp": "0.9.3",
+        "knex": "^0.21.5",
         "node-fetch": "2.6.0",
         "pg": "8.2.0"
     }

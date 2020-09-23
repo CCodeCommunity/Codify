@@ -1,3 +1,4 @@
+import { Message } from "discord.js";
 import knex from "../../db/knex";
 
 import randomMessage from "./levelUpMessages";
@@ -29,7 +30,7 @@ export async function checkAndInitProfile(
     }
 }
 
-async function checkLevelup(userid: string, ctx: any) {
+async function checkLevelup(userid: string, ctx: Message) {
     try {
         const user = (await knex("user").where({ userid }))[0];
         const gain = Math.floor(Math.sqrt(user.level) * 50);
@@ -58,7 +59,7 @@ async function checkLevelup(userid: string, ctx: any) {
     }
 }
 
-export async function autoXpClaim(userid: string, ctx: any) {
+export async function autoXpClaim(userid: string, ctx: Message) {
     try {
         await checkAndInitProfile(userid);
 

@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -13,6 +13,13 @@ async function checkBalance(amount: number, id: string) {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
 
     return parseInt(balance) >= amount;
+}
+
+async function gamble(amount: number) {
+    const dice = Math.floor(Math.random() * 100) + 1;
+    const win = dice === 100 ? amount * 2 : dice >= 50 ? amount : -amount;
+
+    return { win, dice };
 }
 
 async function updateBalance(amount: number, id: string) {
@@ -31,14 +38,7 @@ async function updateBalance(amount: number, id: string) {
     return { dice, newBalance };
 }
 
-async function gamble(amount: number) {
-    const dice = Math.floor(Math.random() * 100) + 1;
-    const win = dice === 100 ? amount * 2 : dice >= 50 ? amount : -amount;
-
-    return { win, dice };
-}
-
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("gamble|dice|slots"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -74,5 +74,4 @@ export default new CommandBuilder()
         } catch (e) {
             console.info(e);
         }
-    })
-    .done();
+    });

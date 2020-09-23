@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -13,7 +13,7 @@ async function manipulateImage(text: string) {
     image.write("src/common/images/anywayManipulated.jpg");
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("anyway|anyways"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -35,5 +35,4 @@ export default new CommandBuilder()
         } else {
             return message.channel.send(`**ERROR:** Input text is too long.`);
         }
-    })
-    .done();
+    });

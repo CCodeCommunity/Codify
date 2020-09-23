@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 
@@ -20,7 +20,7 @@ const loop = (type: "url" | "title" | "score") => {
     return loopIt;
 };
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("meme"))
     .use<ParseArgumentsState>(async context => {
         const { args } = context.state;
@@ -40,7 +40,7 @@ export default new CommandBuilder()
                     title: `${data.data.children[loop("title")].data.title}`,
                     url: `https://www.reddit.com${
                         data.data.children[loop("url")].data.permalink
-                        }`,
+                    }`,
 
                     image: {
                         url: `${data.data.children[loop("url")].data.url}`
@@ -49,14 +49,13 @@ export default new CommandBuilder()
                     footer: {
                         text: `👍 ${
                             data.data.children[loop("score")].data.score
-                            } | 💬 ${
+                        } | 💬 ${
                             data.data.children[loop("score")].data.num_comments
-                            }`
+                        }`
                     }
                 }
             });
         } catch (e) {
             return context.message.channel.send(e);
         }
-    })
-    .done();
+    });
