@@ -16,20 +16,6 @@ const checkBalance = async (amount: number, id: string) => {
     return parseInt(balance) >= amount;
 };
 
-const updateBalance = async (amount: number, id: string) => {
-    const balance = (await knex("user").where({ userid: id }))[0].balance;
-
-    await knex("user")
-        .where({ userid: id })
-        .update({
-            balance: parseInt(balance) + amount
-        });
-
-    const newBalance = amount + parseInt(balance);
-
-    return { newBalance };
-};
-
 export default new Command()
     .match(matchPrefixesStrict("buy"))
     .use<ParseArgumentsState>(async context => {
