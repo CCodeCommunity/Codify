@@ -9,4 +9,5 @@ export default interface User {
     lastxpclaim: number; // this time its int4 can be null it shouldnt default 0
     token: string; // length 124 can be null but it shouldnt
     levelupmessages: boolean; // default is false (true is when you dont wnat to see the levelup messages)
+    purchasedIds: number[];
 }

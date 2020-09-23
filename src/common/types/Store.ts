@@ -1,5 +1,8 @@
 export default interface Store {
-    serverId: number;
+    id: number;
+    serverId: string;
     roleId: string;
     price: number;
+    subscription: boolean;
+    subscriptionInterval: number;
 }
