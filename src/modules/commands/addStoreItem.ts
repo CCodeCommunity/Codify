@@ -16,6 +16,13 @@ export default new Command()
                 ":x: **Oops,** you aren't allowed to do that. Make sure you have the `Manage roles` permission."
             );
         }
+
+        if (!args[0]) {
+            return message.channel.send(
+                ":x: **Oops,** you need to provide arguments!"
+            );
+        }
+
         if (!message.guild.roles.get(args[0])) {
             return message.channel.send(
                 ":x: **Oops,** looks like that role doesn't exist."
@@ -28,6 +35,11 @@ export default new Command()
             );
         }
         const price = Number(args[1]);
+        if (price < 0) {
+            return message.channel.send(
+                ":x: **Oops,** your price can't be below 0!"
+            );
+        }
         if (args[2] && Number(args[2]).toString() !== args[2]) {
             return message.channel.send(
                 ":x: **Oops,** looks like your subscription interval isn't a number."

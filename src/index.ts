@@ -31,6 +31,7 @@ import addStoreItem from "./modules/commands/addStoreItem";
 import buy from "./modules/commands/buy";
 import purchases from "./modules/commands/purchases";
 import unsubscribe from "./modules/commands/unsubscribe";
+import removeStoreItem from "./modules/commands/removeStoreItem";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -59,6 +60,7 @@ const commands = new CommandGroup()
         anyway,
         a,
         addStoreItem,
+        removeStoreItem,
         store,
         buy,
         purchases,

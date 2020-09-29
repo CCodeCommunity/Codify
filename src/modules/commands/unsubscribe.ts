@@ -12,6 +12,12 @@ export default new Command()
         const { message } = context;
         const { args } = context.state;
 
+        if (!args[0]) {
+            return message.channel.send(
+                ":x: **Oops,** you need to provide an ID to unsubscribe from."
+            );
+        }
+
         if (Number(args[0]).toString() !== args[0]) {
             return message.channel.send(
                 ":x: **Oops,** looks like that ID isn't a number."

@@ -7,10 +7,6 @@ import Store from "../../common/types/Store";
 import Subscription from "../../common/types/Subscription";
 
 const checkBalance = async (amount: number, id: string) => {
-    if (amount <= 0 || amount >= 1001) {
-        return false;
-    }
-
     const balance = (await knex("user").where({ userid: id }))[0].balance;
 
     return parseInt(balance) >= amount;
@@ -21,6 +17,12 @@ export default new Command()
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
+
+        if (!args[0]) {
+            return message.channel.send(
+                ":x: **Oops,** you need to provide arguments!"
+            );
+        }
 
         if (Number(args[0]).toString() !== args[0]) {
             return message.channel.send(
