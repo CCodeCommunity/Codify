@@ -1,4 +1,4 @@
-name: Node.js Build Test
+name: Node.js Lint Check
 
 on: [push]
 
