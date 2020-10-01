@@ -51,23 +51,22 @@ export default new Command()
                     amount,
                     message.author.id
                 );
-                return message.channel.send(
-                    dice !== 69
-                        ? `🎲 You rolled **${dice}** and **${
-                              dice === 100
-                                  ? "won " + amount * 3
-                                  : dice >= 50
-                                  ? "won " + amount * 2
-                                  : "lost everything"
-                          }** and now you have **$${newBalance}**, <@${
-                              message.author.id
-                          }>`
-                        : `🎲 You rolled **69** (Nice :sunglasses:) and **${"won " +
-                              amount *
-                                  2}** and now you have **$${newBalance}**, <@${
-                              message.author.id
-                          }>`
-                );
+                const ending = `** and now you have **$${newBalance}**, <@${message.author.id}>`;
+                const winAmount =
+                    dice === 100 ? amount * 3 : dice >= 50 ? amount * 2 : 0;
+                const response = (() => {
+                    if (dice !== 69) {
+                        return `🎲 You rolled **${dice}** and **${
+                            winAmount === 0
+                                ? "lost everything"
+                                : `won ${winAmount}`
+                        }${ending}`;
+                    } else {
+                        return `🎲 You rolled **69** (Nice :sunglasses:) and **${"won " +
+                            amount * 2}${ending}>`;
+                    }
+                })();
+                return message.channel.send(response);
             } else {
                 return message.channel.send("**Wait that's illegal.**");
             }

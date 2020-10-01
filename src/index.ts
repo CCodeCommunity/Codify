@@ -3,7 +3,7 @@ import { Bot, Adapter, CommandGroup } from "@enitoni/gears-discordjs";
 
 import { parseArguments } from "./common/parsing/middleware/parseArguments";
 import { app, port, prefix } from "./modules/constants";
-import { autoXpClaim } from "./common/knexCommon";
+import { autoXpClaim, checkSubscriptions } from "./common/knexCommon";
 
 import a from "./modules/commands/a";
 import anyway from "./modules/commands/anyway";
@@ -26,6 +26,12 @@ import createWebhook from "./modules/commands/createWebhook";
 import addQuote from "./modules/commands/addquote";
 import disableLevelupMessages from "./modules/commands/disableLevelupMessages";
 import trivia from "./modules/commands/trivia";
+import store from "./modules/commands/store";
+import addStoreItem from "./modules/commands/addStoreItem";
+import buy from "./modules/commands/buy";
+import purchases from "./modules/commands/purchases";
+import unsubscribe from "./modules/commands/unsubscribe";
+import removeStoreItem from "./modules/commands/removeStoreItem";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -53,6 +59,12 @@ const commands = new CommandGroup()
         pay,
         anyway,
         a,
+        addStoreItem,
+        removeStoreItem,
+        store,
+        buy,
+        purchases,
+        unsubscribe,
         help
     ); // / Make sure help is the last command or it will break things.
 
@@ -65,6 +77,7 @@ bot.client.on("message", ctx => {
         return;
     }
     autoXpClaim(ctx.author.id, ctx);
+    checkSubscriptions(ctx.author.id, bot.client);
 });
 
 const init = async (): Promise<void> => {

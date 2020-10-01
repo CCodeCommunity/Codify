@@ -15,7 +15,7 @@ export default new Command()
 
         if (!args.length) {
             return message.channel.send(
-                `Ye the pool with no question and no options...`
+                `Ye the poll with no question and no options...`
             );
         }
 
@@ -26,7 +26,7 @@ export default new Command()
             if (options.length > 21) {
                 return {
                     message:
-                        ":x: **Oops,** looks like you have too many pool options.",
+                        ":x: **Oops,** looks like you have too many poll options.",
                     numberOfReactions: 0
                 };
             }

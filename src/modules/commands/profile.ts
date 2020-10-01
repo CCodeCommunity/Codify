@@ -70,7 +70,7 @@ export default new Command()
                         {
                             name: "📅 Last daily claim:",
                             value:
-                                profileData.lastdaily == "Never claimed."
+                                profileData.lastdaily === "Never claimed."
                                     ? "Never claimed."
                                     : profileData.lastdaily +
                                       "/" +
