@@ -29,12 +29,12 @@ export default new Command()
             );
         }
         const roleId = args[0];
-        if (Number(args[1]).toString() !== args[1]) {
+        if (parseInt(args[1]).toString() !== args[1]) {
             return message.channel.send(
                 ":x: **Oops,** looks like your price isn't a number."
             );
         }
-        const price = Number(args[1]);
+        const price = parseInt(args[1]);
         if (price < 0) {
             return message.channel.send(
                 ":x: **Oops,** your price can't be below 0!"

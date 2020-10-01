@@ -18,13 +18,13 @@ export default new Command()
             );
         }
 
-        if (Number(args[0]).toString() !== args[0]) {
+        if (parseInt(args[0]).toString() !== args[0]) {
             return message.channel.send(
                 ":x: **Oops,** looks like that ID isn't a number."
             );
         }
 
-        const id = Number(args[0]) - 1;
+        const id = parseInt(args[0]) - 1;
 
         const subscriptions = await knex("subscriptions").where({
             userId: message.author.id
