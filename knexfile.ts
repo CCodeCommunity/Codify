@@ -1,32 +1,29 @@
 import { Config } from "knex";
-import Knex from "knex";
+import { config } from "dotenv";
 
-const options = {
-    client: "pg",
-    connection: process.env.DATABASE_URL + "?ssl=true",
+config();
+
+const options: Config = {
+    client: process.env.DB_CLIENT,
+    connection: process.env.CONNECTION || {
+        filename: "db/db.sqlite3"
+    },
     migrations: {
-        directory: "db",
+        directory: "db/migrations",
         tableName: "migrations"
     },
-    debug: false,
-    useNullAsDefault: true
+    debug: process.env.NODE_ENV === "development",
+    useNullAsDefault: process.env.DB_CLIENT === "sqlite3",
+    pool: process.env.DB_CLIENT !== "sqlite3" ? { min: 2, max: 10 } : undefined
 };
 
 const configs: Record<string, Config> = {
-    development: {
-        ...options,
-        connection: {
-            database: "postgres",
-            user: "postgres",
-            password: "password"
-        }
-    },
+    development: options,
 
     production: {
-        ...options
+        ...options,
+        connection: process.env.DATABASE_URL + "?ssl=no-verify"
     }
 };
 
 export const { development, production } = configs;
-const knex = Knex(production);
-export default knex;

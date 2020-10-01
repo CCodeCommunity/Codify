@@ -1,5 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
-import { matchPrefixes } from "@enitoni/gears";
+import { Command } from "@enitoni/gears-discordjs";
 
 import fetch from "node-fetch";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -13,7 +12,7 @@ const loop = (type: "content" | "title" | "score") => {
     return loopIt;
 };
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("joke"))
     .use(async context => {
         try {
@@ -42,5 +41,4 @@ export default new CommandBuilder()
         } catch (e) {
             return context.message.channel.send(e);
         }
-    })
-    .done();
+    });

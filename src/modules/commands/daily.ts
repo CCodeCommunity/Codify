@@ -1,8 +1,8 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../knexfile";
+import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function checkClaimed(userid: string) {
@@ -31,7 +31,7 @@ async function daily(userid: string, amount: number) {
     }
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("daily|claim|dailyclaim|free"))
     .use(async context => {
         const { message } = context;
@@ -53,5 +53,4 @@ export default new CommandBuilder()
         } catch (e) {
             console.info(e);
         }
-    })
-    .done();
+    });

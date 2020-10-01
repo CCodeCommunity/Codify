@@ -1,5 +1,5 @@
-import { Bot, matchPrefixes } from "@enitoni/gears";
-import { Adapter, CommandGroupBuilder } from "@enitoni/gears-discordjs";
+import { matchPrefixes } from "@enitoni/gears";
+import { Bot, Adapter, CommandGroup } from "@enitoni/gears-discordjs";
 
 import { parseArguments } from "./common/parsing/middleware/parseArguments";
 import { app, port, prefix } from "./modules/constants";
@@ -23,10 +23,13 @@ import googleit from "./modules/commands/googleit";
 import javaistojs from "./modules/commands/javaistojs";
 import poll from "./modules/commands/poll";
 import createWebhook from "./modules/commands/createWebhook";
+import addQuote from "./modules/commands/addquote";
+import disableLevelupMessages from "./modules/commands/disableLevelupMessages";
+import trivia from "./modules/commands/trivia";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
-const commands = new CommandGroupBuilder()
+const commands = new CommandGroup()
     .match(matchPrefixes(prefix))
     .use(parseArguments)
     .setCommands(
@@ -40,16 +43,18 @@ const commands = new CommandGroupBuilder()
         toplevel,
         createWebhook,
         poll,
+        trivia,
+        disableLevelupMessages,
         token,
         googleit,
+        addQuote,
         topbalance,
         joke,
         pay,
         anyway,
         a,
         help
-    ) /// Make sure help is the last command or it will break things.
-    .done();
+    ); // / Make sure help is the last command or it will break things.
 
 const bot = new Bot({ adapter, commands: [commands] });
 

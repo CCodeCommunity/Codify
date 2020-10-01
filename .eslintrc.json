@@ -42,6 +42,7 @@
         "promise/always-return": 1,
         "promise/prefer-await-to-then": 2,
         "promise/prefer-await-to-callbacks": 2,
-        "@typescript-eslint/explicit-function-return-type": 0
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/no-non-null-assertion": 0
     }
 }

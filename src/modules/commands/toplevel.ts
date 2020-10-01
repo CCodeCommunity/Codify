@@ -1,10 +1,11 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../knexfile";
+import knex from "../../../db/knex";
+import { Message } from "discord.js";
 
-async function generateTop(message: any) {
+async function generateTop(message: Message) {
     const top = await knex("user")
         .orderBy("level", "desc")
         .orderBy("xp", "desc");
@@ -37,11 +38,10 @@ async function generateTop(message: any) {
     return fill;
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("top|toplevel|topl"))
     .use(async context => {
         const { message } = context;
         const list = await generateTop(message);
         return message.channel.send(list);
-    })
-    .done();
+    });

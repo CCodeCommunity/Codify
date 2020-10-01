@@ -1,9 +1,9 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../knexfile";
+import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function pullData(id: string) {
@@ -12,7 +12,7 @@ async function pullData(id: string) {
     return knex("user").where("userid", id);
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("profile"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -22,7 +22,9 @@ export default new CommandBuilder()
             let profileData;
             if (args.length) {
                 if (message.mentions.users.first().bot) {
-                    return message.channel.send(`**OOPS:** Looks like bots can't have profiles.`)
+                    return message.channel.send(
+                        `**OOPS:** Looks like bots can't have profiles.`
+                    );
                 } else
                     profileData = (
                         await pullData(message.mentions.users.first().id)
@@ -30,8 +32,6 @@ export default new CommandBuilder()
             } else {
                 profileData = (await pullData(message.author.id))[0];
             }
-
-
 
             return message.channel.send({
                 embed: {
@@ -44,7 +44,7 @@ export default new CommandBuilder()
                                 message.guild.members.get(
                                     `${profileData.userid}`
                                 )?.displayName
-                                }`
+                            }`
                         },
                         {
                             name: "↗️ Level:",
@@ -73,21 +73,19 @@ export default new CommandBuilder()
                                 profileData.lastdaily == "Never claimed."
                                     ? "Never claimed."
                                     : profileData.lastdaily +
-                                    "/" +
-                                    (new Date().getMonth() + 1) +
-                                    "/" +
-                                    new Date().getFullYear(),
+                                      "/" +
+                                      (new Date().getMonth() + 1) +
+                                      "/" +
+                                      new Date().getFullYear(),
                             inline: true
                         }
                     ]
                 }
             });
-
         } catch (e) {
             console.info(e);
             return message.channel.send(
                 `**ERROR:** Something went wrong. Try \`cc!help\` for more info.`
             );
         }
-    })
-    .done();
+    });

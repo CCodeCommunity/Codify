@@ -1,9 +1,9 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../knexfile";
+import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function insertData(userid: string, description: string) {
@@ -13,7 +13,7 @@ async function insertData(userid: string, description: string) {
         .update({ description });
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("description|desc|about"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -38,5 +38,4 @@ export default new CommandBuilder()
             console.info(e);
             return message.channel.send(`**ERROR:** Something went wrong.`);
         }
-    })
-    .done();
+    });

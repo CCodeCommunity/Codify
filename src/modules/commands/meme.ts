@@ -1,5 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
-import { matchPrefixes } from "@enitoni/gears";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 
@@ -21,7 +20,7 @@ const loop = (type: "url" | "title" | "score") => {
     return loopIt;
 };
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("meme"))
     .use<ParseArgumentsState>(async context => {
         const { args } = context.state;
@@ -59,5 +58,4 @@ export default new CommandBuilder()
         } catch (e) {
             return context.message.channel.send(e);
         }
-    })
-    .done();
+    });
