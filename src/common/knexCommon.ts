@@ -102,16 +102,18 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
                     .first();
                 const subscriptionsMissed = Math.ceil(
                     (Math.floor(Date.now() / 1000) - Number(l.expiration)) /
-                    (store.subscriptionInterval * 86400)
+                        (store.subscriptionInterval * 86400)
                 );
                 if (dbUser.balance < store.price * subscriptionsMissed) {
                     user?.send(
-                        `:timer: Looks like your subscription to ${client.guilds
-                            .get(store.serverId)
-                            ?.roles.get(store.roleId)?.name
-                        } on ${client.guilds.get(store.serverId)} has expired ${subscriptionsMissed > 1
-                            ? `${subscriptionsMissed} times`
-                            : ""
+                        `:timer: Looks like your subscription to ${
+                            client.guilds
+                                .get(store.serverId)
+                                ?.roles.get(store.roleId)?.name
+                        } on ${client.guilds.get(store.serverId)} has expired ${
+                            subscriptionsMissed > 1
+                                ? `${subscriptionsMissed} times`
+                                : ""
                         } and you do not have the sufficient funds to pay for another subscription. Your subscription will be cancelled until you restart it.`
                     );
 
@@ -125,12 +127,14 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
                         .where({ id: l.id });
                 } else {
                     user?.send(
-                        `:timer: Looks like your subscription to ${client.guilds
-                            .get(store.serverId)
-                            ?.roles.get(store.roleId)?.name
-                        } on ${client.guilds.get(store.serverId)} has expired ${subscriptionsMissed > 1
-                            ? `${subscriptionsMissed} times`
-                            : ""
+                        `:timer: Looks like your subscription to ${
+                            client.guilds
+                                .get(store.serverId)
+                                ?.roles.get(store.roleId)?.name
+                        } on ${client.guilds.get(store.serverId)} has expired ${
+                            subscriptionsMissed > 1
+                                ? `${subscriptionsMissed} times`
+                                : ""
                         }, but you have the sufficient funds to pay for another subscription. Your subscription will continue and automatically renew when it next expires unless you have insufficient funds.`
                     );
 
