@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Vyctor661/codify/compare/v1.0.0...v1.0.1) (2020-10-03)
+
+
+### Bug Fixes
+
+* fixing the name of a workflow ([be69480](https://github.com/Vyctor661/codify/commit/be694806ca8eb589db912c767fd2e4b3b34dd06c))
+
 # 1.0.0 (2020-10-01)
 
 
