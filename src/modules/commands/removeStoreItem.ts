@@ -26,7 +26,7 @@ export default new Command()
         const id = Number(args[0]);
 
         const matchingStoreItem: Store = (
-            await knex("store").where({ serverId: message.guild.id })
+            await knex("store").where({ serverId: message.guild!.id })
         )[id - 1];
 
         if (!matchingStoreItem) {
@@ -39,11 +39,13 @@ export default new Command()
             storeId: matchingStoreItem.id
         });
 
-        subs.map(l => {
-            message.guild?.members
-                .get(l.userId)
-                ?.removeRole(matchingStoreItem.roleId);
-        });
+        await Promise.all(
+            subs.map(async l => {
+                (await message.guild?.members.fetch(l.userId))?.roles.remove(
+                    matchingStoreItem.roleId
+                );
+            })
+        );
 
         await knex("subscriptions")
             .delete()

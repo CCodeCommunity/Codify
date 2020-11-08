@@ -11,6 +11,8 @@ async function generateTop(message: Message) {
         .orderBy("xp", "desc");
     let fill = "```css\n";
 
+    console.log(top);
+
     for (let i = 0; i <= 9; i++) {
         let memberName;
         do {
@@ -19,9 +21,11 @@ async function generateTop(message: Message) {
                 break;
             }
 
-            memberName = await message.guild.members
-                .get(`${top[i].userid}`)
-                ?.displayName.replace(/[^\w\s]|\s+/gi, "");
+            console.log(top[i]);
+
+            memberName = (
+                await message.guild!.members.fetch({ user: `${top[i].userid}` })
+            )?.displayName.replace(/[^\w\s]|\s+/gi, "");
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);
@@ -30,7 +34,7 @@ async function generateTop(message: Message) {
 
         if (i != 99) {
             fill += `[${k}]  #${memberName} \n`;
-            fill += `      Level ${top[i].level}  :${top[i].xp}XP \n\n`;
+            fill += `      Level ${top[i].level}  : ${top[i].xp} XP \n\n`;
         }
     }
     fill += "```";

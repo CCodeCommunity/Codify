@@ -44,11 +44,11 @@ export default new Command()
             })
             .first();
 
-        const matchingRole = message.guild.roles.find(
+        const matchingRole = (await message.guild!.roles.fetch()).cache.find(
             role => role.id === matchingStore.roleId
-        );
+        )!;
 
-        message.member.removeRole(matchingRole);
+        message.member!.roles.remove(matchingRole);
 
         await knex("subscriptions")
             .delete()

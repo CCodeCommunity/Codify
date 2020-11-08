@@ -32,7 +32,7 @@ export default new Command()
         const id = Number(args[0]);
 
         const matchingStoreItem: Store = (
-            await knex("store").where({ serverId: message.guild.id })
+            await knex("store").where({ serverId: message.guild!.id })
         )[id - 1];
 
         if (!matchingStoreItem) {
@@ -60,7 +60,7 @@ export default new Command()
             );
         }
 
-        const matchingRole = message.guild.roles.find(
+        const matchingRole = (await message.guild!.roles.fetch()).cache.find(
             role => role.id === matchingStoreItem.roleId
         );
 
@@ -70,7 +70,7 @@ export default new Command()
             );
         }
 
-        message.member.addRole(matchingRole);
+        message.member!.roles.add(matchingRole);
 
         await knex<Subscription>("subscriptions").insert({
             userId: message.author.id,

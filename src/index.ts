@@ -83,9 +83,9 @@ bot.client.on("message", ctx => {
 const init = async (): Promise<void> => {
     console.info(`Connecting to discord...`);
     await bot.start();
-    console.info(`Logged in as ${bot.client.user.tag}`);
+    console.info(`Logged in as ${bot.client.user!.tag}`);
 
-    await bot.client.user.setActivity(`🚰 Drinking water!`);
+    await bot.client.user!.setActivity(`🚰 Drinking water!`);
     console.info(`Bot activity is set up!`);
 
     console.info(`The bot is up and running!`);
