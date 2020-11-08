@@ -11,8 +11,6 @@ async function generateTop(message: Message) {
         .orderBy("xp", "desc");
     let fill = "```css\n";
 
-    console.log(top);
-
     for (let i = 0; i <= 9; i++) {
         let memberName;
         do {
@@ -20,8 +18,6 @@ async function generateTop(message: Message) {
                 i = 99;
                 break;
             }
-
-            console.log(top[i]);
 
             memberName = (
                 await message.guild!.members.fetch({ user: `${top[i].userid}` })
