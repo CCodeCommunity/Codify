@@ -71,7 +71,7 @@ export default new Command()
             );
         }
 
-        const dbUser = await knex("user")
+        const dbUser: User = await knex("user")
             .where({ userid: message.author.id })
             .first();
 
@@ -79,7 +79,7 @@ export default new Command()
             .update({
                 balance: dbUser.balance - matchingStoreItem.price
             })
-            .where({ userid: dbUser.userId });
+            .where({ userid: message.author.id });
 
         message.member!.roles.add(matchingRole);
 
