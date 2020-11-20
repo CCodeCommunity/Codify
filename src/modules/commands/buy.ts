@@ -70,7 +70,7 @@ export default new Command()
             );
         }
 
-        message.member!.roles.add(matchingRole);
+        message.member!.roles.add(matchingRole.toString());
 
         await knex<Subscription>("subscriptions").insert({
             userId: message.author.id,

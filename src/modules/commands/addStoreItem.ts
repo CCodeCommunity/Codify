@@ -40,6 +40,13 @@ export default new Command()
                 ":x: **Oops,** your price can't be below 0!"
             );
         }
+
+        if (!args[2]) {
+            return message.channel.send(
+                `:x: **Oops,** looks like you didn't set an interval.`
+            );
+        }
+
         if (args[2] && Number(args[2]).toString() !== args[2]) {
             return message.channel.send(
                 ":x: **Oops,** looks like your subscription interval isn't a number."
