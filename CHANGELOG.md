@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Vyctor661/codify/compare/v1.1.0...v1.1.1) (2020-11-20)
+
+
+### Bug Fixes
+
+* friday night master push ([1d13ec2](https://github.com/Vyctor661/codify/commit/1d13ec2c81563e9cd986b71a1f237b9ff26c2fa4))
+
 # [1.1.0](https://github.com/Vyctor661/codify/compare/v1.0.1...v1.1.0) (2020-11-20)
 
 
