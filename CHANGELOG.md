@@ -1,3 +1,21 @@
+# [1.1.0](https://github.com/Vyctor661/codify/compare/v1.0.1...v1.1.0) (2020-11-20)
+
+
+### Bug Fixes
+
+* cc!top bugs and a few other errors ([8491a96](https://github.com/Vyctor661/codify/commit/8491a96c4de5047ccee0a54d21f7878aec17dc39))
+* finally fixed problem with not caching ([e592181](https://github.com/Vyctor661/codify/commit/e59218120ad9aba48926f407ebe784147e0897ca))
+* fixed review changes ([d4c20ed](https://github.com/Vyctor661/codify/commit/d4c20ed917315d3820161271fd612a695647cee5))
+* typo in store migrations ([403c922](https://github.com/Vyctor661/codify/commit/403c9227b3ea1e1a389efcaa76c699622fcaa225))
+
+
+### Features
+
+* made only users who can manage roles add store items ([2ea8307](https://github.com/Vyctor661/codify/commit/2ea83071abd5ebe9886019968005fc5bf4564c0d))
+* store system ([d1bd76f](https://github.com/Vyctor661/codify/commit/d1bd76fe85da2bc0a694166e935d6d17ceb6dc30))
+* types and migrations for store ([059662e](https://github.com/Vyctor661/codify/commit/059662e979c7f26ac70978430aec1fe818416faf))
+* unsubscribing and purchases ([bcd7fe2](https://github.com/Vyctor661/codify/commit/bcd7fe2e549d0b8484e7fbf3c70756bd5fda684c))
+
 ## [1.0.1](https://github.com/Vyctor661/codify/compare/v1.0.0...v1.0.1) (2020-10-03)
 
 
