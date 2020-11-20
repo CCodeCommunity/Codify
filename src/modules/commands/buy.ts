@@ -71,6 +71,7 @@ export default new Command()
             );
         }
 
+
         const dbUser: User = await knex("user")
             .where({ userid: message.author.id })
             .first();
@@ -82,6 +83,7 @@ export default new Command()
             .where({ userid: message.author.id });
 
         message.member!.roles.add(matchingRole);
+
 
         await knex<Subscription>("subscriptions").insert({
             userId: message.author.id,

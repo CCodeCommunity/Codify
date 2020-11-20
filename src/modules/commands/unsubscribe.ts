@@ -48,7 +48,7 @@ export default new Command()
             role => role.id === matchingStore.roleId
         )!;
 
-        message.member!.roles.remove(matchingRole);
+        message.member!.roles.remove(matchingRole.toString());
 
         await knex("subscriptions")
             .delete()
