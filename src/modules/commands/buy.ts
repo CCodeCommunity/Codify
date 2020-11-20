@@ -5,6 +5,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import Store from "../../common/types/Store";
 import Subscription from "../../common/types/Subscription";
+import User from "../../common/types/User";
 
 const checkBalance = async (amount: number, id: string) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -32,7 +33,7 @@ export default new Command()
         const id = Number(args[0]);
 
         const matchingStoreItem: Store = (
-            await knex("store").where({ serverId: message.guild.id })
+            await knex("store").where({ serverId: message!.guild.id })
         )[id - 1];
 
         if (!matchingStoreItem) {
@@ -60,7 +61,7 @@ export default new Command()
             );
         }
 
-        const matchingRole = message.guild.roles.find(
+        const matchingRole = message!.guild!.roles.find(
             role => role.id === matchingStoreItem.roleId
         );
 
@@ -70,7 +71,19 @@ export default new Command()
             );
         }
 
-        message.member.addRole(matchingRole);
+        const dbUser: User = await knex("user")
+            .where({
+                userid: message.author.id
+            })
+            .first();
+
+        await knex("user")
+            .update({
+                balance: dbUser.balance - matchingStoreItem.price
+            })
+            .where({ userid: message.author.id });
+
+        message.member!.roles.add(matchingRole);
 
         await knex<Subscription>("subscriptions").insert({
             userId: message.author.id,
