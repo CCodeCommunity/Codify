@@ -1,3 +1,13 @@
+## [1.1.2](https://github.com/Vyctor661/codify/compare/v1.1.1...v1.1.2) (2020-11-20)
+
+
+### Bug Fixes
+
+* buying things properly takes the money ([115fedd](https://github.com/Vyctor661/codify/commit/115feddc42254da959dab7f8f60b2e1452c7e962))
+* fixed fixing djs stuff unfixing buying things ([38f261d](https://github.com/Vyctor661/codify/commit/38f261d0c1d5ef401cf72233cdb2f577712209c7))
+* new djs stuff ([2c870f6](https://github.com/Vyctor661/codify/commit/2c870f624b0361af9ff7f34ece846b888d02c792))
+* ok its finally fixed ([51f0828](https://github.com/Vyctor661/codify/commit/51f0828a1f55739f650b0c32bfd2f2aef6634ca6))
+
 ## [1.1.1](https://github.com/Vyctor661/codify/compare/v1.1.0...v1.1.1) (2020-11-20)
 
 
