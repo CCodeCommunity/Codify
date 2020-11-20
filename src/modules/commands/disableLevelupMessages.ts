@@ -1,10 +1,9 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
-import { checkAndInitProfile } from "../../common/knexCommon";
 
 async function insertData(userid: string) {
     const levelupmessages = (await knex("user").where({ userid }))[0]
@@ -15,11 +14,10 @@ async function insertData(userid: string) {
     return levelupmessages;
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("disablelevelupmessages|dlum"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
-        const { args } = context.state;
 
         try {
             const isDisabled = await insertData(message.author.id);
@@ -32,5 +30,4 @@ export default new CommandBuilder()
             console.info(e);
             return message.channel.send(`**ERROR:** Something went wrong.`);
         }
-    })
-    .done();
+    });

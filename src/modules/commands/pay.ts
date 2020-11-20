@@ -1,4 +1,4 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
@@ -44,25 +44,30 @@ async function transferMoney(
         });
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("pay"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
         const amount = parseInt(args.join(" ").slice(23));
         try {
-            if (message.mentions.users.first().bot) {
+            if (!message.mentions.users.first()) {
+                return message.channel.send(
+                    `**OOPS:** Looks like you didn't mention anyone to send money to.`
+                );
+            }
+            if (message.mentions.users.first()!.bot) {
                 return message.channel.send(
                     `**OOPS:** Looks like you can't give money to bots.`
                 );
             }
 
-            if (message.author.id != message.mentions.users.first().id) {
+            if (message.author.id !== message.mentions.users.first()!.id) {
                 if (await checkBalance(amount, message.author.id)) {
                     await transferMoney(
                         amount,
                         message.author.id,
-                        message.mentions.users.first().id
+                        message.mentions.users.first()!.id
                     );
                     return message.channel.send(`**Done.**`);
                 } else {
@@ -76,5 +81,4 @@ export default new CommandBuilder()
         } catch (e) {
             console.info(e);
         }
-    })
-    .done();
+    });

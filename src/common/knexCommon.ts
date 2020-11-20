@@ -1,6 +1,9 @@
+import { Client, Message } from "discord.js";
 import knex from "../../db/knex";
 
 import randomMessage from "./levelUpMessages";
+import Store from "./types/Store";
+import Subscription from "./types/Subscription";
 
 const defaultDesc = "Hi guys, I'm using the Codify bot!";
 
@@ -29,7 +32,7 @@ export async function checkAndInitProfile(
     }
 }
 
-async function checkLevelup(userid: string, ctx: any) {
+async function checkLevelup(userid: string, ctx: Message) {
     try {
         const user = (await knex("user").where({ userid }))[0];
         const gain = Math.floor(Math.sqrt(user.level) * 50);
@@ -58,7 +61,7 @@ async function checkLevelup(userid: string, ctx: any) {
     }
 }
 
-export async function autoXpClaim(userid: string, ctx: any) {
+export async function autoXpClaim(userid: string, ctx: Message) {
     try {
         await checkAndInitProfile(userid);
 
@@ -82,3 +85,83 @@ export async function autoXpClaim(userid: string, ctx: any) {
         console.info(err);
     }
 }
+
+export const checkSubscriptions = async (userId: string, client: Client) => {
+    const userSubscriptions = await knex<Subscription>("subscriptions").where({
+        userId
+    });
+    await Promise.all(
+        userSubscriptions.map(async l => {
+            if (Math.floor(Date.now() / 1000) > Number(l.expiration)) {
+                const store: Store = await knex("store")
+                    .where({ id: l.storeId })
+                    .first()!;
+                const user = await client.users.fetch(l.userId);
+                const dbUser = await knex("user")
+                    .where({ userid: user!.id })
+                    .first();
+                const subscriptionsMissed = Math.ceil(
+                    (Math.floor(Date.now() / 1000) - Number(l.expiration)) /
+                        (store.subscriptionInterval * 86400)
+                );
+                if (dbUser.balance < store.price * subscriptionsMissed) {
+                    user?.send(
+                        `:timer: Looks like your subscription to ${
+                            (
+                                await (
+                                    await client.guilds.fetch(store.serverId)
+                                )?.roles.fetch(store.roleId)
+                            )?.name
+                        } on ${await client.guilds.fetch(
+                            store.serverId
+                        )} has expired ${
+                            subscriptionsMissed > 1
+                                ? `${subscriptionsMissed} times`
+                                : ""
+                        } and you do not have the sufficient funds to pay for another subscription. Your subscription will be cancelled until you restart it.`
+                    );
+
+                    (
+                        await (
+                            await client.guilds.fetch(store.serverId)
+                        )?.members.fetch(l.userId)
+                    )?.roles.remove(store.roleId);
+
+                    await knex<Subscription>("subscriptions")
+                        .delete()
+                        .where({ id: l.id });
+                } else {
+                    user?.send(
+                        `:timer: Looks like your subscription to ${
+                            (
+                                await (
+                                    await client.guilds.fetch(store.serverId)
+                                )?.roles.fetch(store.roleId)
+                            )?.name
+                        } on ${await client.guilds.fetch(
+                            store.serverId
+                        )} has expired ${
+                            subscriptionsMissed > 1
+                                ? `${subscriptionsMissed} times`
+                                : ""
+                        }, but you have the sufficient funds to pay for another subscription. Your subscription will continue and automatically renew when it next expires unless you have insufficient funds.`
+                    );
+
+                    await knex("user")
+                        .update({
+                            balance: dbUser.balance - store.price
+                        })
+                        .where({ userid: l.userId });
+
+                    await knex<Subscription>("subscriptions")
+                        .update({
+                            expiration: (
+                                Math.floor(Date.now() / 1000) + 86400
+                            ).toString()
+                        })
+                        .where({ id: l.id });
+                }
+            }
+        })
+    );
+};

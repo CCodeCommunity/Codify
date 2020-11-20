@@ -1,6 +1,5 @@
 import { Config } from "knex";
 import { config } from "dotenv";
-import Knex from "knex";
 
 config();
 
@@ -8,6 +7,10 @@ const options: Config = {
     client: process.env.DB_CLIENT,
     connection: process.env.CONNECTION || {
         filename: "db/db.sqlite3"
+    },
+    migrations: {
+        directory: "db/migrations",
+        tableName: "migrations"
     },
     debug: process.env.NODE_ENV === "development",
     useNullAsDefault: process.env.DB_CLIENT === "sqlite3",

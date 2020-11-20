@@ -1,10 +1,11 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
+import { Message } from "discord.js";
 
-async function generateTop(message: any) {
+async function generateTop(message: Message) {
     const top = await knex("user")
         .orderBy("level", "desc")
         .orderBy("xp", "desc");
@@ -17,10 +18,12 @@ async function generateTop(message: any) {
                 i = 99;
                 break;
             }
-
-            memberName = await message.guild.members
-                .get(`${top[i].userid}`)
-                ?.displayName.replace(/[^\w\s]|\s+/gi, "");
+            if (message.guild?.member(`${top[i].userid}`))
+                memberName = (
+                    await message.guild!.members.fetch({
+                        user: `${top[i].userid}`
+                    })
+                )?.displayName.replace(/[^\w\s]|\s+/gi, "");
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);
@@ -29,7 +32,7 @@ async function generateTop(message: any) {
 
         if (i != 99) {
             fill += `[${k}]  #${memberName} \n`;
-            fill += `      Level ${top[i].level}  :${top[i].xp}XP \n\n`;
+            fill += `      Level ${top[i].level}  : ${top[i].xp} XP \n\n`;
         }
     }
     fill += "```";
@@ -37,11 +40,10 @@ async function generateTop(message: any) {
     return fill;
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("top|toplevel|topl"))
     .use(async context => {
         const { message } = context;
         const list = await generateTop(message);
         return message.channel.send(list);
-    })
-    .done();
+    });

@@ -1,9 +1,10 @@
-import { CommandBuilder } from "@enitoni/gears-discordjs";
+import { Command } from "@enitoni/gears-discordjs";
 
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import jimp from "jimp";
+import { MessageAttachment } from "discord.js";
 
 async function manipulateImage(text: string) {
     const image = await jimp.read("src/common/images/anyway.jpg");
@@ -13,7 +14,7 @@ async function manipulateImage(text: string) {
     image.write("src/common/images/anywayManipulated.jpg");
 }
 
-export default new CommandBuilder()
+export default new Command()
     .match(matchPrefixesStrict("anyway|anyways"))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
@@ -29,11 +30,11 @@ export default new CommandBuilder()
 
         if (args.join(" ").length < 20) {
             await manipulateImage(args.join(" "));
-            return message.channel.send("", {
-                file: `src/common/images/anywayManipulated.jpg`
-            });
+            const attachment = new MessageAttachment(
+                `src/common/images/anywayManipulated.jpg`
+            );
+            return message.channel.send(attachment);
         } else {
             return message.channel.send(`**ERROR:** Input text is too long.`);
         }
-    })
-    .done();
+    });

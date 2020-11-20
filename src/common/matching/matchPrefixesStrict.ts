@@ -14,14 +14,18 @@ export const matchPrefixesStrict = (
         "i"
     );
 
-    const isMatching = !!context.content.match(regex) && !context.message.author.bot;
+    const isMatching =
+        !!context.content.match(regex) && !context.message.author.bot;
     if (!isMatching) {
-        if (keywords[0] === "help|cmds|commands" && !context.message.author.bot) {
-            context.message.delete(1000);
+        if (
+            keywords[0] === "help|cmds|commands" &&
+            !context.message.author.bot
+        ) {
+            context.message.delete({ timeout: 1000 });
             const newMessage = await context.message.channel.send(
                 `**Invalid command, try:** \`cc!help\`**!**`
-            )
-            resolveArrayToOne(newMessage).delete(3000)
+            );
+            resolveArrayToOne(newMessage).delete({ timeout: 3000 });
         }
         return;
     }
