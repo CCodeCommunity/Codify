@@ -33,11 +33,7 @@ export default new Command()
         const id = Number(args[0]);
 
         const matchingStoreItem: Store = (
-<<<<<<< HEAD
-            await knex("store").where({ serverId: message!.guild.id })
-=======
             await knex("store").where({ serverId: message.guild!.id })
->>>>>>> b84924530eb0f89f6d3cc01dc28da105e31d681e
         )[id - 1];
 
         if (!matchingStoreItem) {
@@ -74,6 +70,16 @@ export default new Command()
                 ":x: **Oops,** seems like the role you're buying doesn't exist. Maybe try contacting a server admin about this."
             );
         }
+
+        const dbUser = await knex("user")
+            .where({ userid: message.author.id })
+            .first();
+
+        await knex("user")
+            .update({
+                balance: dbUser.balance - matchingStoreItem.price
+            })
+            .where({ userid: dbUser.userId });
 
         message.member!.roles.add(matchingRole);
 
