@@ -4,6 +4,7 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import jimp from "jimp";
+import { MessageAttachment } from "discord.js";
 
 async function manipulateImage(text: string) {
     const image = await jimp.read("src/common/images/anyway.jpg");
@@ -29,9 +30,10 @@ export default new Command()
 
         if (args.join(" ").length < 20) {
             await manipulateImage(args.join(" "));
-            return message.channel.send("", {
-                file: `src/common/images/anywayManipulated.jpg`
-            });
+            const attachment = new MessageAttachment(
+                `src/common/images/anywayManipulated.jpg`
+            );
+            return message.channel.send(attachment);
         } else {
             return message.channel.send(`**ERROR:** Input text is too long.`);
         }

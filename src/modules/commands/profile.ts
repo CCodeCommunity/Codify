@@ -21,13 +21,18 @@ export default new Command()
         try {
             let profileData;
             if (args.length) {
-                if (message.mentions.users.first().bot) {
+                if (!message.mentions.users.first()) {
+                    return message.channel.send(
+                        `**OOPS:** You need to mention a user.`
+                    );
+                }
+                if (message.mentions.users.first()!.bot) {
                     return message.channel.send(
                         `**OOPS:** Looks like bots can't have profiles.`
                     );
                 } else
                     profileData = (
-                        await pullData(message.mentions.users.first().id)
+                        await pullData(message.mentions.users.first()!.id)
                     )[0];
             } else {
                 profileData = (await pullData(message.author.id))[0];
@@ -41,8 +46,10 @@ export default new Command()
                         {
                             name: "😀 Nickname:",
                             value: `${
-                                message.guild.members.get(
-                                    `${profileData.userid}`
+                                (
+                                    await message.guild!.members.fetch(
+                                        `${profileData.userid}`
+                                    )
                                 )?.displayName
                             }`
                         },
@@ -72,11 +79,10 @@ export default new Command()
                             value:
                                 profileData.lastdaily === "Never claimed."
                                     ? "Never claimed."
-                                    : profileData.lastdaily +
-                                      "/" +
-                                      (new Date().getMonth() + 1) +
-                                      "/" +
-                                      new Date().getFullYear(),
+                                    : `${
+                                          profileData.lastdaily
+                                      }/${new Date().getMonth() +
+                                          1}/${new Date().getFullYear()}`,
                             inline: true
                         }
                     ]

@@ -51,23 +51,19 @@ export default new Command()
                     " "
                 )}`
             );
-            message.client.users
-                .get("270972671490129921")
-                ?.send(
-                    `*${message.author.username} wants to add a new quote.*`
-                );
-            message.client.users
-                .get("270972671490129921")
-                ?.send(
-                    `---------------------------------------------------------------------------`
-                );
-            const messageSent = (await message.client.users
-                .get("270972671490129921")
-                ?.send(
-                    `${args.join(
-                        " "
-                    )}\n---------------------------------------------------------------------------`
-                )!) as Message;
+            (await message.client.users.fetch("270972671490129921"))?.send(
+                `*${message.author.username} wants to add a new quote.*`
+            );
+            (await message.client.users.fetch("270972671490129921"))?.send(
+                `---------------------------------------------------------------------------`
+            );
+            const messageSent = (await (
+                await message.client.users.fetch("270972671490129921")
+            )?.send(
+                `${args.join(
+                    " "
+                )}\n---------------------------------------------------------------------------`
+            )!) as Message;
             console.log(`New quote request from: ${message.author.username}`);
             await resolveArrayToOne(messageSent).react("👍");
             await resolveArrayToOne(messageSent).react("👎");
@@ -87,11 +83,13 @@ export default new Command()
                     if (reaction.emoji.name === "👍") {
                         // we add the quote to the database
                         await addQuote(args.join(" "), message.author.username);
-                        message.client.users
-                            .get("270972671490129921")
-                            ?.send(
-                                "Successfully added the new quote. :white_check_mark:"
-                            );
+                        (
+                            await message.client.users.fetch(
+                                "270972671490129921"
+                            )
+                        )?.send(
+                            "Successfully added the new quote. :white_check_mark:"
+                        );
                         message.author.send(
                             `Your quote was approved by the administrator. :white_check_mark: \n**Your quote:**\n${args.join(
                                 " "
@@ -102,11 +100,13 @@ export default new Command()
                         // we dont add the quote and we return half the money
                         await updateBalance(message.author.id, 5000);
 
-                        message.client.users
-                            .get("270972671490129921")
-                            ?.send(
-                                "The quote has been successfully rejected. :x:"
-                            );
+                        (
+                            await message.client.users.fetch(
+                                "270972671490129921"
+                            )
+                        )?.send(
+                            "The quote has been successfully rejected. :x:"
+                        );
                         message.author.send(
                             `Your quote was rejected by the administrator. :x:\n**Your quote:**\n${args.join(
                                 " "
@@ -120,13 +120,15 @@ export default new Command()
                         if (collected.size === 0) {
                             // we return the money and send a dm to the guy
                             await updateBalance(message.author.id, 10000);
-                            message.client.users
-                                .get("270972671490129921")
-                                ?.send(
-                                    `Failed to react to the quote in time. :x: \n**The quote:**\n${args.join(
-                                        " "
-                                    )}`
-                                );
+                            (
+                                await message.client.users.fetch(
+                                    "270972671490129921"
+                                )
+                            )?.send(
+                                `Failed to react to the quote in time. :x: \n**The quote:**\n${args.join(
+                                    " "
+                                )}`
+                            );
                             message.author.send(
                                 `Sorry but the administrator didn't see your quote in time. :x:\n**Your quote:**\n${args.join(
                                     " "

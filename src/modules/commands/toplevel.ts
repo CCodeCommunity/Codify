@@ -19,9 +19,9 @@ async function generateTop(message: Message) {
                 break;
             }
 
-            memberName = await message.guild.members
-                .get(`${top[i].userid}`)
-                ?.displayName.replace(/[^\w\s]|\s+/gi, "");
+            memberName = (
+                await message.guild!.members.fetch({ user: `${top[i].userid}` })
+            )?.displayName.replace(/[^\w\s]|\s+/gi, "");
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);
@@ -30,7 +30,7 @@ async function generateTop(message: Message) {
 
         if (i != 99) {
             fill += `[${k}]  #${memberName} \n`;
-            fill += `      Level ${top[i].level}  :${top[i].xp}XP \n\n`;
+            fill += `      Level ${top[i].level}  : ${top[i].xp} XP \n\n`;
         }
     }
     fill += "```";

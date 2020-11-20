@@ -12,10 +12,10 @@ export default new Command()
         try {
             const webhook = await channel.createWebhook(
                 message.author.username,
-                message.author.displayAvatarURL
+                { avatar: message.author.displayAvatarURL() }
             );
             if (
-                message.member.roles.some(
+                message.member!.roles.cache.some(
                     (role: Role) => role.name === "githubHooker"
                 )
             )

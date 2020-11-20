@@ -1,4 +1,5 @@
 import { Command } from "@enitoni/gears-discordjs";
+import { MessageAttachment } from "discord.js";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
@@ -8,7 +9,9 @@ export default new Command()
         const { message } = context;
 
         message.delete();
-        return message.channel.send("", {
-            file: "src/common/images/javaistojs.png"
-        });
+
+        const attachment = new MessageAttachment(
+            `src/common/images/javaistojs.png`
+        );
+        return message.channel.send(attachment);
     });

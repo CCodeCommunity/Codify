@@ -11,7 +11,7 @@ export default new Command()
         const { message } = context;
         const { args } = context.state;
 
-        if (!message.member.hasPermission("MANAGE_ROLES")) {
+        if (!message.member!.hasPermission("MANAGE_ROLES")) {
             return message.channel.send(
                 ":x: **Oops,** you aren't allowed to do that. Make sure you have the `Manage roles` permission."
             );
@@ -23,7 +23,7 @@ export default new Command()
             );
         }
 
-        if (!message.guild.roles.get(args[0])) {
+        if (!(await message.guild!.roles.fetch(args[0]))) {
             return message.channel.send(
                 ":x: **Oops,** looks like that role doesn't exist."
             );
@@ -48,7 +48,7 @@ export default new Command()
         const subscriptionInterval = args[2] && Number(args[2]);
 
         await knex<Store>("store").insert({
-            serverId: message.guild.id,
+            serverId: message.guild!.id,
             roleId,
             price,
             subscription: !!subscriptionInterval,
