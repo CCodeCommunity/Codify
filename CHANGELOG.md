@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/Vyctor661/codify/compare/v1.1.2...v1.1.3) (2020-11-20)
+
+
+### Bug Fixes
+
+* friday night bugfix I want to die ([4475576](https://github.com/Vyctor661/codify/commit/4475576657a4424195ee94208b26ee8c3fb596f1))
+
 ## [1.1.2](https://github.com/Vyctor661/codify/compare/v1.1.1...v1.1.2) (2020-11-20)
 
 
