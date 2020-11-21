@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/Vyctor661/codify/compare/v1.1.3...v1.2.0) (2020-11-21)
+
+
+### Features
+
+* more sentient reponses ([3796d8c](https://github.com/Vyctor661/codify/commit/3796d8c3f5312350207bd4e48e879069abb107a7))
+* new copypasta command ([346f3a5](https://github.com/Vyctor661/codify/commit/346f3a55b9646524f08a544062e7d171d8da729a))
+
 ## [1.1.3](https://github.com/Vyctor661/codify/compare/v1.1.2...v1.1.3) (2020-11-20)
 
 
