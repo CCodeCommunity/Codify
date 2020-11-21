@@ -8,6 +8,8 @@ import { resolveArrayToOne } from "../constants";
 import knex from "../../../db/knex";
 import { Collection, Message, MessageReaction } from "discord.js";
 
+import { createMetadata } from "./help/createMetadata";
+
 const checkBalance = async (id: string) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
 
@@ -29,6 +31,14 @@ const updateBalance = async (id: string, addExtract: number) => {
 
 export default new Command()
     .match(matchPrefixesStrict("addquote"))
+    .setMetadata(
+        createMetadata({
+            name: "Add a quote",
+            usage: "cc!addquote [text]",
+            description:
+                "Sends a request for adding a new quote for level up messages, costs 10k, if it gets rejected you get 5k back."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

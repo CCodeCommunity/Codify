@@ -4,6 +4,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
 import { Message } from "discord.js";
+import { createMetadata } from "./help/createMetadata";
 
 async function fillFields(message: Message) {
     const top = await knex("user").orderBy("balance", "desc");
@@ -37,6 +38,13 @@ async function fillFields(message: Message) {
 
 export default new Command()
     .match(matchPrefixesStrict("topb|topbalance|balancetop"))
+    .setMetadata(
+        createMetadata({
+            name: "Top balance",
+            usage: "cc!topb/topbalance/balancetop",
+            description: "Shows a top with user balances of the server."
+        })
+    )
     .use(async context => {
         const { message } = context;
         const fields = await fillFields(message);

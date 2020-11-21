@@ -5,9 +5,18 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import Store from "../../common/types/Store";
 import Subscription from "../../common/types/Subscription";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("removeStoreItem"))
+    .setMetadata(
+        createMetadata({
+            name: "Remove store item",
+            usage: "cc!removestoreitem [itemid]",
+            description:
+                "Remove an item from the store, you need MANAGE_ROLES permission for this."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

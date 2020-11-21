@@ -4,9 +4,17 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import { alphabet, resolveArrayToOne, emojiLetters } from "../constants";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("poll"))
+    .setMetadata(
+        createMetadata({
+            name: "Create a poll",
+            usage: "cc!poll [title]|[option1]|[option2]|...",
+            description: "Creates a poll."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

@@ -5,6 +5,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
+import { createMetadata } from "./help/createMetadata";
 
 async function pullData(id: string) {
     await checkAndInitProfile(id);
@@ -14,6 +15,14 @@ async function pullData(id: string) {
 
 export default new Command()
     .match(matchPrefixesStrict("profile"))
+    .setMetadata(
+        createMetadata({
+            name: "Shows a profile",
+            usage: "cc!profile <user>",
+            description:
+                "Show the profile of a user. The default is the one who sends the command."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
