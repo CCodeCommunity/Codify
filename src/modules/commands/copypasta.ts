@@ -13,11 +13,11 @@ const loop = (type: "content" | "title" | "score") => {
 };
 
 export default new Command()
-    .match(matchPrefixesStrict("joke"))
+    .match(matchPrefixesStrict("copypasta"))
     .use(async context => {
         try {
             const response = await fetch(
-                `https://www.reddit.com/r/Jokes/hot/.json`
+                `https://www.reddit.com/r/copypasta/hot/.json`
             );
             const data = await response.json();
 
@@ -27,8 +27,7 @@ export default new Command()
                     title: `${data.data.children[loop("title")].data.title}`,
                     description: `${data.data.children[
                         loop("content")
-                    ].data.selftext.substring(0, 2000)}[...]
-                    }`,
+                    ].data.selftext.substring(0, 2000)}[...]`,
 
                     footer: {
                         text: `👍 ${

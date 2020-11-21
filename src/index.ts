@@ -12,6 +12,7 @@ import description from "./modules/commands/description";
 import gamble from "./modules/commands/gamble";
 import help from "./modules/commands/help";
 import joke from "./modules/commands/joke";
+import copypasta from "./modules/commands/copypasta";
 import meme from "./modules/commands/meme";
 import pay from "./modules/commands/pay";
 import profile from "./modules/commands/profile";
@@ -32,6 +33,11 @@ import buy from "./modules/commands/buy";
 import purchases from "./modules/commands/purchases";
 import unsubscribe from "./modules/commands/unsubscribe";
 import removeStoreItem from "./modules/commands/removeStoreItem";
+
+import bruh from "./modules/reactions/bruh";
+import gay from "./modules/reactions/gay";
+import plusone from "./modules/reactions/plusone";
+import dang from "./modules/reactions/dang";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -56,6 +62,7 @@ const commands = new CommandGroup()
         addQuote,
         topbalance,
         joke,
+        copypasta,
         pay,
         anyway,
         a,
@@ -78,6 +85,12 @@ bot.client.on("message", ctx => {
     }
     autoXpClaim(ctx.author.id, ctx);
     checkSubscriptions(ctx.author.id, bot.client);
+
+    // Reactions here
+    bruh(ctx);
+    gay(ctx);
+    dang(ctx);
+    plusone(ctx);
 });
 
 const init = async (): Promise<void> => {
