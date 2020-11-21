@@ -5,9 +5,17 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import Store from "../../common/types/Store";
 import Subscription from "../../common/types/Subscription";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("purchases"))
+    .setMetadata(
+        createMetadata({
+            name: "Purchases",
+            usage: "cc!purchases",
+            description: "Shows what purchases you have in the server."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

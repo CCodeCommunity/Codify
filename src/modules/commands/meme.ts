@@ -4,6 +4,7 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 
 import fetch from "node-fetch";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { createMetadata } from "./help/createMetadata";
 
 let loopIt = 0;
 
@@ -22,6 +23,14 @@ const loop = (type: "url" | "title" | "score") => {
 
 export default new Command()
     .match(matchPrefixesStrict("meme"))
+    .setMetadata(
+        createMetadata({
+            name: "Meme",
+            usage: "cc!meme <subreddi>",
+            description:
+                "Sends a random meme from a subreddit. The default is set to r/ProgrammerHumor"
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { args } = context.state;
         let subreddit = "ProgrammerHumor";

@@ -4,9 +4,17 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import Store from "../../common/types/Store";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("store"))
+    .setMetadata(
+        createMetadata({
+            name: "Store",
+            usage: "cc!store",
+            description: "Shows the items in the store."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

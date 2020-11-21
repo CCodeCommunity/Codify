@@ -4,9 +4,18 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import Store from "../../common/types/Store";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("addStoreItem"))
+    .setMetadata(
+        createMetadata({
+            name: "Add item to the store",
+            usage: "cc!addstoreitem [roleid] [price] [interval in days]",
+            description:
+                "People with MANAGE_ROLES permission can use this command to add an item to the store aka a role that can be bought by other users."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

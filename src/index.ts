@@ -10,7 +10,6 @@ import anyway from "./modules/commands/anyway";
 import daily from "./modules/commands/daily";
 import description from "./modules/commands/description";
 import gamble from "./modules/commands/gamble";
-import help from "./modules/commands/help";
 import joke from "./modules/commands/joke";
 import copypasta from "./modules/commands/copypasta";
 import meme from "./modules/commands/meme";
@@ -33,7 +32,8 @@ import buy from "./modules/commands/buy";
 import purchases from "./modules/commands/purchases";
 import unsubscribe from "./modules/commands/unsubscribe";
 import removeStoreItem from "./modules/commands/removeStoreItem";
-import reaction from "./modules/commands/reaction";
+import reactions from "./modules/commands/reaction";
+import { helpCommand } from "./modules/commands/help/helpCommand";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -68,10 +68,10 @@ const commands = new CommandGroup()
         buy,
         purchases,
         unsubscribe,
-        help
+        helpCommand
     ); // / Make sure help is the last command or it will break things.
 
-const bot = new Bot({ adapter, commands: [commands, reaction] });
+const bot = new Bot({ adapter, commands: [commands, reactions] });
 
 bot.on("error", err => console.log("Error ", err));
 

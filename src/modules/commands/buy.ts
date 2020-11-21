@@ -6,6 +6,7 @@ import knex from "../../../db/knex";
 import Store from "../../common/types/Store";
 import Subscription from "../../common/types/Subscription";
 import User from "../../common/types/User";
+import { createMetadata } from "./help/createMetadata";
 
 const checkBalance = async (amount: number, id: string) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -15,6 +16,13 @@ const checkBalance = async (amount: number, id: string) => {
 
 export default new Command()
     .match(matchPrefixesStrict("buy"))
+    .setMetadata(
+        createMetadata({
+            name: "Buy an item",
+            usage: "cc!buy [itemid]",
+            description: "Buy an item from the store of the server."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
