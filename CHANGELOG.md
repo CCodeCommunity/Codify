@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Vyctor661/codify/compare/v1.2.0...v1.2.1) (2020-11-21)
+
+
+### Bug Fixes
+
+* made codify's responses less anoying ([7fa01c8](https://github.com/Vyctor661/codify/commit/7fa01c86c09779dd9a0080ec18c3a94d2d97878a))
+
 # [1.2.0](https://github.com/Vyctor661/codify/compare/v1.1.3...v1.2.0) (2020-11-21)
 
 
