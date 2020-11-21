@@ -5,7 +5,7 @@ export default (ctx: Message) => {
 
     const responses = ["trueee", "[2]", "[infinty]", "ye lmao", "^^^^"];
 
-    if (message.startsWith("[1]"))
+    if (message.startsWith("[1]" || message.startsWith("^")))
         ctx.channel.send(
             responses[Math.floor(Math.random() * responses.length)]
         );
