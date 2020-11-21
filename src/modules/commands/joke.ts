@@ -27,8 +27,7 @@ export default new Command()
                     title: `${data.data.children[loop("title")].data.title}`,
                     description: `${data.data.children[
                         loop("content")
-                    ].data.selftext.substring(0, 2000)}[...]
-                    }`,
+                    ].data.selftext.substring(0, 2000)}`,
 
                     footer: {
                         text: `👍 ${

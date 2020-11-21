@@ -33,11 +33,7 @@ import buy from "./modules/commands/buy";
 import purchases from "./modules/commands/purchases";
 import unsubscribe from "./modules/commands/unsubscribe";
 import removeStoreItem from "./modules/commands/removeStoreItem";
-
-import bruh from "./modules/reactions/bruh";
-import gay from "./modules/reactions/gay";
-import plusone from "./modules/reactions/plusone";
-import dang from "./modules/reactions/dang";
+import reaction from "./modules/commands/reaction";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -75,7 +71,7 @@ const commands = new CommandGroup()
         help
     ); // / Make sure help is the last command or it will break things.
 
-const bot = new Bot({ adapter, commands: [commands] });
+const bot = new Bot({ adapter, commands: [commands, reaction] });
 
 bot.on("error", err => console.log("Error ", err));
 
@@ -85,12 +81,6 @@ bot.client.on("message", ctx => {
     }
     autoXpClaim(ctx.author.id, ctx);
     checkSubscriptions(ctx.author.id, bot.client);
-
-    // Reactions here
-    bruh(ctx);
-    gay(ctx);
-    dang(ctx);
-    plusone(ctx);
 });
 
 const init = async (): Promise<void> => {
