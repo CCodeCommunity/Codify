@@ -12,6 +12,7 @@ import description from "./modules/commands/description";
 import gamble from "./modules/commands/gamble";
 import help from "./modules/commands/help";
 import joke from "./modules/commands/joke";
+import copypasta from "./modules/commands/copypasta";
 import meme from "./modules/commands/meme";
 import pay from "./modules/commands/pay";
 import profile from "./modules/commands/profile";
@@ -56,6 +57,7 @@ const commands = new CommandGroup()
         addQuote,
         topbalance,
         joke,
+        copypasta,
         pay,
         anyway,
         a,
