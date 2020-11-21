@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/Vyctor661/codify/compare/v1.2.1...v1.3.0) (2020-11-21)
+
+
+### Bug Fixes
+
+* qol ([48c1367](https://github.com/Vyctor661/codify/commit/48c1367c72378a3f8a27d01d82b8d223a1991086))
+
+
+### Features
+
+* now reponding to ^^ as well ([58a681b](https://github.com/Vyctor661/codify/commit/58a681bdda9fca5c1f3363acd57da150f8ce4d0b))
+
 ## [1.2.1](https://github.com/Vyctor661/codify/compare/v1.2.0...v1.2.1) (2020-11-21)
 
 
