@@ -10,8 +10,8 @@ import anyway from "./modules/commands/anyway";
 import daily from "./modules/commands/daily";
 import description from "./modules/commands/description";
 import gamble from "./modules/commands/gamble";
-import help from "./modules/commands/help";
 import joke from "./modules/commands/joke";
+import copypasta from "./modules/commands/copypasta";
 import meme from "./modules/commands/meme";
 import pay from "./modules/commands/pay";
 import profile from "./modules/commands/profile";
@@ -32,6 +32,8 @@ import buy from "./modules/commands/buy";
 import purchases from "./modules/commands/purchases";
 import unsubscribe from "./modules/commands/unsubscribe";
 import removeStoreItem from "./modules/commands/removeStoreItem";
+import reactions from "./modules/commands/reaction";
+import { helpCommand } from "./modules/commands/help/helpCommand";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -56,6 +58,7 @@ const commands = new CommandGroup()
         addQuote,
         topbalance,
         joke,
+        copypasta,
         pay,
         anyway,
         a,
@@ -65,10 +68,10 @@ const commands = new CommandGroup()
         buy,
         purchases,
         unsubscribe,
-        help
+        helpCommand
     ); // / Make sure help is the last command or it will break things.
 
-const bot = new Bot({ adapter, commands: [commands] });
+const bot = new Bot({ adapter, commands: [commands, reactions] });
 
 bot.on("error", err => console.log("Error ", err));
 
@@ -83,9 +86,9 @@ bot.client.on("message", ctx => {
 const init = async (): Promise<void> => {
     console.info(`Connecting to discord...`);
     await bot.start();
-    console.info(`Logged in as ${bot.client.user.tag}`);
+    console.info(`Logged in as ${bot.client.user!.tag}`);
 
-    await bot.client.user.setActivity(`🚰 Drinking water!`);
+    await bot.client.user!.setActivity(`🚰 Drinking water!`);
     console.info(`Bot activity is set up!`);
 
     console.info(`The bot is up and running!`);

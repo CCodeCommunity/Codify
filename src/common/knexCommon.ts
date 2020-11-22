@@ -96,7 +96,7 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
                 const store: Store = await knex("store")
                     .where({ id: l.storeId })
                     .first()!;
-                const user = client.users.get(l.userId);
+                const user = await client.users.fetch(l.userId);
                 const dbUser = await knex("user")
                     .where({ userid: user!.id })
                     .first();
@@ -107,20 +107,25 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
                 if (dbUser.balance < store.price * subscriptionsMissed) {
                     user?.send(
                         `:timer: Looks like your subscription to ${
-                            client.guilds
-                                .get(store.serverId)
-                                ?.roles.get(store.roleId)?.name
-                        } on ${client.guilds.get(store.serverId)} has expired ${
+                            (
+                                await (
+                                    await client.guilds.fetch(store.serverId)
+                                )?.roles.fetch(store.roleId)
+                            )?.name
+                        } on ${await client.guilds.fetch(
+                            store.serverId
+                        )} has expired ${
                             subscriptionsMissed > 1
                                 ? `${subscriptionsMissed} times`
                                 : ""
                         } and you do not have the sufficient funds to pay for another subscription. Your subscription will be cancelled until you restart it.`
                     );
 
-                    client.guilds
-                        .get(store.serverId)
-                        ?.members.get(l.userId)
-                        ?.removeRole(store.roleId);
+                    (
+                        await (
+                            await client.guilds.fetch(store.serverId)
+                        )?.members.fetch(l.userId)
+                    )?.roles.remove(store.roleId);
 
                     await knex<Subscription>("subscriptions")
                         .delete()
@@ -128,10 +133,14 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
                 } else {
                     user?.send(
                         `:timer: Looks like your subscription to ${
-                            client.guilds
-                                .get(store.serverId)
-                                ?.roles.get(store.roleId)?.name
-                        } on ${client.guilds.get(store.serverId)} has expired ${
+                            (
+                                await (
+                                    await client.guilds.fetch(store.serverId)
+                                )?.roles.fetch(store.roleId)
+                            )?.name
+                        } on ${await client.guilds.fetch(
+                            store.serverId
+                        )} has expired ${
                             subscriptionsMissed > 1
                                 ? `${subscriptionsMissed} times`
                                 : ""

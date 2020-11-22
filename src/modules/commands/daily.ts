@@ -4,6 +4,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
+import { createMetadata } from "./help/createMetadata";
 
 async function checkClaimed(userid: string) {
     await checkAndInitProfile(userid);
@@ -33,6 +34,14 @@ async function daily(userid: string, amount: number) {
 
 export default new Command()
     .match(matchPrefixesStrict("daily|claim|dailyclaim|free"))
+    .setMetadata(
+        createMetadata({
+            name: "Daily money",
+            usage: "cc!daily/claim/dailyclaim/free",
+            description:
+                "You get a random amount of coins from 1 to 100, can be used once a day."
+        })
+    )
     .use(async context => {
         const { message } = context;
 

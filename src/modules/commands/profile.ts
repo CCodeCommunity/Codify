@@ -5,6 +5,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
+import { createMetadata } from "./help/createMetadata";
 
 async function pullData(id: string) {
     await checkAndInitProfile(id);
@@ -14,6 +15,14 @@ async function pullData(id: string) {
 
 export default new Command()
     .match(matchPrefixesStrict("profile"))
+    .setMetadata(
+        createMetadata({
+            name: "Shows a profile",
+            usage: "cc!profile <user>",
+            description:
+                "Show the profile of a user. The default is the one who sends the command."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
@@ -21,13 +30,18 @@ export default new Command()
         try {
             let profileData;
             if (args.length) {
-                if (message.mentions.users.first().bot) {
+                if (!message.mentions.users.first()) {
+                    return message.channel.send(
+                        `**OOPS:** You need to mention a user.`
+                    );
+                }
+                if (message.mentions.users.first()!.bot) {
                     return message.channel.send(
                         `**OOPS:** Looks like bots can't have profiles.`
                     );
                 } else
                     profileData = (
-                        await pullData(message.mentions.users.first().id)
+                        await pullData(message.mentions.users.first()!.id)
                     )[0];
             } else {
                 profileData = (await pullData(message.author.id))[0];
@@ -41,8 +55,10 @@ export default new Command()
                         {
                             name: "😀 Nickname:",
                             value: `${
-                                message.guild.members.get(
-                                    `${profileData.userid}`
+                                (
+                                    await message.guild!.members.fetch(
+                                        `${profileData.userid}`
+                                    )
                                 )?.displayName
                             }`
                         },
@@ -72,11 +88,10 @@ export default new Command()
                             value:
                                 profileData.lastdaily === "Never claimed."
                                     ? "Never claimed."
-                                    : profileData.lastdaily +
-                                      "/" +
-                                      (new Date().getMonth() + 1) +
-                                      "/" +
-                                      new Date().getFullYear(),
+                                    : `${
+                                          profileData.lastdaily
+                                      }/${new Date().getMonth() +
+                                          1}/${new Date().getFullYear()}`,
                             inline: true
                         }
                     ]

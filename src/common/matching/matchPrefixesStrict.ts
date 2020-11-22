@@ -21,11 +21,11 @@ export const matchPrefixesStrict = (
             keywords[0] === "help|cmds|commands" &&
             !context.message.author.bot
         ) {
-            context.message.delete(1000);
+            context.message.delete({ timeout: 1000 });
             const newMessage = await context.message.channel.send(
                 `**Invalid command, try:** \`cc!help\`**!**`
             );
-            resolveArrayToOne(newMessage).delete(3000);
+            resolveArrayToOne(newMessage).delete({ timeout: 3000 });
         }
         return;
     }

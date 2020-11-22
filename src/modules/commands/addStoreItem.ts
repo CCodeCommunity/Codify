@@ -4,14 +4,23 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import Store from "../../common/types/Store";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("addStoreItem"))
+    .setMetadata(
+        createMetadata({
+            name: "Add item to the store",
+            usage: "cc!addstoreitem [roleid] [price] [interval in days]",
+            description:
+                "People with MANAGE_ROLES permission can use this command to add an item to the store aka a role that can be bought by other users."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
 
-        if (!message.member.hasPermission("MANAGE_ROLES")) {
+        if (!message.member!.hasPermission("MANAGE_ROLES")) {
             return message.channel.send(
                 ":x: **Oops,** you aren't allowed to do that. Make sure you have the `Manage roles` permission."
             );
@@ -23,7 +32,7 @@ export default new Command()
             );
         }
 
-        if (!message.guild.roles.get(args[0])) {
+        if (!(await message.guild!.roles.fetch(args[0]))) {
             return message.channel.send(
                 ":x: **Oops,** looks like that role doesn't exist."
             );
@@ -40,6 +49,13 @@ export default new Command()
                 ":x: **Oops,** your price can't be below 0!"
             );
         }
+
+        if (!args[2]) {
+            return message.channel.send(
+                `:x: **Oops,** looks like you didn't set an interval.`
+            );
+        }
+
         if (args[2] && Number(args[2]).toString() !== args[2]) {
             return message.channel.send(
                 ":x: **Oops,** looks like your subscription interval isn't a number."
@@ -48,7 +64,7 @@ export default new Command()
         const subscriptionInterval = args[2] && Number(args[2]);
 
         await knex<Store>("store").insert({
-            serverId: message.guild.id,
+            serverId: message.guild!.id,
             roleId,
             price,
             subscription: !!subscriptionInterval,

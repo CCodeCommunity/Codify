@@ -4,6 +4,7 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
+import { createMetadata } from "./help/createMetadata";
 
 async function checkBalance(amount: number, id: string) {
     if (amount <= 0 || amount >= 1001) {
@@ -40,6 +41,14 @@ async function updateBalance(amount: number, id: string) {
 
 export default new Command()
     .match(matchPrefixesStrict("gamble|dice|slots"))
+    .setMetadata(
+        createMetadata({
+            name: "Roll the dice",
+            usage: "cc!gamble/dive/slots [amount]",
+            description:
+                "Gamble a random amount of coins. can be between 1 and 1000."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

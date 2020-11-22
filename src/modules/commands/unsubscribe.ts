@@ -5,9 +5,17 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import Subscription from "../../common/types/Subscription";
 import Store from "../../common/types/Store";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("unsubscribe"))
+    .setMetadata(
+        createMetadata({
+            name: "Unsubscribe",
+            usage: "cc!unsubscribe [itemid]",
+            description: "Unsubscribe from a role that you bought."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
@@ -44,11 +52,11 @@ export default new Command()
             })
             .first();
 
-        const matchingRole = message.guild.roles.find(
+        const matchingRole = (await message.guild!.roles.fetch()).cache.find(
             role => role.id === matchingStore.roleId
-        );
+        )!;
 
-        message.member.removeRole(matchingRole);
+        message.member!.roles.remove(matchingRole);
 
         await knex("subscriptions")
             .delete()

@@ -4,6 +4,8 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import jimp from "jimp";
+import { MessageAttachment } from "discord.js";
+import { createMetadata } from "./help/createMetadata";
 
 async function manipulateImage(text: string) {
     const image = await jimp.read("src/common/images/anyway.jpg");
@@ -15,6 +17,14 @@ async function manipulateImage(text: string) {
 
 export default new Command()
     .match(matchPrefixesStrict("anyway|anyways"))
+    .setMetadata(
+        createMetadata({
+            name: "Anyway",
+            usage: "cc!anyway/cc!anyways [text]",
+            description:
+                'Sends an image with Danny Devito that says "So anyway I started [text]"'
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
@@ -29,9 +39,10 @@ export default new Command()
 
         if (args.join(" ").length < 20) {
             await manipulateImage(args.join(" "));
-            return message.channel.send("", {
-                file: `src/common/images/anywayManipulated.jpg`
-            });
+            const attachment = new MessageAttachment(
+                `src/common/images/anywayManipulated.jpg`
+            );
+            return message.channel.send(attachment);
         } else {
             return message.channel.send(`**ERROR:** Input text is too long.`);
         }
