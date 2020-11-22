@@ -69,7 +69,7 @@ const commands = new CommandGroup()
         purchases,
         unsubscribe,
         helpCommand
-    ); // / Make sure help is the last command or it will break things.
+    );
 
 const bot = new Bot({ adapter, commands: [commands, reactions] });
 
