@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/Vyctor661/codify/compare/v1.3.0...v1.3.1) (2020-11-22)
+
+
+### Bug Fixes
+
+* pgw's brain ([7fa9213](https://github.com/Vyctor661/codify/commit/7fa92139ee260655da9f6c1df3cf2cf13640caa5))
+
 # [1.3.0](https://github.com/Vyctor661/codify/compare/v1.2.1...v1.3.0) (2020-11-21)
 
 
