@@ -5,9 +5,18 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import { randomBytes } from "crypto";
 
 import knex from "../../../db/knex";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("gettoken"))
+    .setMetadata(
+        createMetadata({
+            name: "Get a token",
+            usage: "cc!gettoken",
+            description:
+                "Sends a dm with your token for the api. More info into the dm. But well I don't think the api works anymore."
+        })
+    )
     .use(async context => {
         const { message } = context;
         const token = randomBytes(16).toString("hex");

@@ -4,9 +4,18 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import Store from "../../common/types/Store";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("addStoreItem"))
+    .setMetadata(
+        createMetadata({
+            name: "Add item to the store",
+            usage: "cc!addstoreitem [roleid] [price] [interval in days]",
+            description:
+                "People with MANAGE_ROLES permission can use this command to add an item to the store aka a role that can be bought by other users."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
@@ -29,17 +38,24 @@ export default new Command()
             );
         }
         const roleId = args[0];
-        if (Number(args[1]).toString() !== args[1]) {
+        if (parseInt(args[1]).toString() !== args[1]) {
             return message.channel.send(
                 ":x: **Oops,** looks like your price isn't a number."
             );
         }
-        const price = Number(args[1]);
+        const price = parseInt(args[1]);
         if (price < 0) {
             return message.channel.send(
                 ":x: **Oops,** your price can't be below 0!"
             );
         }
+
+        if (!args[2]) {
+            return message.channel.send(
+                `:x: **Oops,** looks like you didn't set an interval.`
+            );
+        }
+
         if (args[2] && Number(args[2]).toString() !== args[2]) {
             return message.channel.send(
                 ":x: **Oops,** looks like your subscription interval isn't a number."

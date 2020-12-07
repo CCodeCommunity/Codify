@@ -4,6 +4,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
 import { Message } from "discord.js";
+import { createMetadata } from "./help/createMetadata";
 
 async function generateTop(message: Message) {
     const top = await knex("user")
@@ -18,10 +19,12 @@ async function generateTop(message: Message) {
                 i = 99;
                 break;
             }
-
-            memberName = (
-                await message.guild!.members.fetch({ user: `${top[i].userid}` })
-            )?.displayName.replace(/[^\w\s]|\s+/gi, "");
+            if (message.guild?.member(`${top[i].userid}`))
+                memberName = (
+                    await message.guild!.members.fetch({
+                        user: `${top[i].userid}`
+                    })
+                )?.displayName.replace(/[^\w\s]|\s+/gi, "");
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);
@@ -40,6 +43,13 @@ async function generateTop(message: Message) {
 
 export default new Command()
     .match(matchPrefixesStrict("top|toplevel|topl"))
+    .setMetadata(
+        createMetadata({
+            name: "Top levels",
+            usage: "cc!top/toplevel/topl",
+            description: "Shows a top with user levels in the server."
+        })
+    )
     .use(async context => {
         const { message } = context;
         const list = await generateTop(message);

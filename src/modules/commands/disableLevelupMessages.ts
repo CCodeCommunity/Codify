@@ -4,6 +4,7 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
+import { createMetadata } from "./help/createMetadata";
 
 async function insertData(userid: string) {
     const levelupmessages = (await knex("user").where({ userid }))[0]
@@ -16,6 +17,14 @@ async function insertData(userid: string) {
 
 export default new Command()
     .match(matchPrefixesStrict("disablelevelupmessages|dlum"))
+    .setMetadata(
+        createMetadata({
+            name: "Disable the level up messages",
+            usage: "cc!disablelevelupmessages/dlum",
+            description:
+                "If you are annoyed by the level up messages you can use this command and if you level up you will no longer get pinged by codify when you level up. You will still level up though."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

@@ -3,8 +3,17 @@ import { Command } from "@enitoni/gears-discordjs";
 import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
+import { createMetadata } from "./help/createMetadata";
+
 export default new Command()
     .match(matchPrefixesStrict("a"))
+    .setMetadata(
+        createMetadata({
+            name: "scream",
+            usage: "cc!a",
+            description: "Makes the bot scream."
+        })
+    )
     .use<ParseArgumentsState>(context => {
         const { message } = context;
 

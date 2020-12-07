@@ -11,6 +11,7 @@ import knex from "../../../db/knex";
 
 import fetch from "node-fetch";
 import { Collection, Message, MessageReaction } from "discord.js";
+import { createMetadata } from "./help/createMetadata";
 
 const updateBalance = async (id: string, addExtract: number) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -54,6 +55,14 @@ const shuffleArray = (array: Array<string>) => {
 
 export default new Command()
     .match(matchPrefixesStrict("trivia"))
+    .setMetadata(
+        createMetadata({
+            name: "Trivia",
+            usage: "cc!trivia",
+            description:
+                "Sends a trivia question that you can answer, if you are right you can get coins."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 
