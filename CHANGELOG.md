@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/Vyctor661/codify/compare/v1.3.1...v1.4.0) (2020-12-07)
+
+
+### Bug Fixes
+
+* added metadata to chart command ([511277e](https://github.com/Vyctor661/codify/commit/511277e5df3bee834be4021fe587558fd8972db2))
+* fixed bug with floats ([6f156f3](https://github.com/Vyctor661/codify/commit/6f156f36c7d83705ca6f8dfcdbe1de5cbd3861ee))
+
+
+### Features
+
+* chart command ([fd7e3b4](https://github.com/Vyctor661/codify/commit/fd7e3b4c0d3dbbdd3c202ca8410fe6acdd67953e))
+
 ## [1.3.1](https://github.com/Vyctor661/codify/compare/v1.3.0...v1.3.1) (2020-11-22)
 
 
