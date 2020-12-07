@@ -5,6 +5,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
+import { createMetadata } from "./help/createMetadata";
 
 async function checkBalance(amount: number, id: string) {
     if (amount <= 0 || amount >= 1000001) {
@@ -46,23 +47,35 @@ async function transferMoney(
 
 export default new Command()
     .match(matchPrefixesStrict("pay"))
+    .setMetadata(
+        createMetadata({
+            name: "Pay someone",
+            usage: "cc!pay [user] [amount]",
+            description: "Pay an user."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
         const amount = parseInt(args.join(" ").slice(23));
         try {
-            if (message.mentions.users.first().bot) {
+            if (!message.mentions.users.first()) {
+                return message.channel.send(
+                    `**OOPS:** Looks like you didn't mention anyone to send money to.`
+                );
+            }
+            if (message.mentions.users.first()!.bot) {
                 return message.channel.send(
                     `**OOPS:** Looks like you can't give money to bots.`
                 );
             }
 
-            if (message.author.id != message.mentions.users.first().id) {
+            if (message.author.id !== message.mentions.users.first()!.id) {
                 if (await checkBalance(amount, message.author.id)) {
                     await transferMoney(
                         amount,
                         message.author.id,
-                        message.mentions.users.first().id
+                        message.mentions.users.first()!.id
                     );
                     return message.channel.send(`**Done.**`);
                 } else {

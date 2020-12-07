@@ -4,9 +4,17 @@ import { ParseArgumentsState } from "../../common/parsing/middleware/parseArgume
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import { alphabet, resolveArrayToOne, emojiLetters } from "../constants";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("poll"))
+    .setMetadata(
+        createMetadata({
+            name: "Create a poll",
+            usage: "cc!poll [title]|[option1]|[option2]|...",
+            description: "Creates a poll."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
@@ -15,7 +23,7 @@ export default new Command()
 
         if (!args.length) {
             return message.channel.send(
-                `Ye the pool with no question and no options...`
+                `Ye the poll with no question and no options...`
             );
         }
 
@@ -26,7 +34,7 @@ export default new Command()
             if (options.length > 21) {
                 return {
                     message:
-                        ":x: **Oops,** looks like you have too many pool options.",
+                        ":x: **Oops,** looks like you have too many poll options.",
                     numberOfReactions: 0
                 };
             }

@@ -2,9 +2,18 @@ import { Command } from "@enitoni/gears-discordjs";
 import { Role, TextChannel } from "discord.js";
 
 import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { createMetadata } from "./help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("webhook|createwebhook"))
+    .setMetadata(
+        createMetadata({
+            name: "Create a webhook",
+            usage: "cc!webhook/createwebhook",
+            description:
+                'Creates a webhook in that channel if the user has a role named "githubHooker". Then it sends a dm with the webhook link to the user.'
+        })
+    )
     .use(async context => {
         const { message } = context;
         const channel = message.channel as TextChannel;
@@ -12,10 +21,10 @@ export default new Command()
         try {
             const webhook = await channel.createWebhook(
                 message.author.username,
-                message.author.displayAvatarURL
+                { avatar: message.author.displayAvatarURL() }
             );
             if (
-                message.member.roles.some(
+                message.member!.roles.cache.some(
                     (role: Role) => role.name === "githubHooker"
                 )
             )

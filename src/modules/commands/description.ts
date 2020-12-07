@@ -5,6 +5,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
+import { createMetadata } from "./help/createMetadata";
 
 async function insertData(userid: string, description: string) {
     await checkAndInitProfile(userid, description);
@@ -15,6 +16,14 @@ async function insertData(userid: string, description: string) {
 
 export default new Command()
     .match(matchPrefixesStrict("description|desc|about"))
+    .setMetadata(
+        createMetadata({
+            name: "Set your description",
+            usage: "cc!description/desc/about [text]",
+            description:
+                "Set your description. Can be seen in cc!profile. Can't be longer than 1000 characters."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

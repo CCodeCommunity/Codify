@@ -3,15 +3,15 @@ import { Bot, Adapter, CommandGroup } from "@enitoni/gears-discordjs";
 
 import { parseArguments } from "./common/parsing/middleware/parseArguments";
 import { app, port, prefix } from "./modules/constants";
-import { autoXpClaim } from "./common/knexCommon";
+import { autoXpClaim, checkSubscriptions } from "./common/knexCommon";
 
 import a from "./modules/commands/a";
 import anyway from "./modules/commands/anyway";
 import daily from "./modules/commands/daily";
 import description from "./modules/commands/description";
 import gamble from "./modules/commands/gamble";
-import help from "./modules/commands/help";
 import joke from "./modules/commands/joke";
+import copypasta from "./modules/commands/copypasta";
 import meme from "./modules/commands/meme";
 import pay from "./modules/commands/pay";
 import profile from "./modules/commands/profile";
@@ -26,6 +26,14 @@ import createWebhook from "./modules/commands/createWebhook";
 import addQuote from "./modules/commands/addquote";
 import disableLevelupMessages from "./modules/commands/disableLevelupMessages";
 import trivia from "./modules/commands/trivia";
+import store from "./modules/commands/store";
+import addStoreItem from "./modules/commands/addStoreItem";
+import buy from "./modules/commands/buy";
+import purchases from "./modules/commands/purchases";
+import unsubscribe from "./modules/commands/unsubscribe";
+import removeStoreItem from "./modules/commands/removeStoreItem";
+import reactions from "./modules/commands/reaction";
+import { helpCommand } from "./modules/commands/help/helpCommand";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -50,13 +58,20 @@ const commands = new CommandGroup()
         addQuote,
         topbalance,
         joke,
+        copypasta,
         pay,
         anyway,
         a,
-        help
-    ); // / Make sure help is the last command or it will break things.
+        addStoreItem,
+        removeStoreItem,
+        store,
+        buy,
+        purchases,
+        unsubscribe,
+        helpCommand
+    );
 
-const bot = new Bot({ adapter, commands: [commands] });
+const bot = new Bot({ adapter, commands: [commands, reactions] });
 
 bot.on("error", err => console.log("Error ", err));
 
@@ -65,14 +80,15 @@ bot.client.on("message", ctx => {
         return;
     }
     autoXpClaim(ctx.author.id, ctx);
+    checkSubscriptions(ctx.author.id, bot.client);
 });
 
 const init = async (): Promise<void> => {
     console.info(`Connecting to discord...`);
     await bot.start();
-    console.info(`Logged in as ${bot.client.user.tag}`);
+    console.info(`Logged in as ${bot.client.user!.tag}`);
 
-    await bot.client.user.setActivity(`🚰 Drinking water!`);
+    await bot.client.user!.setActivity(`🚰 Drinking water!`);
     console.info(`Bot activity is set up!`);
 
     console.info(`The bot is up and running!`);
