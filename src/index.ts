@@ -32,6 +32,7 @@ import buy from "./modules/commands/buy";
 import purchases from "./modules/commands/purchases";
 import unsubscribe from "./modules/commands/unsubscribe";
 import removeStoreItem from "./modules/commands/removeStoreItem";
+import chart from "./modules/commands/chart";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -58,6 +59,7 @@ const commands = new CommandGroup()
         joke,
         pay,
         anyway,
+        chart,
         a,
         addStoreItem,
         removeStoreItem,
