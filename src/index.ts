@@ -32,6 +32,7 @@ import buy from "./modules/commands/buy";
 import purchases from "./modules/commands/purchases";
 import unsubscribe from "./modules/commands/unsubscribe";
 import removeStoreItem from "./modules/commands/removeStoreItem";
+import chart from "./modules/commands/chart";
 import reactions from "./modules/commands/reaction";
 import { helpCommand } from "./modules/commands/help/helpCommand";
 
@@ -61,6 +62,7 @@ const commands = new CommandGroup()
         copypasta,
         pay,
         anyway,
+        chart,
         a,
         addStoreItem,
         removeStoreItem,
