@@ -5,6 +5,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 
 import jimp from "jimp";
 import { MessageAttachment } from "discord.js";
+import { createMetadata } from "./help/createMetadata";
 
 async function manipulateImage(title: string, white: string, black: string) {
     const image = await jimp.read("src/common/images/thechart.png");
@@ -37,6 +38,14 @@ async function manipulateImage(title: string, white: string, black: string) {
 
 export default new Command()
     .match(matchPrefixesStrict("chart"))
+    .setMetadata(
+        createMetadata({
+            name: "Chart",
+            usage: "cc!chart [title] | [white side] | [black side]",
+            description:
+                "Sends a chart comparing the white amount to the black amount."
+        })
+    )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const rawArgs = context.state.args;
