@@ -1,3 +1,54 @@
+## [1.3.1](https://github.com/Vyctor661/codify/compare/v1.3.0...v1.3.1) (2020-11-22)
+
+
+### Bug Fixes
+
+* pgw's brain ([7fa9213](https://github.com/Vyctor661/codify/commit/7fa92139ee260655da9f6c1df3cf2cf13640caa5))
+
+# [1.3.0](https://github.com/Vyctor661/codify/compare/v1.2.1...v1.3.0) (2020-11-21)
+
+
+### Bug Fixes
+
+* qol ([48c1367](https://github.com/Vyctor661/codify/commit/48c1367c72378a3f8a27d01d82b8d223a1991086))
+
+
+### Features
+
+* now reponding to ^^ as well ([58a681b](https://github.com/Vyctor661/codify/commit/58a681bdda9fca5c1f3363acd57da150f8ce4d0b))
+
+## [1.2.1](https://github.com/Vyctor661/codify/compare/v1.2.0...v1.2.1) (2020-11-21)
+
+
+### Bug Fixes
+
+* made codify's responses less anoying ([7fa01c8](https://github.com/Vyctor661/codify/commit/7fa01c86c09779dd9a0080ec18c3a94d2d97878a))
+
+# [1.2.0](https://github.com/Vyctor661/codify/compare/v1.1.3...v1.2.0) (2020-11-21)
+
+
+### Features
+
+* more sentient reponses ([3796d8c](https://github.com/Vyctor661/codify/commit/3796d8c3f5312350207bd4e48e879069abb107a7))
+* new copypasta command ([346f3a5](https://github.com/Vyctor661/codify/commit/346f3a55b9646524f08a544062e7d171d8da729a))
+
+## [1.1.3](https://github.com/Vyctor661/codify/compare/v1.1.2...v1.1.3) (2020-11-20)
+
+
+### Bug Fixes
+
+* friday night bugfix I want to die ([4475576](https://github.com/Vyctor661/codify/commit/4475576657a4424195ee94208b26ee8c3fb596f1))
+
+## [1.1.2](https://github.com/Vyctor661/codify/compare/v1.1.1...v1.1.2) (2020-11-20)
+
+
+### Bug Fixes
+
+* buying things properly takes the money ([115fedd](https://github.com/Vyctor661/codify/commit/115feddc42254da959dab7f8f60b2e1452c7e962))
+* fixed fixing djs stuff unfixing buying things ([38f261d](https://github.com/Vyctor661/codify/commit/38f261d0c1d5ef401cf72233cdb2f577712209c7))
+* new djs stuff ([2c870f6](https://github.com/Vyctor661/codify/commit/2c870f624b0361af9ff7f34ece846b888d02c792))
+* ok its finally fixed ([51f0828](https://github.com/Vyctor661/codify/commit/51f0828a1f55739f650b0c32bfd2f2aef6634ca6))
+
 ## [1.1.1](https://github.com/Vyctor661/codify/compare/v1.1.0...v1.1.1) (2020-11-20)
 
 
