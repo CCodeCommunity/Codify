@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/Vyctor661/codify/compare/v1.4.0...v1.5.0) (2020-12-11)
+
+
+### Bug Fixes
+
+* codify didnt check for manage roles permission when removing store item ([57892a6](https://github.com/Vyctor661/codify/commit/57892a6c53e6327982da387d9f38210da544c0cf))
+
+
+### Features
+
+* pin and setpinschannel command hehe ([b5183eb](https://github.com/Vyctor661/codify/commit/b5183eb8a93f1737d3eadcad201049dd874e4025))
+
 # [1.4.0](https://github.com/Vyctor661/codify/compare/v1.3.1...v1.4.0) (2020-12-07)
 
 
