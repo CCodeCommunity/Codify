@@ -13,7 +13,7 @@ export default new Command()
             name: "Add item to the store",
             usage: "cc!addstoreitem [roleid] [price] [interval in days]",
             description:
-                "People with MANAGE_ROLES permission can use this command to add an item to the store aka a role that can be bought by other users."
+                "People with `Manage roles` permission can use this command to add an item to the store aka a role that can be bought by other users."
         })
     )
     .use<ParseArgumentsState>(async context => {
