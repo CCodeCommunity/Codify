@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/Vyctor661/codify/compare/v1.5.2...v1.6.0) (2020-12-11)
+
+
+### Features
+
+* new help command design ([9df7c5a](https://github.com/Vyctor661/codify/commit/9df7c5a2d6bec3914dba7fd0724528bcb16630e4))
+
 ## [1.5.2](https://github.com/Vyctor661/codify/compare/v1.5.1...v1.5.2) (2020-12-11)
 
 
