@@ -35,6 +35,8 @@ import removeStoreItem from "./modules/commands/removeStoreItem";
 import chart from "./modules/commands/chart";
 import reactions from "./modules/commands/reaction";
 import { helpCommand } from "./modules/commands/help/helpCommand";
+import pin from "./modules/commands/pin";
+import setpinchannel from "./modules/commands/setpinchannel";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -68,6 +70,8 @@ const commands = new CommandGroup()
         removeStoreItem,
         store,
         buy,
+        pin,
+        setpinchannel,
         purchases,
         unsubscribe,
         helpCommand
