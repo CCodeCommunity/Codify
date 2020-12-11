@@ -1,3 +1,10 @@
+## [1.5.2](https://github.com/Vyctor661/codify/compare/v1.5.1...v1.5.2) (2020-12-11)
+
+
+### Bug Fixes
+
+* I have mental issues apparently ([9db17f9](https://github.com/Vyctor661/codify/commit/9db17f9b51163597c14e334b1db7af903a39b613))
+
 ## [1.5.1](https://github.com/Vyctor661/codify/compare/v1.5.0...v1.5.1) (2020-12-11)
 
 
