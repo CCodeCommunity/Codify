@@ -49,8 +49,10 @@ export default new Command()
             const options: string[] = args.join(" ").split(" ");
 
             if (
-                !options[0].startsWith("https://discordapp.com/channels/") ||
-                !options[0].startsWith("https://discord.com/channels/")
+                !(
+                    options[0].startsWith("https://discordapp.com/channels/") ||
+                    options[0].startsWith("https://discord.com/channels/")
+                )
             ) {
                 return message.channel.send(
                     ":x:**ERROR**: this doesnt look like a valid message link."
