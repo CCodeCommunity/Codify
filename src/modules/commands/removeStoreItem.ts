@@ -21,6 +21,12 @@ export default new Command()
         const { message } = context;
         const { args } = context.state;
 
+        if (!message.member!.hasPermission("MANAGE_ROLES")) {
+            return message.channel.send(
+                ":x: **Oops,** you aren't allowed to do that. Make sure you have the `Manage roles` permission."
+            );
+        }
+
         if (!args[0]) {
             return message.channel.send(
                 ":x: **Oops,** you need to provide arguments!"
