@@ -46,7 +46,7 @@ export default new Command()
             name: "Roll the dice",
             usage: "cc!gamble/dive/slots [amount]",
             description:
-                "Gamble a random amount of coins. can be between 1 and 1000."
+                "Gamble a random amount of coins. can be between 1 and 1000"
         })
     )
     .use<ParseArgumentsState>(async context => {

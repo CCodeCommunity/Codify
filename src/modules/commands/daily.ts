@@ -39,7 +39,7 @@ export default new Command()
             name: "Daily money",
             usage: "cc!daily/claim/dailyclaim/free",
             description:
-                "You get a random amount of coins from 1 to 100, can be used once a day."
+                "You get a random amount of coins from 1 to 100, can be used once a day"
         })
     )
     .use(async context => {

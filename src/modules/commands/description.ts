@@ -21,7 +21,7 @@ export default new Command()
             name: "Set your description",
             usage: "cc!description/desc/about [text]",
             description:
-                "Set your description. Can be seen in cc!profile. Can't be longer than 1000 characters."
+                "Set your description. Can be seen in cc!profile. Can't be longer than 1000 characters"
         })
     )
     .use<ParseArgumentsState>(async context => {

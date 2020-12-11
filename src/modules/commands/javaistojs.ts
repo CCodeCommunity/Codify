@@ -11,7 +11,7 @@ export default new Command()
             name: "Java is to js",
             usage: "cc!javatojs/javaistojs",
             description:
-                "Sends an image that explains what java is to javascript."
+                "Sends an image that explains what java is to javascript"
         })
     )
     .use(context => {

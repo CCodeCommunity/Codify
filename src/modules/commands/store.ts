@@ -12,7 +12,7 @@ export default new Command()
         createMetadata({
             name: "Store",
             usage: "cc!store",
-            description: "Shows the items in the store."
+            description: "Shows the items in the store"
         })
     )
     .use<ParseArgumentsState>(async context => {

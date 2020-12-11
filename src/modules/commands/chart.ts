@@ -14,9 +14,9 @@ async function manipulateImage(title: string, white: string, black: string) {
     image.print(
         font,
         160 -
-        (jimp.measureText(font, black) > 150
-            ? 150
-            : jimp.measureText(font, black)),
+            (jimp.measureText(font, black) > 150
+                ? 150
+                : jimp.measureText(font, black)),
         240 - jimp.measureTextHeight(font, black, 150),
         {
             text: black,
@@ -43,7 +43,7 @@ export default new Command()
             name: "Chart",
             usage: "cc!chart [title] | [white side] | [black side]",
             description:
-                "Sends a chart comparing the white amount to the black amount."
+                "Sends a chart comparing the white amount to the black amount. It's an inside server joke, the original chart showed distribution of black vs white people based on iq"
         })
     )
     .use<ParseArgumentsState>(async context => {

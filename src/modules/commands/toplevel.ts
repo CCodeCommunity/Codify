@@ -47,7 +47,7 @@ export default new Command()
         createMetadata({
             name: "Top levels",
             usage: "cc!top/toplevel/topl",
-            description: "Shows a top with user levels in the server."
+            description: "Shows a top with user levels in the server"
         })
     )
     .use(async context => {

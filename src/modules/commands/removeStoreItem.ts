@@ -14,7 +14,7 @@ export default new Command()
             name: "Remove store item",
             usage: "cc!removestoreitem [itemid]",
             description:
-                "Remove an item from the store, you need `Manage roles` permission for this."
+                "Remove an item from the store, you need `Manage roles` permission for this"
         })
     )
     .use<ParseArgumentsState>(async context => {
