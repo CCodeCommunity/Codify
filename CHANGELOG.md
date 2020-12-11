@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/Vyctor661/codify/compare/v1.5.0...v1.5.1) (2020-12-11)
+
+
+### Bug Fixes
+
+* apparently some people get discord.com in their copy message links and I get discordapp.com ([fa0b687](https://github.com/Vyctor661/codify/commit/fa0b68759538fe09d07ce6800e1c615cc4d75484))
+
 # [1.5.0](https://github.com/Vyctor661/codify/compare/v1.4.0...v1.5.0) (2020-12-11)
 
 
