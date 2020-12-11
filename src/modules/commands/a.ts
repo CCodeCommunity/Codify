@@ -9,7 +9,7 @@ export default new Command()
     .match(matchPrefixesStrict("a"))
     .setMetadata(
         createMetadata({
-            name: "scream",
+            name: "Scream",
             usage: "cc!a",
             description: "Makes the bot scream."
         })
