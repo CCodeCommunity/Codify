@@ -2,7 +2,15 @@ import { Command } from "@enitoni/gears-discordjs";
 import { createMetadata } from "./createMetadata";
 import { matchPrefixes } from "@enitoni/gears";
 import { mapTreeToMetadata } from "./mapTreeToMetadata";
-import { MessageEmbed } from "discord.js";
+import { CommandMetadata } from "./CommandMetadata";
+
+const splitToChunks = (array: Array<CommandMetadata>, parts: number) => {
+    const result = [];
+    for (let i = parts; i > 0; i--) {
+        result.push(array.splice(0, Math.ceil(array.length / i)));
+    }
+    return result;
+};
 
 export const helpCommand = new Command()
     .match(matchPrefixes("help"))
@@ -17,15 +25,17 @@ export const helpCommand = new Command()
         const { bot, message } = context;
         const metadata = mapTreeToMetadata(bot.group);
 
-        const embed = new MessageEmbed({
-            title: "Available commands",
-            color: 3447003,
-            description: "Here's a list of commands.",
-            fields: metadata.map(x => ({
-                name: "**" + x.name + "** - `" + x.usage + "`",
-                value: `${x.description}\n \n`
-            }))
-        });
+        const help = splitToChunks(metadata, 4);
 
-        return message.channel.send(embed);
+        return help.map((_, i) => {
+            return message.channel.send(
+                "```makefile\n" +
+                    help[i].map((item, index) => {
+                        return `\n[${i * help[0].length + index + 1}]: ${
+                            item.name
+                        } - ${item.usage}\n- ${item.description}`;
+                    }) +
+                    "```"
+            );
+        });
     });
