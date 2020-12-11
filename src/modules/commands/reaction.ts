@@ -19,7 +19,7 @@ export default new Command()
         createMetadata({
             name: "Reactions",
             usage: "passive",
-            description: "The bot will react to random messages, it's passive."
+            description: "The bot will react to random messages, it's passive"
         })
     )
     .use(context => {

@@ -51,7 +51,8 @@ export default new Command()
         createMetadata({
             name: "Pay someone",
             usage: "cc!pay [user] [amount]",
-            description: "Pay an user."
+            description:
+                "Pay an user a certain amount of coins from your balace"
         })
     )
     .use<ParseArgumentsState>(async context => {

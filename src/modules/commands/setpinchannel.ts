@@ -35,7 +35,7 @@ export default new Command()
             name: "Set the pins channel for your server.",
             usage: "cc!setpinschannel [channelid]",
             description:
-                "It sets the channel for were the cc!pin messages will go."
+                "It sets the channel for were the cc!pin messages will go"
         })
     )
     .use<ParseArgumentsState>(async context => {

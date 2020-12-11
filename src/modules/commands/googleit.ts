@@ -10,7 +10,7 @@ export default new Command()
         createMetadata({
             name: "Google it",
             usage: "cc!googleit",
-            description: "Sends an image from codebullet with just google it."
+            description: "Sends an image from codebullet with just google it"
         })
     )
     .use(context => {

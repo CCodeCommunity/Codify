@@ -24,7 +24,7 @@ export default new Command()
             name: "Create a pin",
             usage: "cc!pin [messagelink] <description>",
             description:
-                "Creates a pin in a special channel created by the server administrator."
+                "Creates a pin in a special channel created by the server administrator, you need the Manage messages permission to use this command"
         })
     )
     .use<ParseArgumentsState>(async context => {

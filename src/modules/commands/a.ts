@@ -11,7 +11,7 @@ export default new Command()
         createMetadata({
             name: "Scream",
             usage: "cc!a",
-            description: "Makes the bot scream."
+            description: "Makes the bot scream. AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         })
     )
     .use<ParseArgumentsState>(context => {

@@ -20,7 +20,8 @@ export default new Command()
         createMetadata({
             name: "Buy an item",
             usage: "cc!buy [itemid]",
-            description: "Buy an item from the store of the server."
+            description:
+                "Buy an item from the store of the server. You have to use the id listed in cc!store"
         })
     )
     .use<ParseArgumentsState>(async context => {

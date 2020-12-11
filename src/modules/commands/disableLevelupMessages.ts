@@ -22,7 +22,7 @@ export default new Command()
             name: "Disable the level up messages",
             usage: "cc!disablelevelupmessages/dlum",
             description:
-                "If you are annoyed by the level up messages you can use this command and if you level up you will no longer get pinged by codify when you level up. You will still level up though."
+                "If you are annoyed by the level up messages you can use this command and if you level up you will no longer get pinged by codify when you level up. You will still level up though"
         })
     )
     .use<ParseArgumentsState>(async context => {

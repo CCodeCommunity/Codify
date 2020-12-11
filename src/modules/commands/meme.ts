@@ -26,9 +26,9 @@ export default new Command()
     .setMetadata(
         createMetadata({
             name: "Meme",
-            usage: "cc!meme <subreddi>",
+            usage: "cc!meme <subreddit>",
             description:
-                "Sends a random meme from a subreddit. The default is set to r/ProgrammerHumor"
+                "Sends a random meme from a subreddit. The default is set to r/ProgrammerHumor. Sometimes it doesn't work because the meme it got was from either an external source or a video/gif"
         })
     )
     .use<ParseArgumentsState>(async context => {

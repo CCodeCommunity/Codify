@@ -20,7 +20,7 @@ export default new Command()
             name: "Shows a profile",
             usage: "cc!profile <user>",
             description:
-                "Show the profile of a user. The default is the one who sends the command."
+                "Show the profile of a user. The default is the one who sends the command"
         })
     )
     .use<ParseArgumentsState>(async context => {
