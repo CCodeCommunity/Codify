@@ -14,9 +14,9 @@ async function manipulateImage(title: string, white: string, black: string) {
     image.print(
         font,
         160 -
-        (jimp.measureText(font, black) > 150
-            ? 150
-            : jimp.measureText(font, black)),
+            (jimp.measureText(font, black) > 150
+                ? 150
+                : jimp.measureText(font, black)),
         240 - jimp.measureTextHeight(font, black, 150),
         {
             text: black,
