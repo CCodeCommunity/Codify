@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/Vyctor661/codify/compare/v1.6.0...v1.7.0) (2020-12-27)
+
+
+### Features
+
+* cc!profile recognizing usernames without pings ([74885c3](https://github.com/Vyctor661/codify/commit/74885c3a66e405068434b9f00ece6b9d51d1947a))
+
 # [1.6.0](https://github.com/Vyctor661/codify/compare/v1.5.2...v1.6.0) (2020-12-11)
 
 
