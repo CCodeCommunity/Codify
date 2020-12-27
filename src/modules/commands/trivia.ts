@@ -60,7 +60,7 @@ export default new Command()
             name: "Trivia",
             usage: "cc!trivia",
             description:
-                "Sends a trivia question that you can answer, if you are right you can get coins."
+                "Sends a trivia question that you can answer, if you are right you can get coins"
         })
     )
     .use<ParseArgumentsState>(async context => {

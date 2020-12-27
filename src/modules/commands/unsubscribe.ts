@@ -13,7 +13,7 @@ export default new Command()
         createMetadata({
             name: "Unsubscribe",
             usage: "cc!unsubscribe [itemid]",
-            description: "Unsubscribe from a role that you bought."
+            description: "Unsubscribe from a role that you bought"
         })
     )
     .use<ParseArgumentsState>(async context => {

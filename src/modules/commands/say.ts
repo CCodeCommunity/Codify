@@ -10,7 +10,7 @@ export default new Command()
         createMetadata({
             name: "Say something",
             usage: "cc!say [text]",
-            description: "Make the bot say something."
+            description: "Make the bot say something"
         })
     )
     .use<ParseArgumentsState>(context => {

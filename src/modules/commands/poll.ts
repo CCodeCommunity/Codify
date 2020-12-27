@@ -12,7 +12,7 @@ export default new Command()
         createMetadata({
             name: "Create a poll",
             usage: "cc!poll [title]|[option1]|[option2]|...",
-            description: "Creates a poll."
+            description: "Creates a poll"
         })
     )
     .use<ParseArgumentsState>(async context => {

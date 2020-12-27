@@ -42,7 +42,7 @@ export default new Command()
         createMetadata({
             name: "Top balance",
             usage: "cc!topb/topbalance/balancetop",
-            description: "Shows a top with user balances of the server."
+            description: "Shows a top with user balances of the server"
         })
     )
     .use(async context => {

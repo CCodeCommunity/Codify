@@ -43,7 +43,7 @@ export default new Command()
             name: "Chart",
             usage: "cc!chart [title] | [white side] | [black side]",
             description:
-                "Sends a chart comparing the white amount to the black amount."
+                "Sends a chart comparing the white amount to the black amount. It's an inside server joke, the original chart showed distribution of black vs white people based on iq"
         })
     )
     .use<ParseArgumentsState>(async context => {

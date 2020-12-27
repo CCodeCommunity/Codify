@@ -19,7 +19,7 @@ export default new Command()
         createMetadata({
             name: "Make a joke",
             usage: "cc!joke",
-            description: "Sends a random joke from r/jokes."
+            description: "Sends a random joke from r/jokes"
         })
     )
     .use(async context => {

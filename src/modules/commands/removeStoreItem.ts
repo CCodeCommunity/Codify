@@ -14,12 +14,18 @@ export default new Command()
             name: "Remove store item",
             usage: "cc!removestoreitem [itemid]",
             description:
-                "Remove an item from the store, you need MANAGE_ROLES permission for this."
+                "Remove an item from the store, you need `Manage roles` permission for this"
         })
     )
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
+
+        if (!message.member!.hasPermission("MANAGE_ROLES")) {
+            return message.channel.send(
+                ":x: **Oops,** you aren't allowed to do that. Make sure you have the `Manage roles` permission."
+            );
+        }
 
         if (!args[0]) {
             return message.channel.send(

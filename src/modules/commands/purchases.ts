@@ -13,7 +13,7 @@ export default new Command()
         createMetadata({
             name: "Purchases",
             usage: "cc!purchases",
-            description: "Shows what purchases you have in the server."
+            description: "Shows what purchases you have in the server"
         })
     )
     .use<ParseArgumentsState>(async context => {
