@@ -6,6 +6,7 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import { checkAndInitProfile } from "../../common/knexCommon";
 import { createMetadata } from "./help/createMetadata";
+import { findUserByName } from "../../common/findUserByName";
 
 async function pullData(id: string) {
     await checkAndInitProfile(id);
@@ -31,18 +32,32 @@ export default new Command()
             let profileData;
             if (args.length) {
                 if (!message.mentions.users.first()) {
-                    return message.channel.send(
-                        `**OOPS:** You need to mention a user.`
+                    const matchingUsers = await findUserByName(
+                        message.guild!,
+                        args.join(" ")
                     );
-                }
-                if (message.mentions.users.first()!.bot) {
+                    if (matchingUsers.length >= 2) {
+                        return message.channel.send(
+                            `**OOPS:** There are multiple users that can match that name! Possible users include: \n${matchingUsers
+                                .map(l => `- \`${l.user.username}\``)
+                                .join("\n")}`
+                        );
+                    } else if (matchingUsers.length === 1) {
+                        profileData = (await pullData(matchingUsers[0].id))[0];
+                    } else {
+                        return message.channel.send(
+                            `**OOPS:** You need to mention a user or type in a name matching a user.`
+                        );
+                    }
+                } else if (message.mentions.users.first()!.bot) {
                     return message.channel.send(
                         `**OOPS:** Looks like bots can't have profiles.`
                     );
-                } else
+                } else {
                     profileData = (
                         await pullData(message.mentions.users.first()!.id)
                     )[0];
+                }
             } else {
                 profileData = (await pullData(message.author.id))[0];
             }
