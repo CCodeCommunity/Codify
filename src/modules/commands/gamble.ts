@@ -78,7 +78,7 @@ export default new Command()
                         }${ending}`;
                     } else {
                         return `🎲 You rolled **69** (Nice :sunglasses:) and **${"won " +
-                            amount * 2}${ending}>`;
+                            amount * jackpotMultiplier}${ending}>`;
                     }
                 })();
                 return message.channel.send(response);
