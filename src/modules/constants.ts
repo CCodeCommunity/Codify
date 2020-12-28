@@ -41,3 +41,5 @@ export const emojiLetters = [
 ];
 
 export const xpMultiplier = 3;
+export const jackpotMultiplier = 10;
+export const maxBetLimit = 10000;
