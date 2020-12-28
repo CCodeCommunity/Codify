@@ -38,6 +38,7 @@ import { helpCommand } from "./modules/commands/help/helpCommand";
 import pin from "./modules/commands/pin";
 import setpinchannel from "./modules/commands/setpinchannel";
 import topxptoday from "./modules/commands/topxptoday";
+import servertime from "./modules/commands/servertime";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -70,6 +71,7 @@ const commands = new CommandGroup()
         a,
         addStoreItem,
         removeStoreItem,
+        servertime,
         store,
         buy,
         pin,
