@@ -1,3 +1,17 @@
+# [1.10.0](https://github.com/Vyctor661/codify/compare/v1.9.0...v1.10.0) (2020-12-28)
+
+
+### Bug Fixes
+
+* forgot about the multiplier in the message ([73d2a13](https://github.com/Vyctor661/codify/commit/73d2a13ca1c2852f6a153d0607f16923e16f2b49))
+
+
+### Features
+
+* daily most xp award ([29c49ef](https://github.com/Vyctor661/codify/commit/29c49ef201d29c6b5c20051a3b39fbf3342aa555))
+* global daily xp ([0d50890](https://github.com/Vyctor661/codify/commit/0d50890edaab03be847256288c44d0bced06521e))
+* top xp today ([d31e143](https://github.com/Vyctor661/codify/commit/d31e143ccd34bb33c4060356903f0157611bb92b))
+
 # [1.9.0](https://github.com/Vyctor661/codify/compare/v1.8.0...v1.9.0) (2020-12-28)
 
 
