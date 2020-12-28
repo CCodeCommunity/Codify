@@ -18,5 +18,12 @@ export default new Command()
 
         message.delete();
 
-        return message.channel.send(`${new Date(Date.now())}`);
+        return message.channel.send(
+            `${new Date().toLocaleString("en-GB", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            })} GMT`
+        );
     });

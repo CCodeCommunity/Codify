@@ -98,7 +98,7 @@ export const awardMostXpToday = async (userid: string, ctx: Message) => {
                 .where({ userid })
                 .update({
                     xp: user.xp + topXpWinXpGain,
-                    balance: user.balance + topXpWinMoneyGain
+                    balance: parseInt(user.balance) + topXpWinMoneyGain
                 });
 
             ctx.channel.send(

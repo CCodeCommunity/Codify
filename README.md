@@ -1,6 +1,6 @@
 # Codify
 
-A discord bot for the [Code Community Discord Server](https://discord.gg/2JPhJxM).
+A discord bot for the [Code Community Discord Server](https://discord.gg/sorrybuttheserverisnowprivate).
 
 # About
 
@@ -12,31 +12,7 @@ This bot was created for my comunity on discord because I wanted to provide them
 
 ## Commands
 
--   `cc!help`: Displays a list of commands for the bot.
--   `cc!say [text]`: Makes the bot say something.
--   `cc!meme <subreddit>`: Sends an embed message with a meme from a desired subreddit, you can leave that empty to get a meme from r/programmerHumour
--   `cc!joke`: Sends a joke straight from r/jokes
--   `cc!challenge`: Sends a challenge idea from [here](https://seblague.github.io/ideagenerator/). Huge thanks for the creator. (Temporarily disabled)
--   `cc!anyway [text]`: Another funny command, funnier if you know the meme. This command will send an [image](https://www.google.com/search?q=so+anyway+I+started+blasting&safe=active&rlz=1C1CHBF_enRO859RO859&sxsrf=ACYBGNTs8kLdA8mQSOFItc70BK3hMsQ_TQ:1576777514637&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiR9Zj9ocLmAhXC-yoKHVBjD9IQ_AUoAXoECAoQAw&biw=1920&bih=937) with a custom text set.
--   `cc!profile <user>`: Sends your or someone else's profile data as an embed message.
--   `cc!description <user>`: Set a description for your profile or someone else's description.
--   `cc!balance <user>`: See your or someone else's balance.
--   `cc!daily`: Claim your daily reward. (Some money to put in your balance. And maybe an inspirational quote)
--   `cc!pay [user]`: Give some money to someone else.
--   `cc!gamble [amount]`: Bet some of your money and see if you win something hehe.
--   `cc!top`: Top users by level and xp
--   `cc!topb`: TOp users by balance
--   `cc!poll [Question]|[option 1]|[option 2] ...`: Simple poll command using reactions.
--   `cc!googleit`: Will send an imagine with a quote from code bullet. Nice for telling people to google something.
--   `cc!javaistojs`: This will send an image with a simple explanation for the difference between js and java.
--   `cc!trivia`: This is a trivia comman, answer correctly and you get money.
--   `cc!addquote`: Use this to add new quotes for the levelup messages.
--   `cc!dlum`: If you dont want the level up messages to appear for you just use this command.
--   `cc!webhook`: Use this command to create a webhook in a channel, you need a specific role for it.
-
-### Commands planned for the future
-
--   `cc!bj`: Blackjack
+Use `cc!help` for a complete list of commands. There are so many that I lost track.
 
 ## How to install
 
@@ -50,6 +26,4 @@ It's easy, just fork this repository, add your changes to your fork and then mak
 
 # Huge thanks to:
 
--   [Dragomir George](https://github.com/BlueGhostGH) (For helping me create the bot. A lot of early code was written by him.)
--   [Matei Adriel](https://github.com/Mateiadrielrafael) (For reviewing code and providing me ideas.)
--   Other members of my [Discord server](https://discord.gg/2JPhJxM) doing a lot of testing and giving a lot of ideas for the bot.
+Every contributor, and also the members of my discord server that help me with feedback, give me ideas, report bugs, and use the bot everyday.
