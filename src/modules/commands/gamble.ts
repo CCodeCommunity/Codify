@@ -6,8 +6,10 @@ import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
 import knex from "../../../db/knex";
 import { createMetadata } from "./help/createMetadata";
 
+import { maxBetLimit, jackpotMultiplier } from "../constants";
+
 async function checkBalance(amount: number, id: string) {
-    if (amount <= 0 || amount >= 1001) {
+    if (amount <= 0 || amount >= maxBetLimit + 1) {
         return false;
     }
 
@@ -18,7 +20,12 @@ async function checkBalance(amount: number, id: string) {
 
 async function gamble(amount: number) {
     const dice = Math.floor(Math.random() * 100) + 1;
-    const win = dice === 100 ? amount * 2 : dice >= 50 ? amount : -amount;
+    const win =
+        dice === 100
+            ? amount * jackpotMultiplier
+            : dice >= 50
+            ? amount
+            : -amount;
 
     return { win, dice };
 }
@@ -45,8 +52,7 @@ export default new Command()
         createMetadata({
             name: "Roll the dice",
             usage: "cc!gamble/dive/slots [amount]",
-            description:
-                "Gamble a random amount of coins. can be between 1 and 1000"
+            description: `Gamble a random amount of coins. can be between 1 and ${maxBetLimit}`
         })
     )
     .use<ParseArgumentsState>(async context => {
