@@ -63,6 +63,31 @@ async function checkLevelup(userid: string, ctx: Message) {
     }
 }
 
+export const updateDayXp = async (userid: string, xp: number) => {
+    try {
+        const user = (await knex("user").where({ userid }))[0];
+        const today = new Date(Date.now());
+        const lastdayxp = user.lastdayxp;
+
+        if (today.getDate() !== lastdayxp) {
+            await knex("user")
+                .where({ userid })
+                .update({
+                    lastdayxp: today.getDate(),
+                    dayxp: xp
+                });
+        } else {
+            await knex("user")
+                .where({ userid })
+                .update({
+                    dayxp: user.dayxp + xp
+                });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 export async function autoXpClaim(userid: string, ctx: Message) {
     try {
         await checkAndInitProfile(userid);
@@ -71,18 +96,21 @@ export async function autoXpClaim(userid: string, ctx: Message) {
         const now = Math.floor(new Date().getMinutes() + 1);
 
         if (user.lastxpclaim != now) {
+            const xpGained =
+                (Math.floor(Math.random() * 10) +
+                    1 +
+                    Math.floor(Math.sqrt(user.level))) *
+                xpMultiplier;
+
             await knex("user")
                 .where({ userid })
                 .update({
-                    xp:
-                        parseInt(user.xp) +
-                        (Math.floor(Math.random() * 10) +
-                            1 +
-                            Math.floor(Math.sqrt(user.level))) *
-                            xpMultiplier,
+                    xp: parseInt(user.xp) + xpGained,
                     lastxpclaim: now
                 });
+            updateDayXp(userid, xpGained);
             checkLevelup(userid, ctx);
+            console.log(ctx.author.username, xpGained);
         }
     } catch (err) {
         console.info(err);
