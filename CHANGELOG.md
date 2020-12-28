@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/Vyctor661/codify/compare/v1.7.0...v1.8.0) (2020-12-28)
+
+
+### Features
+
+* xp multiplier, HOLIDAYS TRIPE XP ([04297dd](https://github.com/Vyctor661/codify/commit/04297ddb8d885ca18159738204f69cfe2220862e))
+
 # [1.7.0](https://github.com/Vyctor661/codify/compare/v1.6.0...v1.7.0) (2020-12-27)
 
 
