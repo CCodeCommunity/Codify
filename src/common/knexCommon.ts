@@ -110,7 +110,6 @@ export async function autoXpClaim(userid: string, ctx: Message) {
                 });
             updateDayXp(userid, xpGained);
             checkLevelup(userid, ctx);
-            console.log(ctx.author.username, xpGained);
         }
     } catch (err) {
         console.info(err);

@@ -37,6 +37,7 @@ import reactions from "./modules/commands/reaction";
 import { helpCommand } from "./modules/commands/help/helpCommand";
 import pin from "./modules/commands/pin";
 import setpinchannel from "./modules/commands/setpinchannel";
+import topxptoday from "./modules/commands/topxptoday";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -61,6 +62,7 @@ const commands = new CommandGroup()
         addQuote,
         topbalance,
         joke,
+        topxptoday,
         copypasta,
         pay,
         anyway,
