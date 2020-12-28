@@ -39,3 +39,5 @@ export const emojiLetters = [
     "🇾",
     "🇿"
 ];
+
+export const xpMultiplier = 3;
