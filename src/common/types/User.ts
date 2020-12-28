@@ -10,4 +10,6 @@ export default interface User {
     token: string; // length 124 can be null but it shouldnt
     levelupmessages: boolean; // default is false (true is when you dont wnat to see the levelup messages)
     purchasedIds: number[];
+    dayxp: number;
+    lastdayxp: number;
 }
