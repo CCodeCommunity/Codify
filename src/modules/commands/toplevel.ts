@@ -41,6 +41,33 @@ async function generateTop(message: Message) {
     return fill;
 }
 
+const getPlaceLocal = async (uid: string, message: Message) => {
+    const top = await knex("user")
+        .orderBy("level", "desc")
+        .orderBy("xp", "desc");
+
+    const localTop = top.filter(a => message.guild?.member(`${a.userid}`));
+
+    return (
+        localTop.findIndex(k => {
+            const { userid } = k;
+            return userid == uid;
+        }) + 1
+    );
+};
+const getPlace = async (uid: string) => {
+    const top = await knex("user")
+        .orderBy("level", "desc")
+        .orderBy("xp", "desc");
+
+    return (
+        top.findIndex(k => {
+            const { userid } = k;
+            return userid == uid;
+        }) + 1
+    );
+};
+
 export default new Command()
     .match(matchPrefixesStrict("top|toplevel|topl"))
     .setMetadata(
@@ -53,5 +80,13 @@ export default new Command()
     .use(async context => {
         const { message } = context;
         const list = await generateTop(message);
+        message.channel.send(
+            `<@${message.author.id}> **You are __#${await getPlace(
+                message.author.id
+            )}__ globally and __#${await getPlaceLocal(
+                message.author.id,
+                message
+            )}__ in the server** :sunglasses:`
+        );
         return message.channel.send(list);
     });
