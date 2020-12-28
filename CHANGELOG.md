@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/Vyctor661/codify/compare/v1.10.0...v1.11.0) (2020-12-28)
+
+
+### Features
+
+* server time command ([9474ef6](https://github.com/Vyctor661/codify/commit/9474ef604575630f9dea92eac764997bcaef4339))
+
 # [1.10.0](https://github.com/Vyctor661/codify/compare/v1.9.0...v1.10.0) (2020-12-28)
 
 
