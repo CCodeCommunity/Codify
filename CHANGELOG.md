@@ -1,3 +1,11 @@
+# [1.9.0](https://github.com/Vyctor661/codify/compare/v1.8.0...v1.9.0) (2020-12-28)
+
+
+### Features
+
+* holidays jackpot and maxbetlimit increase ([42e23b6](https://github.com/Vyctor661/codify/commit/42e23b6c29b34983146ab191427267906b771f2f))
+* qol changes to the top command ([2d0680c](https://github.com/Vyctor661/codify/commit/2d0680c8d0cebfdba3cee979edf0d537d6fcc65c))
+
 # [1.8.0](https://github.com/Vyctor661/codify/compare/v1.7.0...v1.8.0) (2020-12-28)
 
 
