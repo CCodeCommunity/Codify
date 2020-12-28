@@ -5,7 +5,12 @@ import randomMessage from "./levelUpMessages";
 import Store from "./types/Store";
 import Subscription from "./types/Subscription";
 
-import { xpMultiplier } from "../modules/constants";
+import {
+    xpMultiplier,
+    topXpWinMoneyGain,
+    topXpWinXpGain,
+    nth
+} from "../modules/constants";
 
 const defaultDesc = "Hi guys, I'm using the Codify bot!";
 
@@ -56,12 +61,84 @@ async function checkLevelup(userid: string, ctx: Message) {
                     ) + 1}** here's **$${gain}** for you. 🕶️`
                 );
             }
-            console.log(`User <@${userid}> leveled up!`);
+            console.log(`User @${ctx.author.username} leveled up!`);
         }
     } catch (e) {
         console.log(e);
     }
 }
+
+export const awardMostXpToday = async (userid: string, ctx: Message) => {
+    const lastAwardDay = (await knex("awarddays"))[0].mostxpinaday;
+    const user = (await knex("user").where({ userid }))[0];
+    const today = new Date(Date.now()).getDate();
+    const topUserLastAwardDay = (
+        await knex("user")
+            .where({ lastdayxp: lastAwardDay })
+            .orderBy("dayxp", "desc")
+            .orderBy("level", "desc")
+    )[0];
+
+    if (today - lastAwardDay == 2) {
+        await knex("awarddays")
+            .first()
+            .update({
+                mostxpinaday: today - 1
+            });
+    }
+    if (topUserLastAwardDay)
+        if (today !== lastAwardDay && userid == topUserLastAwardDay.userid) {
+            await knex("awarddays")
+                .first()
+                .update({
+                    mostxpinaday: today
+                });
+
+            await knex("user")
+                .where({ userid })
+                .update({
+                    xp: user.xp + topXpWinXpGain,
+                    balance: user.balance + topXpWinMoneyGain
+                });
+
+            ctx.channel.send(
+                `<@${userid}> **Congratz, you've been the most active user globally on ${lastAwardDay}${nth(
+                    lastAwardDay
+                )} this month.**`
+            );
+            ctx.channel.send(
+                `**You won $${topXpWinMoneyGain} and ${topXpWinXpGain} XP** :catJam:`
+            );
+            console.log(
+                `User @${ctx.author.username} claimed the daily award!`
+            );
+        }
+};
+
+export const updateDayXp = async (userid: string, xp: number) => {
+    try {
+        const user = (await knex("user").where({ userid }))[0];
+        const today = new Date(Date.now());
+        const lastdayxp = user.lastdayxp;
+
+        if (today.getDate() !== lastdayxp) {
+            await knex("user")
+                .where({ userid })
+                .update({
+                    lastdayxp: today.getDate(),
+                    dayxp: xp
+                });
+        } else {
+            await knex("user")
+                .where({ userid })
+                .update({
+                    dayxp: user.dayxp + xp
+                });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 export async function autoXpClaim(userid: string, ctx: Message) {
     try {
@@ -71,18 +148,21 @@ export async function autoXpClaim(userid: string, ctx: Message) {
         const now = Math.floor(new Date().getMinutes() + 1);
 
         if (user.lastxpclaim != now) {
+            const xpGained =
+                (Math.floor(Math.random() * 10) +
+                    1 +
+                    Math.floor(Math.sqrt(user.level))) *
+                xpMultiplier;
+
             await knex("user")
                 .where({ userid })
                 .update({
-                    xp:
-                        parseInt(user.xp) +
-                        (Math.floor(Math.random() * 10) +
-                            1 +
-                            Math.floor(Math.sqrt(user.level))) *
-                            xpMultiplier,
+                    xp: parseInt(user.xp) + xpGained,
                     lastxpclaim: now
                 });
-            checkLevelup(userid, ctx);
+            await awardMostXpToday(userid, ctx);
+            await updateDayXp(userid, xpGained);
+            await checkLevelup(userid, ctx);
         }
     } catch (err) {
         console.info(err);

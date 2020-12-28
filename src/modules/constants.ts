@@ -40,6 +40,22 @@ export const emojiLetters = [
     "🇿"
 ];
 
+export const nth = (d: number) => {
+    if (d > 3 && d < 21) return "th";
+    switch (d % 10) {
+        case 1:
+            return "st";
+        case 2:
+            return "nd";
+        case 3:
+            return "rd";
+        default:
+            return "th";
+    }
+};
+
 export const xpMultiplier = 3;
 export const jackpotMultiplier = 10;
 export const maxBetLimit = 10000;
+export const topXpWinXpGain = 500;
+export const topXpWinMoneyGain = 10000;
