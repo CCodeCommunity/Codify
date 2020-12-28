@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/Vyctor661/codify/compare/v1.11.0...v1.11.1) (2020-12-28)
+
+
+### Bug Fixes
+
+* well rip my balance ([8134621](https://github.com/Vyctor661/codify/commit/8134621f80b9b41d4cce9754c555de7a852ef168))
+
 # [1.11.0](https://github.com/Vyctor661/codify/compare/v1.10.0...v1.11.0) (2020-12-28)
 
 
