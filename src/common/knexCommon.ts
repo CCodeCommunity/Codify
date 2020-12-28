@@ -5,6 +5,8 @@ import randomMessage from "./levelUpMessages";
 import Store from "./types/Store";
 import Subscription from "./types/Subscription";
 
+import { xpMultiplier } from "../modules/constants";
+
 const defaultDesc = "Hi guys, I'm using the Codify bot!";
 
 export async function initProfile(
@@ -74,9 +76,10 @@ export async function autoXpClaim(userid: string, ctx: Message) {
                 .update({
                     xp:
                         parseInt(user.xp) +
-                        Math.floor(Math.random() * 10) +
-                        1 +
-                        Math.floor(Math.sqrt(user.level)),
+                        (Math.floor(Math.random() * 10) +
+                            1 +
+                            Math.floor(Math.sqrt(user.level))) *
+                            xpMultiplier,
                     lastxpclaim: now
                 });
             checkLevelup(userid, ctx);
