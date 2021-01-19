@@ -1,11 +1,11 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
 import jimp from "jimp";
 import { MessageAttachment } from "discord.js";
-import { createMetadata } from "./help/createMetadata";
+import { createMetadata } from "../help/createMetadata";
 
 async function manipulateImage(title: string, white: string, black: string) {
     const image = await jimp.read("src/common/images/thechart.png");

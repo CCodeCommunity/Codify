@@ -1,16 +1,17 @@
 import { Command } from "@enitoni/gears-discordjs";
 import { MessageAttachment } from "discord.js";
 
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
-import { createMetadata } from "./help/createMetadata";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
+import { createMetadata } from "../help/createMetadata";
 
 export default new Command()
-    .match(matchPrefixesStrict("googleit"))
+    .match(matchPrefixesStrict("javaistojs|javatojs"))
     .setMetadata(
         createMetadata({
-            name: "Google it",
-            usage: "cc!googleit",
-            description: "Sends an image from codebullet with just google it"
+            name: "Java is to js",
+            usage: "cc!javatojs/javaistojs",
+            description:
+                "Sends an image that explains what java is to javascript"
         })
     )
     .use(context => {
@@ -19,7 +20,7 @@ export default new Command()
         if (message.guild !== null) message.delete();
 
         const attachment = new MessageAttachment(
-            `src/common/images/googleit.png`
+            `src/common/images/javaistojs.png`
         );
         return message.channel.send(attachment);
     });
