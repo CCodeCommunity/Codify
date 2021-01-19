@@ -49,5 +49,9 @@ export default new Command()
     .use(context => {
         const { message } = context;
 
-        message.channel.send(`<@${message.author.id}> is gay.`);
+        if (message.guild !== null) message.delete({ timeout: 30000 });
+
+        message.channel.send(
+            `<@${message.author.id}> made a joke about a mom, not nice. The message will be deleted in 30 seconds.`
+        );
     });
