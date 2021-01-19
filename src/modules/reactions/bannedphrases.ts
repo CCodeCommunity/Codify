@@ -52,6 +52,6 @@ export default new Command()
         if (message.guild !== null) message.delete({ timeout: 30000 });
 
         message.channel.send(
-            `<@${message.author.id}> made a joke about a mom, not nice. The message will be deleted in 30 seconds.`
+            `<@${message.author.id}> said something annoying, not nice. The message will be deleted in 30 seconds.`
         );
     });
