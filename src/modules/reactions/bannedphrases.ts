@@ -1,5 +1,5 @@
 import { Command, Matcher } from "@enitoni/gears-discordjs";
-import { createMetadata } from "./help/createMetadata";
+import { createMetadata } from "../commands/help/createMetadata";
 
 const phrases = [
     "your mom",
@@ -21,7 +21,10 @@ const phrases = [
     "vyctor gay",
     "yctor gay",
     "vyctor661 gay",
-    "vy gay"
+    "vy gay",
+    "yur mum",
+    "your_mom",
+    "yer mum"
 ];
 
 const matchPhrase = (): Matcher => context => {
