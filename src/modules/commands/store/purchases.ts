@@ -1,11 +1,11 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
-import knex from "../../../db/knex";
-import Store from "../../common/types/Store";
-import Subscription from "../../common/types/Subscription";
-import { createMetadata } from "./help/createMetadata";
+import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
+import knex from "../../../../db/knex";
+import Store from "../../../common/types/Store";
+import Subscription from "../../../common/types/Subscription";
+import { createMetadata } from "../help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("purchases"))
