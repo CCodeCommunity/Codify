@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/Vyctor661/codify/compare/v1.13.0...v1.13.1) (2021-01-19)
+
+
+### Bug Fixes
+
+* codify crashing when using command in dms ([8f863c1](https://github.com/Vyctor661/codify/commit/8f863c139a62eee81968d73d5f840612c895956f))
+
 # [1.13.0](https://github.com/Vyctor661/codify/compare/v1.12.0...v1.13.0) (2021-01-19)
 
 
