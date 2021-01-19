@@ -121,11 +121,15 @@ export default new Command()
         })
     )
     .use(context => {
-        const { message } = context;
+        const { content, message } = context;
 
         if (message.guild !== null) message.delete({ timeout: 30000 });
 
         message.channel.send(
             `<@${message.author.id}> said something annoying, not nice. The message will be deleted in 30 seconds.`
+        );
+
+        console.log(
+            message.author.username + "said a forbidden thing: " + content
         );
     });
