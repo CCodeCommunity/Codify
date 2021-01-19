@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/Vyctor661/codify/compare/v1.12.0...v1.13.0) (2021-01-19)
+
+
+### Features
+
+* better word banning ([5507a51](https://github.com/Vyctor661/codify/commit/5507a513b0e0dec768979a082c883aa7fc90295d))
+
 # [1.12.0](https://github.com/Vyctor661/codify/compare/v1.11.1...v1.12.0) (2021-01-19)
 
 
