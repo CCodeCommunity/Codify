@@ -11,7 +11,7 @@ export default new Command()
             name: "Create a webhook",
             usage: "cc!webhook/createwebhook",
             description:
-                'Creates a webhook in that channel if the user has a role named "githubHooker". Then it sends a dm with the webhook link to the user'
+                'Creates a webhook in that channel if the user has a role named "webhooks". Then it sends a dm with the webhook link to the user'
         })
     )
     .use(async context => {
@@ -25,7 +25,7 @@ export default new Command()
             );
             if (
                 message.member!.roles.cache.some(
-                    (role: Role) => role.name === "githubHooker"
+                    (role: Role) => role.name === "webhooks"
                 )
             )
                 message.author.send(
