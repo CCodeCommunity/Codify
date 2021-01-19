@@ -82,13 +82,10 @@ export default new Command()
                     reaction.emoji.name === "👍" ||
                     reaction.emoji.name === "👎";
 
-                const collector = await messageSent.createReactionCollector(
-                    filter,
-                    {
-                        max: 1,
-                        time: 3600000 * 24
-                    }
-                );
+                const collector = messageSent.createReactionCollector(filter, {
+                    max: 1,
+                    time: 3600000 * 24
+                });
                 collector.on("collect", async (reaction: MessageReaction) => {
                     if (reaction.emoji.name === "👍") {
                         // we add the quote to the database
