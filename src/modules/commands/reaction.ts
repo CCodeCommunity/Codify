@@ -46,7 +46,5 @@ export default new Command()
     .use(context => {
         const { message } = context;
 
-        message.delete();
-
         message.channel.send(`<@${message.author.id}> is gay.`);
     });
