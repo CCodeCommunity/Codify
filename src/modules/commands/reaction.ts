@@ -9,7 +9,19 @@ const phrases = [
     "r mom",
     "yer mom",
     "u mom",
-    "y mom"
+    "y mom",
+    "vyc gay",
+    "yo mom",
+    "your mother",
+    "ur mother",
+    "yuor mother",
+    "r mother",
+    "yer mother",
+    "y mother",
+    "vyctor gay",
+    "yctor gay",
+    "vyctor661 gay",
+    "vy gay"
 ];
 
 const matchPhrase = (): Matcher => context => {
