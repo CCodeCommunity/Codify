@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/Vyctor661/codify/compare/v1.11.1...v1.12.0) (2021-01-19)
+
+
+### Features
+
+* banning words from the server ([840aa2a](https://github.com/Vyctor661/codify/commit/840aa2a41b21706d087a8b254f8d85c6577627ad))
+
 ## [1.11.1](https://github.com/Vyctor661/codify/compare/v1.11.0...v1.11.1) (2020-12-28)
 
 
