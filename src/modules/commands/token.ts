@@ -14,7 +14,7 @@ export default new Command()
             name: "Get a token",
             usage: "cc!gettoken",
             description:
-                "Sends a dm with your token for the api. More info into the dm. But well I don't think the api works anymore"
+                "Sends a dm with your token for the api. More info into the dm. But the api doesnt work anymore so this command has no use for now."
         })
     )
     .use(async context => {

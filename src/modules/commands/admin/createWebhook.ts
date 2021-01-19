@@ -1,8 +1,8 @@
 import { Command } from "@enitoni/gears-discordjs";
 import { Role, TextChannel } from "discord.js";
 
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
-import { createMetadata } from "./help/createMetadata";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
+import { createMetadata } from "../help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("webhook|createwebhook"))

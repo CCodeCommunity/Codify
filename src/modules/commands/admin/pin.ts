@@ -1,11 +1,11 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 import { TextChannel } from "discord.js";
-import { createMetadata } from "./help/createMetadata";
+import { createMetadata } from "../help/createMetadata";
 
-import knex from "../../../db/knex";
+import knex from "../../../../db/knex";
 
 const getPinsChannel = async (serverid: string): Promise<string | boolean> => {
     try {
