@@ -1,7 +1,16 @@
 import { Command, Matcher } from "@enitoni/gears-discordjs";
 import { createMetadata } from "./help/createMetadata";
 
-const phrases = ["your mom", "dang", "ur mom"];
+const phrases = [
+    "your mom",
+    "ur mom",
+    "y͎o͎u͎r͎ ͎m͎o͎m͎",
+    "yuor mom",
+    "r mom",
+    "yer mom",
+    "u mom",
+    "y mom"
+];
 
 const matchPhrase = (): Matcher => context => {
     const { content } = context;
@@ -23,14 +32,9 @@ export default new Command()
         })
     )
     .use(context => {
-        const { content, message } = context;
+        const { message } = context;
 
-        if (
-            content.toLowerCase().includes(phrases[0]) ||
-            content.toLowerCase().includes(phrases[2]) ||
-            (content.toLowerCase().startsWith(phrases[1]) &&
-                !content.toLowerCase().startsWith("dange"))
-        ) {
-            message.delete();
-        }
+        message.delete();
+
+        message.channel.send(`<@${message.author.id}> is gay.`);
     });
