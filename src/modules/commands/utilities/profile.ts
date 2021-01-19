@@ -1,12 +1,12 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../db/knex";
-import { checkAndInitProfile } from "../../common/knexCommon";
-import { createMetadata } from "./help/createMetadata";
-import { findUserByName } from "../../common/findUserByName";
+import knex from "../../../../db/knex";
+import { checkAndInitProfile } from "../../../common/knexCommon";
+import { createMetadata } from "../help/createMetadata";
+import { findUserByName } from "../../../common/findUserByName";
 
 async function pullData(id: string) {
     await checkAndInitProfile(id);

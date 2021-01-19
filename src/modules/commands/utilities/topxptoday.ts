@@ -1,15 +1,17 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../db/knex";
+import knex from "../../../../db/knex";
 import { Message } from "discord.js";
-import { createMetadata } from "./help/createMetadata";
+import { createMetadata } from "../help/createMetadata";
 
 async function generateTop(message: Message) {
+    const today = new Date(Date.now()).getDate();
     const top = await knex("user")
-        .orderBy("level", "desc")
-        .orderBy("xp", "desc");
+        .where({ lastdayxp: today })
+        .orderBy("dayxp", "desc")
+        .orderBy("level", "desc");
     let fill = "```css\n";
 
     for (let i = 0; i <= 9; i++) {
@@ -33,7 +35,7 @@ async function generateTop(message: Message) {
 
         if (i != 99) {
             fill += `[${k}]  #${memberName} \n`;
-            fill += `      Level ${top[i].level}  : ${top[i].xp} XP \n\n`;
+            fill += `      Xp today: ${top[i].dayxp} - Level: ${top[i].level} \n\n`;
         }
     }
     fill += "```";
@@ -42,9 +44,11 @@ async function generateTop(message: Message) {
 }
 
 const getPlaceLocal = async (uid: string, message: Message) => {
+    const today = new Date(Date.now()).getDate();
     const top = await knex("user")
-        .orderBy("level", "desc")
-        .orderBy("xp", "desc");
+        .where({ lastdayxp: today })
+        .orderBy("dayxp", "desc")
+        .orderBy("level", "desc");
 
     const localTop = top.filter(a => message.guild?.member(`${a.userid}`));
 
@@ -56,9 +60,11 @@ const getPlaceLocal = async (uid: string, message: Message) => {
     );
 };
 const getPlace = async (uid: string) => {
+    const today = new Date(Date.now()).getDate();
     const top = await knex("user")
-        .orderBy("level", "desc")
-        .orderBy("xp", "desc");
+        .where({ lastdayxp: today })
+        .orderBy("dayxp", "desc")
+        .orderBy("level", "desc");
 
     return (
         top.findIndex(k => {
@@ -69,12 +75,12 @@ const getPlace = async (uid: string) => {
 };
 
 export default new Command()
-    .match(matchPrefixesStrict("top|toplevel|topl"))
+    .match(matchPrefixesStrict("topd|topleveltoday|topday"))
     .setMetadata(
         createMetadata({
-            name: "Top levels",
-            usage: "cc!top/toplevel/topl",
-            description: "Shows a top with user levels in the server"
+            name: "Top xp today",
+            usage: "cc!topd/topleveltoday/topday",
+            description: "Shows the top of xp gain today."
         })
     )
     .use(async context => {

@@ -1,8 +1,8 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
-import { createMetadata } from "./help/createMetadata";
+import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
+import { createMetadata } from "../help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("servertime"))

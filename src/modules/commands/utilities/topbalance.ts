@@ -1,19 +1,15 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../db/knex";
+import knex from "../../../../db/knex";
 import { Message } from "discord.js";
-import { createMetadata } from "./help/createMetadata";
+import { createMetadata } from "../help/createMetadata";
 
-async function generateTop(message: Message) {
-    const today = new Date(Date.now()).getDate();
-    const top = await knex("user")
-        .where({ lastdayxp: today })
-        .orderBy("dayxp", "desc")
-        .orderBy("level", "desc");
+async function fillFields(message: Message) {
+    const top = await knex("user").orderBy("balance", "desc");
+
     let fill = "```css\n";
-
     for (let i = 0; i <= 9; i++) {
         let memberName;
         do {
@@ -23,19 +19,16 @@ async function generateTop(message: Message) {
             }
             if (message.guild?.member(`${top[i].userid}`))
                 memberName = (
-                    await message.guild!.members.fetch({
-                        user: `${top[i].userid}`
-                    })
+                    await message.guild!.members.fetch(`${top[i].userid}`)
                 )?.displayName.replace(/[^\w\s]|\s+/gi, "");
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);
 
         const k = i + 1 == 10 ? "10" : `0${i + 1}`;
-
         if (i != 99) {
             fill += `[${k}]  #${memberName} \n`;
-            fill += `      Xp today: ${top[i].dayxp} - Level: ${top[i].level} \n\n`;
+            fill += `      Balance: $${top[i].balance}\n\n`;
         }
     }
     fill += "```";
@@ -44,11 +37,9 @@ async function generateTop(message: Message) {
 }
 
 const getPlaceLocal = async (uid: string, message: Message) => {
-    const today = new Date(Date.now()).getDate();
     const top = await knex("user")
-        .where({ lastdayxp: today })
-        .orderBy("dayxp", "desc")
-        .orderBy("level", "desc");
+        .orderBy("level", "desc")
+        .orderBy("xp", "desc");
 
     const localTop = top.filter(a => message.guild?.member(`${a.userid}`));
 
@@ -60,11 +51,9 @@ const getPlaceLocal = async (uid: string, message: Message) => {
     );
 };
 const getPlace = async (uid: string) => {
-    const today = new Date(Date.now()).getDate();
     const top = await knex("user")
-        .where({ lastdayxp: today })
-        .orderBy("dayxp", "desc")
-        .orderBy("level", "desc");
+        .orderBy("level", "desc")
+        .orderBy("xp", "desc");
 
     return (
         top.findIndex(k => {
@@ -75,17 +64,17 @@ const getPlace = async (uid: string) => {
 };
 
 export default new Command()
-    .match(matchPrefixesStrict("topd|topleveltoday|topday"))
+    .match(matchPrefixesStrict("topb|topbalance|balancetop"))
     .setMetadata(
         createMetadata({
-            name: "Top xp today",
-            usage: "cc!topd/topleveltoday/topday",
-            description: "Shows the top of xp gain today."
+            name: "Top balance",
+            usage: "cc!topb/topbalance/balancetop",
+            description: "Shows a top with user balances of the server"
         })
     )
     .use(async context => {
         const { message } = context;
-        const list = await generateTop(message);
+        const fields = await fillFields(message);
         message.channel.send(
             `<@${message.author.id}> **You are __#${await getPlace(
                 message.author.id
@@ -94,5 +83,5 @@ export default new Command()
                 message
             )}__ in the server** :sunglasses:`
         );
-        return message.channel.send(list);
+        return message.channel.send(fields);
     });

@@ -1,10 +1,10 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../db/knex";
-import { checkAndInitProfile } from "../../common/knexCommon";
-import { createMetadata } from "./help/createMetadata";
+import knex from "../../../../db/knex";
+import { checkAndInitProfile } from "../../../common/knexCommon";
+import { createMetadata } from "../help/createMetadata";
 
 async function checkClaimed(userid: string) {
     await checkAndInitProfile(userid);

@@ -1,10 +1,10 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
-import { alphabet, resolveArrayToOne, emojiLetters } from "../constants";
-import { createMetadata } from "./help/createMetadata";
+import { alphabet, resolveArrayToOne, emojiLetters } from "../../constants";
+import { createMetadata } from "../help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("poll"))

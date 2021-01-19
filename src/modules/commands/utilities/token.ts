@@ -1,11 +1,11 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
 import { randomBytes } from "crypto";
 
-import knex from "../../../db/knex";
-import { createMetadata } from "./help/createMetadata";
+import knex from "../../../../db/knex";
+import { createMetadata } from "../help/createMetadata";
 
 export default new Command()
     .match(matchPrefixesStrict("gettoken"))
