@@ -1,12 +1,12 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
-import knex from "../../../db/knex";
-import { createMetadata } from "./help/createMetadata";
+import knex from "../../../../db/knex";
+import { createMetadata } from "../help/createMetadata";
 
-import { maxBetLimit, jackpotMultiplier } from "../constants";
+import { maxBetLimit, jackpotMultiplier } from "../../constants";
 
 async function checkBalance(amount: number, id: string) {
     if (amount <= 0 || amount >= maxBetLimit + 1) {

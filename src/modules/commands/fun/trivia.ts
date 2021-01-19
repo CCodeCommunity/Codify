@@ -1,17 +1,17 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
+import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
-import { resolveArrayToOne } from "../constants";
+import { resolveArrayToOne } from "../../constants";
 
 import he from "he";
 
-import knex from "../../../db/knex";
+import knex from "../../../../db/knex";
 
 import fetch from "node-fetch";
 import { Collection, Message, MessageReaction } from "discord.js";
-import { createMetadata } from "./help/createMetadata";
+import { createMetadata } from "../help/createMetadata";
 
 const updateBalance = async (id: string, addExtract: number) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;

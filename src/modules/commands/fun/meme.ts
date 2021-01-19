@@ -1,10 +1,10 @@
 import { Command } from "@enitoni/gears-discordjs";
 
-import { ParseArgumentsState } from "../../common/parsing/middleware/parseArguments";
+import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
 
 import fetch from "node-fetch";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
-import { createMetadata } from "./help/createMetadata";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
+import { createMetadata } from "../help/createMetadata";
 
 let loopIt = 0;
 

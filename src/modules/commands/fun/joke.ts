@@ -1,8 +1,8 @@
 import { Command } from "@enitoni/gears-discordjs";
 
 import fetch from "node-fetch";
-import { matchPrefixesStrict } from "../../common/matching/matchPrefixesStrict";
-import { createMetadata } from "./help/createMetadata";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
+import { createMetadata } from "../help/createMetadata";
 
 let loopIt = 0;
 
@@ -14,18 +14,18 @@ const loop = (type: "content" | "title" | "score") => {
 };
 
 export default new Command()
-    .match(matchPrefixesStrict("copypasta"))
+    .match(matchPrefixesStrict("joke"))
     .setMetadata(
         createMetadata({
-            name: "Copypasta",
-            usage: "cc!copypasta",
-            description: "Sends a copypasta from r/copypasta"
+            name: "Make a joke",
+            usage: "cc!joke",
+            description: "Sends a random joke from r/jokes"
         })
     )
     .use(async context => {
         try {
             const response = await fetch(
-                `https://www.reddit.com/r/copypasta/hot/.json`
+                `https://www.reddit.com/r/Jokes/hot/.json`
             );
             const data = await response.json();
 
