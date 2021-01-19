@@ -31,7 +31,7 @@ export default new Command()
         const { message } = context;
         const { args } = context.state;
 
-        message.delete();
+        if (message.guild !== null) message.delete();
 
         if (!message.member!.hasPermission("MANAGE_MESSAGES")) {
             return message.channel.send(

@@ -17,7 +17,7 @@ export default new Command()
     .use(async context => {
         const { message } = context;
         const channel = message.channel as TextChannel;
-        message.delete();
+        if (message.guild !== null) message.delete();
         try {
             const webhook = await channel.createWebhook(
                 message.author.username,

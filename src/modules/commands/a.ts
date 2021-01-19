@@ -17,7 +17,7 @@ export default new Command()
     .use<ParseArgumentsState>(context => {
         const { message } = context;
 
-        message.delete();
+        if (message.guild !== null) message.delete();
 
         const randNum = Math.floor(Math.random() * 100) + 1;
 

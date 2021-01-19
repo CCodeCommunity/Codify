@@ -17,7 +17,7 @@ export default new Command()
     .use(context => {
         const { message } = context;
 
-        message.delete();
+        if (message.guild !== null) message.delete();
 
         const attachment = new MessageAttachment(
             `src/common/images/javaistojs.png`

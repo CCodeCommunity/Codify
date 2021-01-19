@@ -71,7 +71,8 @@ export default new Command()
             subscriptionInterval: subscriptionInterval || 0
         });
 
-        message.delete();
+        if (message.guild !== null) message.delete();
+
         return message.channel.send(
             `:white_check_mark: **Successfully added store item.**`
         );

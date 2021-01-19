@@ -66,7 +66,7 @@ export default new Command()
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 
-        message.delete();
+        if (message.guild !== null) message.delete();
         const data = (await getQuestion()).results[0];
 
         const answers =

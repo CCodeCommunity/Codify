@@ -29,7 +29,7 @@ export default new Command()
         const { message } = context;
         const { args } = context.state;
 
-        message.delete();
+        if (message.guild !== null) message.delete();
 
         if (!args.length) {
             return message.channel.send(

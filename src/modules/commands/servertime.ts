@@ -16,7 +16,7 @@ export default new Command()
     .use<ParseArgumentsState>(context => {
         const { message } = context;
 
-        message.delete();
+        if (message.guild !== null) message.delete();
 
         return message.channel.send(
             `${new Date().toLocaleString("en-GB", {
