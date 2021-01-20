@@ -1,9 +1,7 @@
 import { Command, Matcher } from "@enitoni/gears-discordjs";
 import { createMetadata } from "../commands/help/createMetadata";
 
-const phrases = [
-   "75849578657459"
-];
+const phrases = ["75849578657459"];
 
 const matchPhrase = (): Matcher => context => {
     const { content } = context;
