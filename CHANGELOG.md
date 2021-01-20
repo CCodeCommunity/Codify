@@ -1,3 +1,11 @@
+## [1.13.2](https://github.com/Vyctor661/codify/compare/v1.13.1...v1.13.2) (2021-01-20)
+
+
+### Bug Fixes
+
+* yikes ([97ac5ab](https://github.com/Vyctor661/codify/commit/97ac5abc93fb2b9f82e8ed62ffcd7b9a26c7f6f6))
+* yikes ([506ea1d](https://github.com/Vyctor661/codify/commit/506ea1d643ac2ab3efe5d03cf7c412efae25ad15))
+
 ## [1.13.1](https://github.com/Vyctor661/codify/compare/v1.13.0...v1.13.1) (2021-01-19)
 
 
