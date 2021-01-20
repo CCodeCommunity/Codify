@@ -1,3 +1,120 @@
+## [1.13.1](https://github.com/Vyctor661/codify/compare/v1.13.0...v1.13.1) (2021-01-19)
+
+
+### Bug Fixes
+
+* codify crashing when using command in dms ([8f863c1](https://github.com/Vyctor661/codify/commit/8f863c139a62eee81968d73d5f840612c895956f))
+
+# [1.13.0](https://github.com/Vyctor661/codify/compare/v1.12.0...v1.13.0) (2021-01-19)
+
+
+### Features
+
+* better word banning ([5507a51](https://github.com/Vyctor661/codify/commit/5507a513b0e0dec768979a082c883aa7fc90295d))
+
+# [1.12.0](https://github.com/Vyctor661/codify/compare/v1.11.1...v1.12.0) (2021-01-19)
+
+
+### Features
+
+* banning words from the server ([840aa2a](https://github.com/Vyctor661/codify/commit/840aa2a41b21706d087a8b254f8d85c6577627ad))
+
+## [1.11.1](https://github.com/Vyctor661/codify/compare/v1.11.0...v1.11.1) (2020-12-28)
+
+
+### Bug Fixes
+
+* well rip my balance ([8134621](https://github.com/Vyctor661/codify/commit/8134621f80b9b41d4cce9754c555de7a852ef168))
+
+# [1.11.0](https://github.com/Vyctor661/codify/compare/v1.10.0...v1.11.0) (2020-12-28)
+
+
+### Features
+
+* server time command ([9474ef6](https://github.com/Vyctor661/codify/commit/9474ef604575630f9dea92eac764997bcaef4339))
+
+# [1.10.0](https://github.com/Vyctor661/codify/compare/v1.9.0...v1.10.0) (2020-12-28)
+
+
+### Bug Fixes
+
+* forgot about the multiplier in the message ([73d2a13](https://github.com/Vyctor661/codify/commit/73d2a13ca1c2852f6a153d0607f16923e16f2b49))
+
+
+### Features
+
+* daily most xp award ([29c49ef](https://github.com/Vyctor661/codify/commit/29c49ef201d29c6b5c20051a3b39fbf3342aa555))
+* global daily xp ([0d50890](https://github.com/Vyctor661/codify/commit/0d50890edaab03be847256288c44d0bced06521e))
+* top xp today ([d31e143](https://github.com/Vyctor661/codify/commit/d31e143ccd34bb33c4060356903f0157611bb92b))
+
+# [1.9.0](https://github.com/Vyctor661/codify/compare/v1.8.0...v1.9.0) (2020-12-28)
+
+
+### Features
+
+* holidays jackpot and maxbetlimit increase ([42e23b6](https://github.com/Vyctor661/codify/commit/42e23b6c29b34983146ab191427267906b771f2f))
+* qol changes to the top command ([2d0680c](https://github.com/Vyctor661/codify/commit/2d0680c8d0cebfdba3cee979edf0d537d6fcc65c))
+
+# [1.8.0](https://github.com/Vyctor661/codify/compare/v1.7.0...v1.8.0) (2020-12-28)
+
+
+### Features
+
+* xp multiplier, HOLIDAYS TRIPE XP ([04297dd](https://github.com/Vyctor661/codify/commit/04297ddb8d885ca18159738204f69cfe2220862e))
+
+# [1.7.0](https://github.com/Vyctor661/codify/compare/v1.6.0...v1.7.0) (2020-12-27)
+
+
+### Features
+
+* cc!profile recognizing usernames without pings ([74885c3](https://github.com/Vyctor661/codify/commit/74885c3a66e405068434b9f00ece6b9d51d1947a))
+
+# [1.6.0](https://github.com/Vyctor661/codify/compare/v1.5.2...v1.6.0) (2020-12-11)
+
+
+### Features
+
+* new help command design ([9df7c5a](https://github.com/Vyctor661/codify/commit/9df7c5a2d6bec3914dba7fd0724528bcb16630e4))
+
+## [1.5.2](https://github.com/Vyctor661/codify/compare/v1.5.1...v1.5.2) (2020-12-11)
+
+
+### Bug Fixes
+
+* I have mental issues apparently ([9db17f9](https://github.com/Vyctor661/codify/commit/9db17f9b51163597c14e334b1db7af903a39b613))
+
+## [1.5.1](https://github.com/Vyctor661/codify/compare/v1.5.0...v1.5.1) (2020-12-11)
+
+
+### Bug Fixes
+
+* apparently some people get discord.com in their copy message links and I get discordapp.com ([fa0b687](https://github.com/Vyctor661/codify/commit/fa0b68759538fe09d07ce6800e1c615cc4d75484))
+
+# [1.5.0](https://github.com/Vyctor661/codify/compare/v1.4.0...v1.5.0) (2020-12-11)
+
+
+### Bug Fixes
+
+* codify didnt check for manage roles permission when removing store item ([57892a6](https://github.com/Vyctor661/codify/commit/57892a6c53e6327982da387d9f38210da544c0cf))
+
+
+### Features
+
+* pin and setpinschannel command hehe ([b5183eb](https://github.com/Vyctor661/codify/commit/b5183eb8a93f1737d3eadcad201049dd874e4025))
+
+# [1.4.0](https://github.com/Vyctor661/codify/compare/v1.3.1...v1.4.0) (2020-12-07)
+
+
+### Bug Fixes
+
+* added metadata to chart command ([511277e](https://github.com/Vyctor661/codify/commit/511277e5df3bee834be4021fe587558fd8972db2))
+* fixed bug with floats ([6f156f3](https://github.com/Vyctor661/codify/commit/6f156f36c7d83705ca6f8dfcdbe1de5cbd3861ee))
+
+
+### Features
+
+* chart command ([fd7e3b4](https://github.com/Vyctor661/codify/commit/fd7e3b4c0d3dbbdd3c202ca8410fe6acdd67953e))
+
 ## [1.3.1](https://github.com/Vyctor661/codify/compare/v1.3.0...v1.3.1) (2020-11-22)
 
 
