@@ -1,3 +1,15 @@
+# [1.14.0](https://github.com/Vyctor661/codify/compare/v1.13.2...v1.14.0) (2021-06-09)
+
+
+### Bug Fixes
+
+* style being broken for tops ([0d2b10e](https://github.com/Vyctor661/codify/commit/0d2b10ed18bfb4f0b1686d128dde1c7171b4028c))
+
+
+### Features
+
+* servertime command now also shows the time ([077a94c](https://github.com/Vyctor661/codify/commit/077a94c9d22eedfe9941be3fee3a1417ca492796))
+
 ## [1.13.2](https://github.com/Vyctor661/codify/compare/v1.13.1...v1.13.2) (2021-01-20)
 
 
