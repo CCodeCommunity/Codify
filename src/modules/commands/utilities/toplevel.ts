@@ -10,7 +10,7 @@ async function generateTop(message: Message) {
     const top = await knex("user")
         .orderBy("level", "desc")
         .orderBy("xp", "desc");
-    let fill = "```css\n";
+    let fill = "```styl\n";
 
     for (let i = 0; i <= 9; i++) {
         let memberName;

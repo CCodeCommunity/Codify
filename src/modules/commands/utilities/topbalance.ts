@@ -9,7 +9,7 @@ import { createMetadata } from "../help/createMetadata";
 async function fillFields(message: Message) {
     const top = await knex("user").orderBy("balance", "desc");
 
-    let fill = "```css\n";
+    let fill = "```styl\n";
     for (let i = 0; i <= 9; i++) {
         let memberName;
         do {

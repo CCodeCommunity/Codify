@@ -12,7 +12,7 @@ async function generateTop(message: Message) {
         .where({ lastdayxp: today })
         .orderBy("dayxp", "desc")
         .orderBy("level", "desc");
-    let fill = "```css\n";
+    let fill = "```styl\n";
 
     for (let i = 0; i <= 9; i++) {
         let memberName;

@@ -58,4 +58,4 @@ export const xpMultiplier = 1;
 export const jackpotMultiplier = 2;
 export const maxBetLimit = 1000;
 export const topXpWinXpGain = 250;
-export const topXpWinMoneyGain = 5000;
+export const topXpWinMoneyGain = 2500;
