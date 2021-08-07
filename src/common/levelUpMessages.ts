@@ -1,7 +1,6 @@
 import knex from "../../db/knex";
 
-let quoteIndexes: Array<number>;
-
+const quoteIndexes: Array<number> = [];
 const forgottenUsers = [
     "A forgotten user",
     "Anonymous",
@@ -14,11 +13,15 @@ const forgottenUsers = [
     "Bill Gates idk",
     "John Petrucci",
     "Thanos",
-    "A R guy",
+    "A r guy",
     "Someone who is dead rn",
     "Rick Astley",
     "||Still your mom||"
 ];
+
+const innitIndexes = (length: number) => {
+    for (let i = 0; i < length; i++) quoteIndexes[i] = i;
+};
 
 const randomMessage = async () => {
     const quotes = (await knex("quotes").orderBy("quote")) as Array<{
@@ -26,21 +29,20 @@ const randomMessage = async () => {
         username: string | null;
     }>;
 
-    if (quoteIndexes.length == quotes.length) quoteIndexes = [];
+    if (quoteIndexes.length == 0) innitIndexes(quotes.length);
 
-    let index = Math.floor(Math.random() * quotes.length - 1);
+    const index = Math.floor(Math.random() * (quoteIndexes.length - 1));
+    const quoteNumber = quoteIndexes[index];
+    quoteIndexes.splice(index, 1);
 
-    while (quoteIndexes.indexOf(index)) {
-        index = Math.floor(Math.random() * quotes.length - 1);
-    }
-    quoteIndexes.push(index);
+    console.log(quoteIndexes);
 
-    return `*${quotes[index].quote}* ᵃᵈᵈᵉᵈ ᵇʸ __${
-        quotes[index].username
-            ? quotes[index].username
+    return `*${quotes[quoteNumber].quote}*  **ᵃᵈᵈᵉᵈ ᵇʸ**  _${
+        quotes[quoteNumber].username
+            ? quotes[quoteNumber].username
             : forgottenUsers[
-                  Math.floor(Math.random() * forgottenUsers.length - 1)
+                  Math.floor(Math.random() * (forgottenUsers.length - 1))
               ]
-    }__`;
+    }_`;
 };
 export default randomMessage;
