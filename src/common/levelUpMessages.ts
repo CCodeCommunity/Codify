@@ -33,8 +33,7 @@ const randomMessage = async () => {
 
     const index = Math.floor(Math.random() * (quoteIndexes.length - 1));
     const quoteNumber = quoteIndexes[index];
-    quoteIndexes.splice(index, 1);
-
+    console.log(quoteIndexes.splice(index, 1));
     console.log(quoteIndexes);
 
     return `*${quotes[quoteNumber].quote}*  **ᵃᵈᵈᵉᵈ ᵇʸ**  _${
