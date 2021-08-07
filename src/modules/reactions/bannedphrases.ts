@@ -22,13 +22,13 @@ export default new Command()
             description: "The bot will react to random messages, it's passive"
         })
     )
-    .use(context => {
+    .use(async context => {
         const { content, message } = context;
 
-        if (message.guild !== null) message.delete({ timeout: 30000 });
+        if (message.guild !== null) message.delete({ timeout: 5000 });
 
         message.channel.send(
-            `<@${message.author.id}> said something annoying, not nice. The message will be deleted in 30 seconds.`
+            `<@${message.author.id}> wow nice easter egg, I wonder what the number means.`
         );
 
         console.log(
