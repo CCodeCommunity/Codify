@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/Vyctor661/codify/compare/v1.14.0...v1.15.0) (2021-08-07)
+
+
+### Features
+
+* tetris bag quotes ([3962c44](https://github.com/Vyctor661/codify/commit/3962c44fc9c49e73a122344db62c18b8218c867e))
+
 # [1.14.0](https://github.com/Vyctor661/codify/compare/v1.13.2...v1.14.0) (2021-06-09)
 
 
