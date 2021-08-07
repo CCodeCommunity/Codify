@@ -54,7 +54,7 @@ async function checkLevelup(userid: string, ctx: Message) {
                     balance: parseInt(user.balance) + gain
                 });
             if (!levelupmessages) {
-                await ctx.channel.send(`*${await randomMessage()}*`);
+                await ctx.channel.send(`${await randomMessage()}`);
                 ctx.channel.send(
                     `<@${user.userid}> you are now level **${parseInt(
                         user.level
