@@ -1,26 +1,15 @@
 import knex from "../../db/knex";
 
 const quoteIndexes: Array<number> = [];
-const forgottenUsers = [
-    "A forgotten user",
-    "Anonymous",
-    "Idk I forgot",
-    "Anon",
-    "Some random dude",
-    "Me, maybe",
-    "Your mom",
-    "A long bearded man",
-    "Bill Gates idk",
-    "John Petrucci",
-    "Thanos",
-    "A r guy",
-    "Someone who is dead rn",
-    "Rick Astley",
-    "||Still your mom||"
-];
+const emojiIndexes: Array<number> = [];
+const emojis =
+    "😀😃😄😁😆😅😂🤣😊😇🙂🙃😉😌😍🥰😘😗😙😚😋😛😝😜🤪🤨🧐🤓😎🤩🥳😏😒😞😔😟😕🙁☹️😣😖😫😩🥺😢😭😤😠😡🤬🤯😳🥵🥶😱😨😰😥😓🤗🤔🤭🤫🤥😶😐😑😬🙄😯😦😧😮😲🥱😴🤤😪😵🤐🥴🤢🤮🤧😷🤒🤕🤑🤠😈👿👹👺🤡💩👻💀☠️👽👾🤖🎃😺😸😹😻😼😽🙀😿😾👋🤚🖐✋🖖👌🤏✌️🤞🤟🤘🤙👈👉👆🖕👇☝️👍👎✊👊🤛🤜👏🙌👐🤲🤝🙏✍️💅🤳💪🦾🦵🦿🦶👣👂🦻👃🧠🦷🦴👀👅👄💋🩸";
 
 const innitIndexes = (length: number) => {
     for (let i = 0; i < length; i++) quoteIndexes[i] = i;
+};
+const innitEmojiIndexes = (length: number) => {
+    for (let i = 0; i < length; i++) emojiIndexes[i] = i;
 };
 
 const randomMessage = async () => {
@@ -30,18 +19,20 @@ const randomMessage = async () => {
     }>;
 
     if (quoteIndexes.length == 0) innitIndexes(quotes.length);
+    if (emojiIndexes.length == 0) innitEmojiIndexes(emojis.length);
 
     const index = Math.floor(Math.random() * (quoteIndexes.length - 1));
     const quoteNumber = quoteIndexes[index];
+
+    const indexEmoji = Math.floor(Math.random() * (emojiIndexes.length - 1));
+    const emojiNumber = emojiIndexes[indexEmoji];
+
     console.log(quoteIndexes.splice(index, 1));
     console.log(quoteIndexes);
 
-    return `*${quotes[quoteNumber].quote}*  **ᵃᵈᵈᵉᵈ ᵇʸ**  _${
-        quotes[quoteNumber].username
-            ? quotes[quoteNumber].username
-            : forgottenUsers[
-                  Math.floor(Math.random() * (forgottenUsers.length - 1))
-              ]
-    }_`;
+    console.log(emojiIndexes.splice(indexEmoji, 1));
+    console.log(emojiIndexes);
+
+    return `*${quotes[quoteNumber].quote}* ${emojis[emojiNumber]}`;
 };
 export default randomMessage;
