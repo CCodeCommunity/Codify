@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/Vyctor661/codify/compare/v1.15.0...v1.16.0) (2021-08-20)
+
+
+### Features
+
+* update for level up messages again ([d5d4d8a](https://github.com/Vyctor661/codify/commit/d5d4d8aefeeee2def39cfb4766d162e5abd6ea4b))
+
 # [1.15.0](https://github.com/Vyctor661/codify/compare/v1.14.0...v1.15.0) (2021-08-07)
 
 
