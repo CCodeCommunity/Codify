@@ -1,3 +1,11 @@
+## [1.16.1](https://github.com/Vyctor661/codify/compare/v1.16.0...v1.16.1) (2021-08-21)
+
+
+### Bug Fixes
+
+* audit fix ([e951489](https://github.com/Vyctor661/codify/commit/e951489a61401cc4aee992fcebe751ad4dd05f25))
+* stuff about the level up messages not working ([b8bc3e1](https://github.com/Vyctor661/codify/commit/b8bc3e1a9c89eaf7f28e37ebfcfb0e8f737ed5b2))
+
 # [1.16.0](https://github.com/Vyctor661/codify/compare/v1.15.0...v1.16.0) (2021-08-20)
 
 
