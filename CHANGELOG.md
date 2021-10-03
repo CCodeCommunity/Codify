@@ -1,3 +1,11 @@
+# [1.17.0](https://github.com/Vyctor661/codify/compare/v1.16.1...v1.17.0) (2021-10-03)
+
+
+### Features
+
+* emojis now show in the ping message of the level up ([fe8cdd0](https://github.com/Vyctor661/codify/commit/fe8cdd0d124f5eecf24c9fe636b2f58cb188b641))
+* per server quotes per server tetris quotes randomisation ([a296842](https://github.com/Vyctor661/codify/commit/a2968429bd6ef2a9a53d2a7ff4791a932b127047))
+
 ## [1.16.1](https://github.com/Vyctor661/codify/compare/v1.16.0...v1.16.1) (2021-08-21)
 
 
