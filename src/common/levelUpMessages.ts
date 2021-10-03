@@ -173,7 +173,7 @@ const innitEmojiIndexes = (length: number) => {
     for (let i = 0; i < length; i++) emojiIndexes[i] = i;
 };
 
-const randomMessage = async () => {
+const randomMessage = async (): Promise<[string, string]> => {
     const quotes = (await knex("quotes").orderBy("quote")) as Array<{
         quote: string;
         username: string | null;
@@ -195,6 +195,6 @@ const randomMessage = async () => {
     console.log(emojiIndexes);
     console.log(emojis[emojiNumber]);
 
-    return `*${quotes[quoteNumber].quote}* ${emojis[emojiNumber]}`;
+    return [`*${quotes[quoteNumber].quote}*`, `${emojis[emojiNumber]}`];
 };
 export default randomMessage;
