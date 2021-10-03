@@ -16,8 +16,8 @@ const checkBalance = async (id: string) => {
     return parseInt(balance) >= 10000;
 };
 
-const addQuote = async (quote: string, username: string) => {
-    await knex("quotes").insert({ quote, username });
+const addQuote = async (quote: string, username: string, serverid: string) => {
+    await knex("quotes").insert({ quote, username, serverid });
 };
 const updateBalance = async (id: string, addExtract: number) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -43,6 +43,10 @@ export default new Command()
         const { message } = context;
         const { args } = context.state;
         try {
+            if (message.channel.type === "dm")
+                return message.channel.send(
+                    `Im sorry but you can't add a quote from dms anymore.`
+                );
             if (!args.length) {
                 return message.channel.send(
                     `**Error**: You cannot put an empty quote.`
@@ -89,7 +93,11 @@ export default new Command()
                 collector.on("collect", async (reaction: MessageReaction) => {
                     if (reaction.emoji.name === "👍") {
                         // we add the quote to the database
-                        await addQuote(args.join(" "), message.author.username);
+                        await addQuote(
+                            args.join(" "),
+                            message.author.username,
+                            message.guild!.id
+                        );
                         (
                             await message.client.users.fetch(
                                 "270972671490129921"

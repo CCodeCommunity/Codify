@@ -1,4 +1,4 @@
-import { Client, Message } from "discord.js";
+import { Client, Guild, Message } from "discord.js";
 import knex from "../../db/knex";
 
 import randomMessage from "./levelUpMessages";
@@ -44,8 +44,7 @@ async function checkLevelup(userid: string, ctx: Message) {
         const user = (await knex("user").where({ userid }))[0];
         const gain = Math.floor(Math.sqrt(user.level) * 50);
         if (user.xp > Math.sqrt(user.level) * 100) {
-            const levelupmessages = (await knex("user").where({ userid }))[0]
-                .levelupmessages;
+            const levelupmessages = user.levelupmessages;
             await knex("user")
                 .where({ userid })
                 .update({
@@ -54,13 +53,17 @@ async function checkLevelup(userid: string, ctx: Message) {
                     balance: parseInt(user.balance) + gain
                 });
             if (!levelupmessages) {
-                const [randomQuote, randomEmoji] = await randomMessage();
-                await ctx.channel.send(`${randomQuote}`);
-                ctx.channel.send(
-                    `<@${user.userid}> you are now level **${parseInt(
-                        user.level
-                    ) + 1}** here's **$${gain}** for you. ${randomEmoji}`
-                );
+                if (ctx.guild?.id) {
+                    const [randomQuote, randomEmoji] = await randomMessage(
+                        ctx.guild?.id
+                    );
+                    await ctx.channel.send(`${randomQuote}`);
+                    ctx.channel.send(
+                        `<@${user.userid}> you are now level **${parseInt(
+                            user.level
+                        ) + 1}** here's **$${gain}** for you. ${randomEmoji}`
+                    );
+                }
             }
             console.log(`User @${ctx.author.username} leveled up!`);
         }
