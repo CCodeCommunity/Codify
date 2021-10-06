@@ -47,6 +47,8 @@ export default new Command()
                 }
             });
         } catch (e) {
-            return context.message.channel.send(e);
+            return context.message.channel.send(
+                "**Error**: Internal server error."
+            );
         }
     });
