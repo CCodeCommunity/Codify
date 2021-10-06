@@ -43,10 +43,6 @@ export default new Command()
         const { message } = context;
         const { args } = context.state;
         try {
-            if (message.channel.type === "dm")
-                return message.channel.send(
-                    `Im sorry but you can't add a quote from dms anymore.`
-                );
             if (!args.length) {
                 return message.channel.send(
                     `**Error**: You cannot put an empty quote.`
@@ -152,7 +148,7 @@ export default new Command()
                         }
                     }
                 );
-                message.delete();
+                if (message.channel.type !== "dm") message.delete();
             }, 1000);
         } catch (e) {
             return message.channel.send("**Error**: Something went wrong.");
