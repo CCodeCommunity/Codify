@@ -5,6 +5,10 @@ import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStric
 
 import knex from "../../../../db/knex";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 async function insertData(userid: string) {
     const levelupmessages = (await knex("user").where({ userid }))[0]
@@ -25,6 +29,9 @@ export default new Command()
                 "If you are annoyed by the level up messages you can use this command and if you level up you will no longer get pinged by codify when you level up. You will still level up though"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 10000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

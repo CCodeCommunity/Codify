@@ -6,6 +6,10 @@ import knex from "../../../../db/knex";
 import Store from "../../../common/types/Store";
 import Subscription from "../../../common/types/Subscription";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("purchases"))
@@ -16,6 +20,9 @@ export default new Command()
             description: "Shows what purchases you have in the server"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 10000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

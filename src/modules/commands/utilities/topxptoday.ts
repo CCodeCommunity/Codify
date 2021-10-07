@@ -5,6 +5,10 @@ import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStric
 import knex from "../../../../db/knex";
 import { Message } from "discord.js";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 async function generateTop(message: Message) {
     const today = new Date(Date.now()).getDate();
@@ -83,6 +87,9 @@ export default new Command()
             description: "Shows the top of xp gain today."
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 25000);
+    })
     .use(async context => {
         const { message } = context;
         const list = await generateTop(message);

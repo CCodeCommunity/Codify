@@ -7,6 +7,10 @@ import Store from "../../../common/types/Store";
 import Subscription from "../../../common/types/Subscription";
 import User from "../../../common/types/User";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 const checkBalance = async (amount: number, id: string) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -24,6 +28,9 @@ export default new Command()
                 "Buy an item from the store of the server. You have to use the id listed in cc!store"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 10000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

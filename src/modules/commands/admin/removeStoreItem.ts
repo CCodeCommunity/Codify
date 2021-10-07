@@ -6,6 +6,10 @@ import knex from "../../../../db/knex";
 import Store from "../../../common/types/Store";
 import Subscription from "../../../common/types/Subscription";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("removeStoreItem"))
@@ -17,6 +21,9 @@ export default new Command()
                 "Remove an item from the store, you need `Manage roles` permission for this"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 5000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

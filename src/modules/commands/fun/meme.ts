@@ -5,6 +5,10 @@ import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArg
 import fetch from "node-fetch";
 import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 let loopIt = 0;
 
@@ -31,6 +35,9 @@ export default new Command()
                 "Sends a random meme from a subreddit. The default is set to r/ProgrammerHumor. Sometimes it doesn't work because the meme it got was from either an external source or a video/gif"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 5000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { args } = context.state;
         let subreddit = "ProgrammerHumor";
@@ -65,6 +72,8 @@ export default new Command()
                 }
             });
         } catch (e) {
-            return context.message.channel.send(e);
+            return context.message.channel.send(
+                "**Error:** Internal server error."
+            );
         }
     });

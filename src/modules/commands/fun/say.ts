@@ -3,6 +3,10 @@ import { Command } from "@enitoni/gears-discordjs";
 import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("say"))
@@ -13,6 +17,9 @@ export default new Command()
             description: "Make the bot say something"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 3000);
+    })
     .use<ParseArgumentsState>(context => {
         const { message } = context;
         const { args } = context.state;

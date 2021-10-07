@@ -7,6 +7,10 @@ import knex from "../../../../db/knex";
 import { checkAndInitProfile } from "../../../common/knexCommon";
 import { createMetadata } from "../help/createMetadata";
 import { findUserByName } from "../../../common/findUserByName";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 async function pullData(id: string) {
     await checkAndInitProfile(id);
@@ -21,9 +25,12 @@ export default new Command()
             name: "Shows a profile",
             usage: "cc!profile <user>",
             description:
-                "Show the profile of a user. The default is the one who sends the command"
+                "Show the profile of a user. The default is the profile of the one who sends the command."
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 5000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

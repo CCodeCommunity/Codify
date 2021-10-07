@@ -7,6 +7,10 @@ import knex from "../../../../db/knex";
 import { createMetadata } from "../help/createMetadata";
 
 import { maxBetLimit, jackpotMultiplier } from "../../constants";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 async function checkBalance(amount: number, id: string) {
     if (amount <= 0 || amount >= maxBetLimit + 1) {
@@ -55,6 +59,9 @@ export default new Command()
             description: `Gamble a random amount of coins. can be between 1 and ${maxBetLimit}`
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 3000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
