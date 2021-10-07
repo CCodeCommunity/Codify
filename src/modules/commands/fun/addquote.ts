@@ -50,6 +50,10 @@ export default new Command()
         const { message } = context;
         const { args } = context.state;
         try {
+            if (message.channel.type === "dm")
+                return message.channel.send(
+                    "**Error:** You cannot add new quotes in dms."
+                );
             if (!args.length) {
                 return message.channel.send(
                     `**Error**: You cannot put an empty quote.`
