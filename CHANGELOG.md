@@ -1,3 +1,16 @@
+# [1.18.0](https://github.com/Vyctor661/codify/compare/v1.17.0...v1.18.0) (2021-10-07)
+
+
+### Bug Fixes
+
+* no overload matches this call ([e3765ba](https://github.com/Vyctor661/codify/commit/e3765ba806cef29fa2c3dbc8e4476b30440434b8))
+* now you can add quotes from dms again ([2f54964](https://github.com/Vyctor661/codify/commit/2f549647517b1f1813e97ebda3ac80cdffe94e16))
+
+
+### Features
+
+* individual command cooldowns ([2eb32ba](https://github.com/Vyctor661/codify/commit/2eb32ba859ead45d05fcf9c210c58004f1672c08))
+
 # [1.17.0](https://github.com/Vyctor661/codify/compare/v1.16.1...v1.17.0) (2021-10-03)
 
 
