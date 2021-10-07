@@ -8,7 +8,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 let loopIt = 0;
 
@@ -35,9 +35,7 @@ export default new Command()
                 "Sends a random meme from a subreddit. The default is set to r/ProgrammerHumor. Sometimes it doesn't work because the meme it got was from either an external source or a video/gif"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 5000);
-    })
+    .use<Cooldown>(setCooldown(5000))
     .use<ParseArgumentsState>(async context => {
         const { args } = context.state;
         let subreddit = "ProgrammerHumor";

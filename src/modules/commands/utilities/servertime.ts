@@ -6,7 +6,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("servertime"))
@@ -17,9 +17,7 @@ export default new Command()
             description: "Shows the bot's time, aka the server time."
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 5000);
-    })
+    .use<Cooldown>(setCooldown(5000))
     .use<ParseArgumentsState>(context => {
         const { message } = context;
 

@@ -15,7 +15,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 const updateBalance = async (id: string, addExtract: number) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -67,9 +67,7 @@ export default new Command()
                 "Sends a trivia question that you can answer, if you are right you can get coins"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 10000);
-    })
+    .use<Cooldown>(setCooldown(10000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

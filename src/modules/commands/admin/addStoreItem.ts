@@ -8,7 +8,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("addStoreItem"))
@@ -20,9 +20,7 @@ export default new Command()
                 "People with `Manage roles` permission can use this command to add an item to the store, aka a role that can be bought by other users"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 5000);
-    })
+    .use<Cooldown>(setCooldown(5000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

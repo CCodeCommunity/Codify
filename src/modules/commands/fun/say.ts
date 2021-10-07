@@ -6,7 +6,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("say"))
@@ -17,9 +17,7 @@ export default new Command()
             description: "Make the bot say something"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 3000);
-    })
+    .use<Cooldown>(setCooldown(3000))
     .use<ParseArgumentsState>(context => {
         const { message } = context;
         const { args } = context.state;

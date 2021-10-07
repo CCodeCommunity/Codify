@@ -8,7 +8,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 async function fillFields(message: Message) {
     const top = await knex("user").orderBy("balance", "desc");
@@ -76,9 +76,7 @@ export default new Command()
             description: "Shows a top with user balances of the server"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 25000);
-    })
+    .use<Cooldown>(setCooldown(25000))
     .use(async context => {
         const { message } = context;
         const fields = await fillFields(message);

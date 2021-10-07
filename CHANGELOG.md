@@ -1,3 +1,66 @@
+# [1.18.0](https://github.com/Vyctor661/codify/compare/v1.17.0...v1.18.0) (2021-10-07)
+
+
+### Bug Fixes
+
+* no overload matches this call ([e3765ba](https://github.com/Vyctor661/codify/commit/e3765ba806cef29fa2c3dbc8e4476b30440434b8))
+* now you can add quotes from dms again ([2f54964](https://github.com/Vyctor661/codify/commit/2f549647517b1f1813e97ebda3ac80cdffe94e16))
+
+
+### Features
+
+* individual command cooldowns ([2eb32ba](https://github.com/Vyctor661/codify/commit/2eb32ba859ead45d05fcf9c210c58004f1672c08))
+
+# [1.17.0](https://github.com/Vyctor661/codify/compare/v1.16.1...v1.17.0) (2021-10-03)
+
+
+### Features
+
+* emojis now show in the ping message of the level up ([fe8cdd0](https://github.com/Vyctor661/codify/commit/fe8cdd0d124f5eecf24c9fe636b2f58cb188b641))
+* per server quotes per server tetris quotes randomisation ([a296842](https://github.com/Vyctor661/codify/commit/a2968429bd6ef2a9a53d2a7ff4791a932b127047))
+
+## [1.16.1](https://github.com/Vyctor661/codify/compare/v1.16.0...v1.16.1) (2021-08-21)
+
+
+### Bug Fixes
+
+* audit fix ([e951489](https://github.com/Vyctor661/codify/commit/e951489a61401cc4aee992fcebe751ad4dd05f25))
+* stuff about the level up messages not working ([b8bc3e1](https://github.com/Vyctor661/codify/commit/b8bc3e1a9c89eaf7f28e37ebfcfb0e8f737ed5b2))
+
+# [1.16.0](https://github.com/Vyctor661/codify/compare/v1.15.0...v1.16.0) (2021-08-20)
+
+
+### Features
+
+* update for level up messages again ([d5d4d8a](https://github.com/Vyctor661/codify/commit/d5d4d8aefeeee2def39cfb4766d162e5abd6ea4b))
+
+# [1.15.0](https://github.com/Vyctor661/codify/compare/v1.14.0...v1.15.0) (2021-08-07)
+
+
+### Features
+
+* tetris bag quotes ([3962c44](https://github.com/Vyctor661/codify/commit/3962c44fc9c49e73a122344db62c18b8218c867e))
+
+# [1.14.0](https://github.com/Vyctor661/codify/compare/v1.13.2...v1.14.0) (2021-06-09)
+
+
+### Bug Fixes
+
+* style being broken for tops ([0d2b10e](https://github.com/Vyctor661/codify/commit/0d2b10ed18bfb4f0b1686d128dde1c7171b4028c))
+
+
+### Features
+
+* servertime command now also shows the time ([077a94c](https://github.com/Vyctor661/codify/commit/077a94c9d22eedfe9941be3fee3a1417ca492796))
+
+## [1.13.2](https://github.com/Vyctor661/codify/compare/v1.13.1...v1.13.2) (2021-01-20)
+
+
+### Bug Fixes
+
+* yikes ([97ac5ab](https://github.com/Vyctor661/codify/commit/97ac5abc93fb2b9f82e8ed62ffcd7b9a26c7f6f6))
+* yikes ([506ea1d](https://github.com/Vyctor661/codify/commit/506ea1d643ac2ab3efe5d03cf7c412efae25ad15))
+
 ## [1.13.1](https://github.com/Vyctor661/codify/compare/v1.13.0...v1.13.1) (2021-01-19)
 
 
