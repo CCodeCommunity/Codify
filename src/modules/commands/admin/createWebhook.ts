@@ -5,7 +5,7 @@ import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStric
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 import { createMetadata } from "../help/createMetadata";
 
 export default new Command()
@@ -18,9 +18,7 @@ export default new Command()
                 'Creates a webhook in that channel if the user has a role named "webhooks". Then it sends a dm with the webhook link to the user'
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 25000);
-    })
+    .use<Cooldown>(setCooldown(25000))
     .use(async context => {
         const { message } = context;
         const channel = message.channel as TextChannel;

@@ -8,7 +8,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 async function generateTop(message: Message) {
     const top = await knex("user")
@@ -81,9 +81,7 @@ export default new Command()
             description: "Shows a top with user levels in the server"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 25000);
-    })
+    .use<Cooldown>(setCooldown(25000))
     .use(async context => {
         const { message } = context;
         const list = await generateTop(message);

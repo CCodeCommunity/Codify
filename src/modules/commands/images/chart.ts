@@ -9,7 +9,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 async function manipulateImage(title: string, white: string, black: string) {
     const image = await jimp.read("src/common/images/thechart.png");
@@ -50,9 +50,7 @@ export default new Command()
                 "Sends a chart comparing the white amount to the black amount. It's an inside server joke, the original chart showed distribution of black vs white people based on iq"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 15000);
-    })
+    .use<Cooldown>(setCooldown(15000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const rawArgs = context.state.args;
