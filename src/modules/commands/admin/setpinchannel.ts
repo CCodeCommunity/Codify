@@ -8,7 +8,7 @@ import knex from "../../../../db/knex";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 const setPinsChannel = async (
     serverid: string | undefined,
@@ -42,9 +42,7 @@ export default new Command()
                 "It sets the channel for were the cc!pin messages will go"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 15000);
-    })
+    .use<Cooldown>(setCooldown(15000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

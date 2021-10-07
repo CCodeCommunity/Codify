@@ -9,7 +9,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("unsubscribe"))
@@ -20,9 +20,7 @@ export default new Command()
             description: "Unsubscribe from a role that you bought"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 10000);
-    })
+    .use<Cooldown>(setCooldown(10000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

@@ -5,7 +5,7 @@ import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStric
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 import { createMetadata } from "../help/createMetadata";
 
 let loopIt = 0;
@@ -26,9 +26,7 @@ export default new Command()
             description: "Sends a random joke from r/jokes"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 10000);
-    })
+    .use<Cooldown>(setCooldown(10000))
     .use(async context => {
         try {
             const response = await fetch(

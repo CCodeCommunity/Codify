@@ -6,7 +6,7 @@ import { CommandMetadata } from "./CommandMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 const splitToChunks = (array: Array<CommandMetadata>, parts: number) => {
     const result = [];
@@ -25,9 +25,7 @@ export const helpCommand = new Command()
             description: "Shows this output"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 15000);
-    })
+    .use<Cooldown>(setCooldown(15000))
     .use(context => {
         const { bot, message } = context;
         const metadata = mapTreeToMetadata(bot.group);

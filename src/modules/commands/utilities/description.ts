@@ -9,7 +9,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 async function insertData(userid: string, description: string) {
     await checkAndInitProfile(userid, description);
@@ -28,9 +28,7 @@ export default new Command()
                 "Set your description. Can be seen in cc!profile. Can't be longer than 1000 characters"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 25000);
-    })
+    .use<Cooldown>(setCooldown(25000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

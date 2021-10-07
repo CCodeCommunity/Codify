@@ -9,7 +9,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 async function manipulateImage(text: string) {
     const image = await jimp.read("src/common/images/anyway.jpg");
@@ -29,9 +29,7 @@ export default new Command()
                 'Sends an image with Danny Devito that says "So anyway I started [text]"'
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 15000);
-    })
+    .use<Cooldown>(setCooldown(15000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

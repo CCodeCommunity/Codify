@@ -8,7 +8,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 async function checkClaimed(userid: string) {
     await checkAndInitProfile(userid);
@@ -46,9 +46,7 @@ export default new Command()
                 "You get a random amount of coins from 1 to 100, can be used once a day"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 60000);
-    })
+    .use<Cooldown>(setCooldown(60000))
     .use(async context => {
         const { message } = context;
 

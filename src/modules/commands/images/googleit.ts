@@ -5,7 +5,7 @@ import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStric
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 import { createMetadata } from "../help/createMetadata";
 
 export default new Command()
@@ -17,10 +17,7 @@ export default new Command()
             description: "Sends an image from codebullet with just google it"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 15000);
-    })
-
+    .use<Cooldown>(setCooldown(15000))
     .use(context => {
         const { message } = context;
 

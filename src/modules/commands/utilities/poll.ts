@@ -8,7 +8,7 @@ import { createMetadata } from "../help/createMetadata";
 import {
     Cooldown,
     setCooldown
-} from "../../../common/parsing/middleware/comandCooldown";
+} from "../../../common/cooldown/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("poll"))
@@ -19,9 +19,7 @@ export default new Command()
             description: "Creates a poll"
         })
     )
-    .use<Cooldown>((context, next) => {
-        setCooldown(context, next, 5000);
-    })
+    .use<Cooldown>(setCooldown(5000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
