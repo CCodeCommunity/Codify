@@ -6,6 +6,10 @@ import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStric
 import knex from "../../../../db/knex";
 import { checkAndInitProfile } from "../../../common/knexCommon";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 async function checkBalance(amount: number, id: string) {
     if (amount <= 0 || amount >= 1000001) {
@@ -55,6 +59,9 @@ export default new Command()
                 "Pay an user a certain amount of coins from your balace"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 10000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;
@@ -88,6 +95,6 @@ export default new Command()
                 );
             }
         } catch (e) {
-            console.info(e);
+            return message.channel.send("**Error:** Internal server error.");
         }
     });

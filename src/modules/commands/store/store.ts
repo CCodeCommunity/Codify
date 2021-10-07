@@ -5,6 +5,10 @@ import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStric
 import knex from "../../../../db/knex";
 import Store from "../../../common/types/Store";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("store"))
@@ -15,6 +19,9 @@ export default new Command()
             description: "Shows the items in the store"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 25000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

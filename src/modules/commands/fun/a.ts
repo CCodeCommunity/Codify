@@ -4,6 +4,10 @@ import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArg
 import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("a"))
@@ -14,6 +18,9 @@ export default new Command()
             description: "Makes the bot scream. AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 3000);
+    })
     .use<ParseArgumentsState>(context => {
         const { message } = context;
 

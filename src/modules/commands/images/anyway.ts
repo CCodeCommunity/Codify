@@ -6,6 +6,10 @@ import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStric
 import jimp from "jimp";
 import { MessageAttachment } from "discord.js";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 async function manipulateImage(text: string) {
     const image = await jimp.read("src/common/images/anyway.jpg");
@@ -25,6 +29,9 @@ export default new Command()
                 'Sends an image with Danny Devito that says "So anyway I started [text]"'
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 15000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

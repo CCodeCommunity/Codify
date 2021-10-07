@@ -6,6 +6,10 @@ import { TextChannel } from "discord.js";
 import { createMetadata } from "../help/createMetadata";
 
 import knex from "../../../../db/knex";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 const getPinsChannel = async (serverid: string): Promise<string | boolean> => {
     try {
@@ -27,6 +31,9 @@ export default new Command()
                 "Creates a pin in a special channel created by the server administrator, you need the Manage messages permission to use this command"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 5000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

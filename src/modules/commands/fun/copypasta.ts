@@ -2,6 +2,10 @@ import { Command } from "@enitoni/gears-discordjs";
 
 import fetch from "node-fetch";
 import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 import { createMetadata } from "../help/createMetadata";
 
 let loopIt = 0;
@@ -22,6 +26,9 @@ export default new Command()
             description: "Sends a copypasta from r/copypasta"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 10000);
+    })
     .use(async context => {
         try {
             const response = await fetch(
@@ -47,6 +54,8 @@ export default new Command()
                 }
             });
         } catch (e) {
-            return context.message.channel.send(e);
+            return context.message.channel.send(
+                "**Error**: Internal server error."
+            );
         }
     });

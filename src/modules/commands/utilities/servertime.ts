@@ -3,6 +3,10 @@ import { Command } from "@enitoni/gears-discordjs";
 import { ParseArgumentsState } from "../../../common/parsing/middleware/parseArguments";
 import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("servertime"))
@@ -13,6 +17,9 @@ export default new Command()
             description: "Shows the bot's time, aka the server time."
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 5000);
+    })
     .use<ParseArgumentsState>(context => {
         const { message } = context;
 

@@ -5,6 +5,10 @@ import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStric
 import { createMetadata } from "../help/createMetadata";
 
 import knex from "../../../../db/knex";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 const setPinsChannel = async (
     serverid: string | undefined,
@@ -38,6 +42,9 @@ export default new Command()
                 "It sets the channel for were the cc!pin messages will go"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 15000);
+    })
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

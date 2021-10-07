@@ -3,6 +3,10 @@ import { createMetadata } from "./createMetadata";
 import { matchPrefixes } from "@enitoni/gears";
 import { mapTreeToMetadata } from "./mapTreeToMetadata";
 import { CommandMetadata } from "./CommandMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 const splitToChunks = (array: Array<CommandMetadata>, parts: number) => {
     const result = [];
@@ -21,6 +25,9 @@ export const helpCommand = new Command()
             description: "Shows this output"
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 15000);
+    })
     .use(context => {
         const { bot, message } = context;
         const metadata = mapTreeToMetadata(bot.group);

@@ -6,6 +6,10 @@ import { randomBytes } from "crypto";
 
 import knex from "../../../../db/knex";
 import { createMetadata } from "../help/createMetadata";
+import {
+    Cooldown,
+    setCooldown
+} from "../../../common/parsing/middleware/comandCooldown";
 
 export default new Command()
     .match(matchPrefixesStrict("gettoken"))
@@ -17,6 +21,9 @@ export default new Command()
                 "Sends a dm with your token for the api. More info into the dm. But the api doesnt work anymore so this command has no use for now."
         })
     )
+    .use<Cooldown>((context, next) => {
+        setCooldown(context, next, 25000);
+    })
     .use(async context => {
         const { message } = context;
         const token = randomBytes(16).toString("hex");
