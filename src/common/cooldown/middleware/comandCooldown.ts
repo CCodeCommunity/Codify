@@ -6,7 +6,7 @@ const recentlySentCommand = new Map<string, { lastTalkedAt: number }>();
 
 export const setCooldown = (timeout: number): Middleware<Cooldown> => (
     context,
-    next,
+    next
 ) => {
     const { message, state } = context;
     const mostRecentTime = new Date().getTime();
