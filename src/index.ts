@@ -42,6 +42,7 @@ import servertime from "./modules/commands/utilities/servertime";
 import addassasinationkeyword from "./modules/commands/fun/addassasinationkeyword";
 import assassinate from "./modules/commands/fun/assassinate";
 import assassinations from "./modules/reactions/assassinations";
+import optoutofassassinations from "./modules/commands/fun/optoutofassassinations";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -68,6 +69,7 @@ const commands = new CommandGroup()
         addQuote,
         topbalance,
         joke,
+        optoutofassassinations,
         topxptoday,
         copypasta,
         pay,

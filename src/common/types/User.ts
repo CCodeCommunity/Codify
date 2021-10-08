@@ -12,4 +12,5 @@ export default interface User {
     purchasedIds: number[];
     dayxp: number;
     lastdayxp: number;
+    assassin: boolean;
 }

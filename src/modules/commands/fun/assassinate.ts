@@ -8,6 +8,7 @@ import { createMetadata } from "../help/createMetadata";
 import knex from "../../../../db/knex";
 import { setCooldown } from "../../../common/cooldown/middleware/comandCooldown";
 import { addAssassin } from "../../reactions/assassinations";
+import User from "../../../common/types/User";
 
 export const msToTime = (duration: number) => {
     const milliseconds = Math.floor((duration % 1000) / 100) as string | number;
@@ -73,6 +74,26 @@ export default new Command()
         // if(talkedRecently.has(message.author.id)){
         //     return message.channel.send("You have to wait 5 seconds before using this command again.")
         // }
+
+        const user = await knex<User>("user")
+            .where({ userid: message.author.id })
+            .first();
+
+        if (!user!.assassin) {
+            return message.channel.send(
+                "**Error:** You cannot assassinate anyone because you have opted out from the minigame."
+            );
+        }
+
+        const target = await knex<User>("user")
+            .where({ userid: args[1] })
+            .first();
+
+        if (!target!.assassin) {
+            return message.channel.send(
+                "**Error:** You cannot assassinate this target because they have opted out of the minigame."
+            );
+        }
 
         const assasin: Array<{
             assasin: string;
