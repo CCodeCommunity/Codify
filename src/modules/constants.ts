@@ -56,7 +56,7 @@ export const nth = (d: number) => {
 
 export const xpMultiplier = 1;
 export const jackpotMultiplier = 2;
-export const maxBetLimit = 1000;
+export const maxBetLimit = 10000;
 export const topXpWinXpGain = 250;
 export const topXpWinMoneyGain = 2500;
 
