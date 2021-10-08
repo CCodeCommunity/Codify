@@ -33,12 +33,15 @@ import purchases from "./modules/commands/store/purchases";
 import unsubscribe from "./modules/commands/store/unsubscribe";
 import removeStoreItem from "./modules/commands/admin/removeStoreItem";
 import chart from "./modules/commands/images/chart";
-import reactions from "./modules/reactions/bannedphrases";
+import bannedphrases from "./modules/reactions/bannedphrases";
 import { helpCommand } from "./modules/commands/help/helpCommand";
 import pin from "./modules/commands/admin/pin";
 import setpinchannel from "./modules/commands/admin/setpinchannel";
 import topxptoday from "./modules/commands/utilities/topxptoday";
 import servertime from "./modules/commands/utilities/servertime";
+import addassasinationkeyword from "./modules/commands/fun/addassasinationkeyword";
+import assassinate from "./modules/commands/fun/assassinate";
+import assassinations from "./modules/reactions/assassinations";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -52,11 +55,13 @@ const commands = new CommandGroup()
         daily,
         gamble,
         javaistojs,
+        addassasinationkeyword,
         meme,
         toplevel,
         createWebhook,
         poll,
         trivia,
+        assassinate,
         disableLevelupMessages,
         token,
         googleit,
@@ -81,7 +86,10 @@ const commands = new CommandGroup()
         helpCommand
     );
 
-const bot = new Bot({ adapter, commands: [commands, reactions] });
+const bot = new Bot({
+    adapter,
+    commands: [commands, bannedphrases, assassinations]
+});
 
 bot.on("error", err => console.log("Error ", err));
 
@@ -98,7 +106,7 @@ const init = async (): Promise<void> => {
     await bot.start();
     console.info(`Logged in as ${bot.client.user!.tag}`);
 
-    await bot.client.user!.setActivity(`🚰 Drinking water!`);
+    await bot.client.user!.setActivity(`🎃 Drinking lava!`);
     console.info(`Bot activity is set up!`);
 
     console.info(`The bot is up and running!`);
