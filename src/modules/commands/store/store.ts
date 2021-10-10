@@ -19,7 +19,7 @@ export default new Command()
             description: "Shows the items in the store"
         })
     )
-    .use<Cooldown>(setCooldown(25000))
+    .use<Cooldown>(setCooldown(20000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

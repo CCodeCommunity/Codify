@@ -76,7 +76,7 @@ export default new Command()
             description: "Shows a top with user balances of the server"
         })
     )
-    .use<Cooldown>(setCooldown(25000))
+    .use<Cooldown>(setCooldown(20000))
     .use(async context => {
         const { message } = context;
         const fields = await fillFields(message);

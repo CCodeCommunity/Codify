@@ -81,7 +81,7 @@ export default new Command()
             description: "Shows a top with user levels in the server"
         })
     )
-    .use<Cooldown>(setCooldown(25000))
+    .use<Cooldown>(setCooldown(20000))
     .use(async context => {
         const { message } = context;
         const list = await generateTop(message);

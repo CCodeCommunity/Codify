@@ -18,7 +18,7 @@ export default new Command()
                 'Creates a webhook in that channel if the user has a role named "webhooks". Then it sends a dm with the webhook link to the user'
         })
     )
-    .use<Cooldown>(setCooldown(25000))
+    .use<Cooldown>(setCooldown(20000))
     .use(async context => {
         const { message } = context;
         const channel = message.channel as TextChannel;

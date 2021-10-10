@@ -29,7 +29,7 @@ export default new Command()
                 'Sends an image with Danny Devito that says "So anyway I started [text]"'
         })
     )
-    .use<Cooldown>(setCooldown(15000))
+    .use<Cooldown>(setCooldown(10000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

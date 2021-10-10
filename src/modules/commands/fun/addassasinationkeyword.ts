@@ -41,7 +41,7 @@ export default new Command()
                 "Sends a request for adding a new keyword for assassinations. Costs 10k, if it gets rejected you get 5k back, and if it doesn't get any response in 24h then you get your 10k back"
         })
     )
-    .use(setCooldown(10000))
+    .use(setCooldown(5000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

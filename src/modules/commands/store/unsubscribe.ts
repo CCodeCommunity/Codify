@@ -20,7 +20,7 @@ export default new Command()
             description: "Unsubscribe from a role that you bought"
         })
     )
-    .use<Cooldown>(setCooldown(10000))
+    .use<Cooldown>(setCooldown(5000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

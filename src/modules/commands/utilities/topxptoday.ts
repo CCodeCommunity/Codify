@@ -87,7 +87,7 @@ export default new Command()
             description: "Shows the top of xp gain today."
         })
     )
-    .use<Cooldown>(setCooldown(25000))
+    .use<Cooldown>(setCooldown(20000))
     .use(async context => {
         const { message } = context;
         const list = await generateTop(message);

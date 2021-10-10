@@ -28,7 +28,7 @@ export default new Command()
                 "Set your description. Can be seen in cc!profile. Can't be longer than 1000 characters"
         })
     )
-    .use<Cooldown>(setCooldown(25000))
+    .use<Cooldown>(setCooldown(20000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

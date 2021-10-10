@@ -29,7 +29,7 @@ export default new Command()
                 "If you want to opt out of the assassinations minigame, you can use this command, nobody will be able to assassinate you, at the cost of you not being able to assassinate anyone."
         })
     )
-    .use<Cooldown>(setCooldown(10000))
+    .use<Cooldown>(setCooldown(5000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

@@ -17,7 +17,7 @@ export default new Command()
             description: "Sends an image from codebullet with just google it"
         })
     )
-    .use<Cooldown>(setCooldown(15000))
+    .use<Cooldown>(setCooldown(10000))
     .use(context => {
         const { message } = context;
 

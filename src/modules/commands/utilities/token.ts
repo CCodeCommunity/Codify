@@ -21,7 +21,7 @@ export default new Command()
                 "Sends a dm with your token for the api. More info into the dm. But the api doesnt work anymore so this command has no use for now."
         })
     )
-    .use<Cooldown>(setCooldown(25000))
+    .use<Cooldown>(setCooldown(30000))
     .use(async context => {
         const { message } = context;
         const token = randomBytes(16).toString("hex");
