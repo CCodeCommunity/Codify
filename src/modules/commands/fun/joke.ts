@@ -26,7 +26,7 @@ export default new Command()
             description: "Sends a random joke from r/jokes"
         })
     )
-    .use<Cooldown>(setCooldown(10000))
+    .use<Cooldown>(setCooldown(5000))
     .use(async context => {
         try {
             const response = await fetch(

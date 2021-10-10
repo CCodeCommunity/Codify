@@ -50,7 +50,7 @@ export default new Command()
                 "Sends a chart comparing the white amount to the black amount. It's an inside server joke, the original chart showed distribution of black vs white people based on iq"
         })
     )
-    .use<Cooldown>(setCooldown(15000))
+    .use<Cooldown>(setCooldown(10000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const rawArgs = context.state.args;

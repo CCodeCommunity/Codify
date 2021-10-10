@@ -18,7 +18,7 @@ export default new Command()
             description: "Makes the bot scream. AAAAAAAAAAAAAAAAAAAAAAAAAAAA"
         })
     )
-    .use<Cooldown>(setCooldown(3000))
+    .use<Cooldown>(setCooldown(1000))
     .use<ParseArgumentsState>(context => {
         const { message } = context;
 

@@ -26,7 +26,7 @@ export default new Command()
             description: "Sends a copypasta from r/copypasta"
         })
     )
-    .use<Cooldown>(setCooldown(10000))
+    .use<Cooldown>(setCooldown(5000))
     .use(async context => {
         try {
             const response = await fetch(

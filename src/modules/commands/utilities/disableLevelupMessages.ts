@@ -29,7 +29,7 @@ export default new Command()
                 "If you are annoyed by the level up messages you can use this command and if you level up you will no longer get pinged by codify when you level up. You will still level up though"
         })
     )
-    .use<Cooldown>(setCooldown(10000))
+    .use<Cooldown>(setCooldown(5000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

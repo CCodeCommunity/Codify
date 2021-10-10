@@ -31,7 +31,7 @@ export default new Command()
                 "Creates a pin in a special channel created by the server administrator, you need the Manage messages permission to use this command"
         })
     )
-    .use<Cooldown>(setCooldown(5000))
+    .use<Cooldown>(setCooldown(3000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

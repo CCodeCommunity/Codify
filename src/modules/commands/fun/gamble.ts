@@ -59,7 +59,7 @@ export default new Command()
             description: `Gamble a random amount of coins. can be between 1 and ${maxBetLimit}`
         })
     )
-    .use<Cooldown>(setCooldown(3000))
+    .use<Cooldown>(setCooldown(1000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

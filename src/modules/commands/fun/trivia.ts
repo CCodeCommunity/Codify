@@ -67,7 +67,7 @@ export default new Command()
                 "Sends a trivia question that you can answer, if you are right you can get coins"
         })
     )
-    .use<Cooldown>(setCooldown(10000))
+    .use<Cooldown>(setCooldown(5000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
 

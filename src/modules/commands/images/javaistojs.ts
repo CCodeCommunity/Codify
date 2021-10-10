@@ -18,7 +18,7 @@ export default new Command()
                 "Sends an image that explains what java is to javascript"
         })
     )
-    .use<Cooldown>(setCooldown(15000))
+    .use<Cooldown>(setCooldown(10000))
     .use(context => {
         const { message } = context;
 

@@ -28,7 +28,7 @@ export default new Command()
                 "Buy an item from the store of the server. You have to use the id listed in cc!store"
         })
     )
-    .use<Cooldown>(setCooldown(10000))
+    .use<Cooldown>(setCooldown(5000))
     .use<ParseArgumentsState>(async context => {
         const { message } = context;
         const { args } = context.state;

@@ -25,7 +25,7 @@ export const helpCommand = new Command()
             description: "Shows this output"
         })
     )
-    .use<Cooldown>(setCooldown(15000))
+    .use<Cooldown>(setCooldown(10000))
     .use(context => {
         const { bot, message } = context;
         const metadata = mapTreeToMetadata(bot.group);
