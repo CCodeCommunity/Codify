@@ -1,6 +1,6 @@
 # Codify
 
-A discord bot for the [Code Community Discord Server](https://discord.gg/sorrybuttheserverisnowprivate).
+A discord bot for the Code Community Discord Server.
 
 # About
 
