@@ -1,3 +1,11 @@
+## [1.19.1](https://github.com/Vyctor661/codify/compare/v1.19.0...v1.19.1) (2021-10-10)
+
+
+### Bug Fixes
+
+* fixed a bug in the command cooldowns which made some commands share the same cooldown for some reason, now each command has its own cooldown (and it is kept track of each command cooldown separately) ([bc01064](https://github.com/Vyctor661/codify/commit/bc010647f45c7368cf9b7ba269d86e2337b5aae5))
+* reduced most of the command cooldowns to make them less annoying ([e82256d](https://github.com/Vyctor661/codify/commit/e82256d05d34ebdd11486f7c9c702b73ffcc42ed))
+
 # [1.19.0](https://github.com/Vyctor661/codify/compare/v1.18.0...v1.19.0) (2021-10-08)
 
 
