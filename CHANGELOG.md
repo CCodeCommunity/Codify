@@ -1,3 +1,27 @@
+## [1.19.1](https://github.com/Vyctor661/codify/compare/v1.19.0...v1.19.1) (2021-10-10)
+
+
+### Bug Fixes
+
+* fixed a bug in the command cooldowns which made some commands share the same cooldown for some reason, now each command has its own cooldown (and it is kept track of each command cooldown separately) ([bc01064](https://github.com/Vyctor661/codify/commit/bc010647f45c7368cf9b7ba269d86e2337b5aae5))
+* reduced most of the command cooldowns to make them less annoying ([e82256d](https://github.com/Vyctor661/codify/commit/e82256d05d34ebdd11486f7c9c702b73ffcc42ed))
+
+# [1.19.0](https://github.com/Vyctor661/codify/compare/v1.18.0...v1.19.0) (2021-10-08)
+
+
+### Bug Fixes
+
+* removed the ability to add quotes in dms again because it will cause a bug and i didnt realise that ([18ade27](https://github.com/Vyctor661/codify/commit/18ade272001698155d0703cb4031f10e3f06b33c))
+
+
+### Features
+
+* add command to initialise the assassination of someone ([a7a7250](https://github.com/Vyctor661/codify/commit/a7a725036b2f6019b78800cf54a6ebf3183db54d))
+* added a way to opt out of the assassinations minigame ([89b374e](https://github.com/Vyctor661/codify/commit/89b374e9f66ff51c053e2a4bff908c07cd9965de))
+* changed codify status and added the assassinations commamands ([8a0eb8e](https://github.com/Vyctor661/codify/commit/8a0eb8e7f1e5b6c072bd400b2705a9ff17736a30))
+* command for submitting new keywords for assassinations ([9dd34f9](https://github.com/Vyctor661/codify/commit/9dd34f94593a9956018b5078ed913b168a5b4783))
+* passive message listening for assassinations ([dd366c2](https://github.com/Vyctor661/codify/commit/dd366c2b6ee40a563f755174545a9e77270dd1ee))
+
 # [1.18.0](https://github.com/Vyctor661/codify/compare/v1.17.0...v1.18.0) (2021-10-07)
 
 
