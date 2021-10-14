@@ -132,7 +132,9 @@ export default new Command()
                 }
             );
             collector.on("collect", async (reaction: MessageReaction) => {
-                const user = [...(await reaction.users.fetch()).values()][1];
+                const [user] = [
+                    ...(await reaction.users.fetch()).values()
+                ].filter(u => !u.bot);
                 console.log(user.username + " answered a trivia question.");
 
                 if (reaction.emoji.name === answerEmoji) {
