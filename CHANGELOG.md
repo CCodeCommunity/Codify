@@ -1,3 +1,10 @@
+## [1.19.2](https://github.com/Vyctor661/codify/compare/v1.19.1...v1.19.2) (2021-10-14)
+
+
+### Bug Fixes
+
+* make sure only non-bot reactions are picked up by trivia ([ecca7f4](https://github.com/Vyctor661/codify/commit/ecca7f4346857043c9da763f5ba91f5b40f01ec3))
+
 ## [1.19.1](https://github.com/Vyctor661/codify/compare/v1.19.0...v1.19.1) (2021-10-10)
 
 
