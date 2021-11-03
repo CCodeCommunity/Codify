@@ -223,3 +223,33 @@ export const emojis = [
     "💋",
     "🩸"
 ];
+
+export const activity = (): string => {
+    switch (new Date().getMonth()) {
+        case 0: // Jan
+            return "🚰 Drinking water.";
+        case 1: // Feb
+            return "🚰 Drinking water.";
+        case 2: // Mar
+            return "🚰 Drinking water.";
+        case 3: // Apr
+            return "🤡 Drinking jokes.";
+        case 4: // May
+            return "🚰 Drinking water.";
+        case 5: // Jun
+            return "🌈 Drinking pride.";
+        case 6: // Jul
+            return "🏖️ Drinking sand.";
+        case 7: // Aug
+            return "🚰 Drinking water.";
+        case 8: // Sept
+            return "💻 Drinking code.";
+        case 9: // Oct
+            return "🎃 Drinking lava.";
+        case 10: // Nov
+            return "🥜 Drinking peanut butter.";
+        case 11: // Dec
+            return "❄️ Drinking snow.";
+    }
+    return "🚰 Drinking water.";
+};
