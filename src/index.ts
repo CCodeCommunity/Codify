@@ -2,7 +2,7 @@ import { matchPrefixes } from "@enitoni/gears";
 import { Bot, Adapter, CommandGroup } from "@enitoni/gears-discordjs";
 
 import { parseArguments } from "./common/parsing/middleware/parseArguments";
-import { app, port, prefix } from "./modules/constants";
+import { app, port, prefix, activity } from "./modules/constants";
 import { autoXpClaim, checkSubscriptions } from "./common/knexCommon";
 
 import a from "./modules/commands/fun/a";
@@ -108,8 +108,13 @@ const init = async (): Promise<void> => {
     await bot.start();
     console.info(`Logged in as ${bot.client.user!.tag}`);
 
-    await bot.client.user!.setActivity(`🎃 Drinking lava!`);
+    await bot.client.user!.setActivity(activity());
     console.info(`Bot activity is set up!`);
+
+    setInterval(() => {
+        bot.client.user!.setActivity(activity());
+        console.info("Bot activity updated!");
+    }, 6 * 60 * 60 * 1000);
 
     console.info(`The bot is up and running!`);
 };
