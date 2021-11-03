@@ -111,6 +111,11 @@ const init = async (): Promise<void> => {
     await bot.client.user!.setActivity(activity());
     console.info(`Bot activity is set up!`);
 
+    setInterval(() => {
+        bot.client.user!.setActivity(activity());
+        console.info("Bot activity updated!");
+    }, 6 * 60 * 60 * 1000);
+
     console.info(`The bot is up and running!`);
 };
 
