@@ -1,3 +1,10 @@
+# [1.20.0](https://github.com/Vyctor661/codify/compare/v1.19.2...v1.20.0) (2021-11-03)
+
+
+### Features
+
+* automatic status changing (at least in theory) ([fcf9889](https://github.com/Vyctor661/codify/commit/fcf988958645a82d4e0d69b94489a523ff20779c))
+
 ## [1.19.2](https://github.com/Vyctor661/codify/compare/v1.19.1...v1.19.2) (2021-10-14)
 
 
