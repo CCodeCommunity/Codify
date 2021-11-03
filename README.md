@@ -1,6 +1,6 @@
 # Codify
 
-A discord bot for the [Code Community Discord Server](https://discord.gg/sorrybuttheserverisnowprivate).
+A discord bot for the Code Community Discord Server.
 
 # About
 
@@ -18,7 +18,7 @@ Use `cc!help` for a complete list of commands. There are so many that I lost tra
 
 Clone the repo, run `npm install`, set a `.env` file for the following variables: `BOT_TOKEN, COMMUNITY, DATABASE_URL`, make sure that you at least set the `BOT_TOKEN` and `COMMUNITY` variables before continuing, next you can run `npm run dev` to start the bot locally.
 
-If everything is set up correctly you should see your bot online. If you don't know how to make a discord app with a discord bot with a token make sure to follow [this guide](https://www.google.com/search?q=so+anyway+I+started+blasting&safe=active&rlz=1C1CHBF_enRO859RO859&sxsrf=ACYBGNTs8kLdA8mQSOFItc70BK3hMsQ_TQ:1576777514637&source=lnms&tbm=isch&sa=X&ved=2ahUKEwiR9Zj9ocLmAhXC-yoKHVBjD9IQ_AUoAXoECAoQAw&biw=1920&bih=937) following step 2, 3 and 4.
+If everything is set up correctly you should see your bot online. If you don't know how to make a discord app with a discord bot with a token make sure to follow [this guide](https://www.digitaltrends.com/gaming/how-to-make-a-discord-bot/) following step 2, 3 and 4.
 
 ## How to contribute.
 
