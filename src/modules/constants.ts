@@ -54,11 +54,11 @@ export const nth = (d: number) => {
     }
 };
 
-export const xpMultiplier = 1;
-export const jackpotMultiplier = 2;
-export const maxBetLimit = 10000;
-export const topXpWinXpGain = 250;
-export const topXpWinMoneyGain = 2500;
+export const xpMultiplier = 2;
+export const jackpotMultiplier = 3;
+export const maxBetLimit = 15000;
+export const topXpWinXpGain = 1000;
+export const topXpWinMoneyGain = 5000;
 
 export const emojis = [
     "😀",
