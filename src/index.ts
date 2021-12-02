@@ -43,6 +43,7 @@ import addassasinationkeyword from "./modules/commands/fun/addassasinationkeywor
 import assassinate from "./modules/commands/fun/assassinate";
 import assassinations from "./modules/reactions/assassinations";
 import optoutofassassinations from "./modules/commands/fun/optoutofassassinations";
+import xmas from "./modules/commands/fun/xmas";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -62,6 +63,7 @@ const commands = new CommandGroup()
         createWebhook,
         poll,
         trivia,
+        xmas,
         assassinate,
         disableLevelupMessages,
         token,
