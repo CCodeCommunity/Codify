@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/Vyctor661/codify/compare/v1.21.0...v1.22.0) (2021-12-27)
+
+
+### Features
+
+* new command age ([53d6456](https://github.com/Vyctor661/codify/commit/53d6456a302f1121017735f2ea03c2d1342e4f4e))
+
 # [1.21.0](https://github.com/Vyctor661/codify/compare/v1.20.0...v1.21.0) (2021-12-02)
 
 
