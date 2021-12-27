@@ -9,13 +9,15 @@ import {
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
 
+import { ymwdhms } from "../../constants";
+
 export default new Command()
     .match(matchPrefixesStrict("age"))
     .setMetadata(
         createMetadata({
             name: "Age",
             usage: "cc!age",
-            description: "Displays the age of the server."
+            description: "Displays the age of the server or of your account."
         })
     )
     .use<Cooldown>(setCooldown(10000))
@@ -24,14 +26,18 @@ export default new Command()
 
         if (message.guild == null) {
             return message.channel.send(
-                `**Your account was created on:** *${String(
+                `**Your account was created on:** **\`${String(
                     message.author.createdAt
-                )}*`
+                )}\`** \n**That means that your account is:** **\`${ymwdhms(
+                    new Date().getTime() - message.author.createdAt.getTime()
+                )}\`** **old**`
             );
         }
         return message.channel.send(
-            `**This server was created on:** *${String(
+            `**This server was created on:** **\`${String(
                 message.guild?.createdAt
-            )}*`
+            )}\`** \n**That means that the server is:** **\`${ymwdhms(
+                new Date().getTime() - message.guild?.createdAt.getTime()
+            )}\`** **old**`
         );
     });
