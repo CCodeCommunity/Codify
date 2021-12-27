@@ -44,6 +44,7 @@ import assassinate from "./modules/commands/fun/assassinate";
 import assassinations from "./modules/reactions/assassinations";
 import optoutofassassinations from "./modules/commands/fun/optoutofassassinations";
 import xmas from "./modules/commands/fun/xmas";
+import age from "./modules/commands/utilities/age";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -62,6 +63,7 @@ const commands = new CommandGroup()
         toplevel,
         createWebhook,
         poll,
+        age,
         trivia,
         xmas,
         assassinate,
