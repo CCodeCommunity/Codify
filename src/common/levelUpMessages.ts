@@ -83,7 +83,7 @@ const randomMessage = async (serverid: string): Promise<[string, string]> => {
 
     if (!quotesIndexes.get(serverid))
         return [
-            "*Looks like this server has no quotes, use cc!addquote to add a quote.*",
+            "*Looks like this server has no quotes, use cc!addquote to add a quote or ask the admin to cc!togglequotes for no quotes to show in the server anymore.*",
             `${emojis[emojiNumber]}`
         ];
 
