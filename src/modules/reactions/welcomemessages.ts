@@ -4,6 +4,7 @@ import {
     PartialGuildMember,
     TextChannel
 } from "discord.js";
+import { bot } from "../../index";
 import knex from "../../../db/knex";
 
 type Guild = {
@@ -24,7 +25,7 @@ const getWelcomeChannel = async (
     return server.welcomechannel;
 };
 
-export const joinMessage = async (
+const joinMessage = async (
     guildid: string,
     client: Client,
     member: GuildMember
@@ -39,7 +40,7 @@ export const joinMessage = async (
     }
 };
 
-export const leaveMessage = async (
+const leaveMessage = async (
     guildid: string,
     client: Client,
     member: GuildMember | PartialGuildMember
@@ -53,3 +54,11 @@ export const leaveMessage = async (
         console.log(error);
     }
 };
+
+bot.client.on("guildMemberAdd", async member => {
+    joinMessage(member.guild.id, bot.client, member);
+});
+
+bot.client.on("guildMemberRemove", async member => {
+    leaveMessage(member.guild.id, bot.client, member);
+});
