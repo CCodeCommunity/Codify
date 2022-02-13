@@ -49,6 +49,7 @@ import ban from "./modules/commands/admin/ban";
 import kick from "./modules/commands/admin/kick";
 import unban from "./modules/commands/admin/unban";
 import setWelcomeChannelId from "./modules/commands/admin/setWelcomeChannelId";
+import { joinMessage, leaveMessage } from "./modules/reactions/welcomemessages";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -113,6 +114,14 @@ bot.client.on("message", ctx => {
     }
     autoXpClaim(ctx.author.id, ctx);
     checkSubscriptions(ctx.author.id, bot.client);
+});
+
+bot.client.on("guildMemberAdd", async member => {
+    joinMessage(member.guild.id, bot.client, member);
+});
+
+bot.client.on("guildMemberRemove", async member => {
+    leaveMessage(member.guild.id, bot.client, member);
 });
 
 const init = async (): Promise<void> => {
