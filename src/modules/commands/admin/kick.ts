@@ -61,11 +61,9 @@ export default new Command()
         const reason = args.slice(1).join(" ");
 
         try {
-            message.mentions.members?.first()?.kick(reason);
-            return message.channel.send(
-                "This member has been kicked succesfully."
-            );
+            await message.mentions.members?.first()?.kick(reason);
         } catch (error) {
             return message.channel.send(`**OOPS:** Something went wrong.`);
         }
+        return message.channel.send("This member has been kicked succesfully.");
     });

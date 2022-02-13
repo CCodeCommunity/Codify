@@ -61,11 +61,9 @@ export default new Command()
         const reason = args.slice(1).join(" ");
 
         try {
-            message.mentions.members?.first()?.ban({ reason });
-            return message.channel.send(
-                "This member has been banned succesfully."
-            );
+            await message.mentions.members?.first()?.ban({ reason });
         } catch (error) {
             return message.channel.send(`**OOPS:** Something went wrong.`);
         }
+        return message.channel.send("This member has been banned succesfully.");
     });
