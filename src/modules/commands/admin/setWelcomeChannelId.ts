@@ -33,7 +33,7 @@ const setChannelId = async (
 };
 
 export default new Command()
-    .match(matchPrefixesStrict("setpinschannel"))
+    .match(matchPrefixesStrict("setwelcomechannel"))
     .setMetadata(
         createMetadata({
             name: "Set the welcome channel for your server.",
