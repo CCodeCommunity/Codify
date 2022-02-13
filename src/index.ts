@@ -50,6 +50,7 @@ import kick from "./modules/commands/admin/kick";
 import unban from "./modules/commands/admin/unban";
 import setWelcomeChannelId from "./modules/commands/admin/setWelcomeChannelId";
 import { joinMessage, leaveMessage } from "./modules/reactions/welcomemessages";
+import toggleQuotes from "./modules/commands/admin/toggleQuotes";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -73,6 +74,7 @@ const commands = new CommandGroup()
         xmas,
         assassinate,
         disableLevelupMessages,
+        toggleQuotes,
         token,
         googleit,
         addQuote,
