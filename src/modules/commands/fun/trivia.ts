@@ -68,7 +68,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(5000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
 
         if (message.guild !== null) message.delete();
@@ -124,13 +124,11 @@ export default new Command()
                 reaction.emoji.name === "🇨" ||
                 reaction.emoji.name === "🇩";
 
-            const collector = await messageSent.createReactionCollector(
+            const collector = await messageSent.createReactionCollector({
                 filter,
-                {
-                    max: 1,
-                    time: 60000
-                }
-            );
+                max: 1,
+                time: 60000
+            });
             collector.on("collect", async (reaction: MessageReaction) => {
                 const user = [...(await reaction.users.fetch()).values()][1];
                 console.log(user.username + " answered a trivia question.");

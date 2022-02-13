@@ -30,7 +30,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(5000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
 
@@ -76,8 +76,8 @@ export default new Command()
             );
         }
 
-        const matchingRole = (await message.guild!.roles.fetch()).cache.find(
-            role => role.id === matchingStoreItem.roleId
+        const matchingRole = await message.guild?.roles.fetch(
+            matchingStoreItem.roleId
         );
 
         if (!matchingRole) {
@@ -108,7 +108,9 @@ export default new Command()
         });
 
         logEvent(
-            `<@${message.author.id}> has bought the <@&${matchingRole.id}> role.`,
+            `<@${message.author.id}> has bought the <@&${
+                (await matchingRole)?.id
+            }> role.`,
             context
         );
 

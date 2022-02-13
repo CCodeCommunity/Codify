@@ -8,6 +8,7 @@ import {
 } from "../../../common/cooldown/middleware/comandCooldown";
 import { createMetadata } from "../help/createMetadata";
 import { logEvent } from "../../reactions/auditlogs";
+import { MessageEmbed } from "discord.js";
 
 let loopIt = 0;
 
@@ -40,23 +41,40 @@ export default new Command()
                 context
             );
 
-            return context.message.channel.send({
-                embed: {
-                    color: 3447003,
-                    title: `${data.data.children[loop("title")].data.title}`,
-                    description: `${data.data.children[
+            const embed = new MessageEmbed()
+                .setColor(3447003)
+                .setTitle(`${data.data.children[loop("title")].data.title}`)
+                .setDescription(
+                    `${data.data.children[
                         loop("content")
-                    ].data.selftext.substring(0, 2000)}`,
+                    ].data.selftext.substring(0, 2000)}`
+                )
+                .setFooter({
+                    text: `👍 ${
+                        data.data.children[loop("score")].data.score
+                    } | 💬 ${
+                        data.data.children[loop("score")].data.num_comments
+                    }`
+                });
 
-                    footer: {
-                        text: `👍 ${
-                            data.data.children[loop("score")].data.score
-                        } | 💬 ${
-                            data.data.children[loop("score")].data.num_comments
-                        }`
-                    }
-                }
-            });
+            return context.message.channel.send({ embeds: [embed] });
+            // return context.message.channel.send({
+            //     embed: {
+            //         color: 3447003,
+            //         title: `${data.data.children[loop("title")].data.title}`,
+            //         description: `${data.data.children[
+            //             loop("content")
+            //         ].data.selftext.substring(0, 2000)}`,
+
+            //         footer: {
+            //             text: `👍 ${
+            //                 data.data.children[loop("score")].data.score
+            //             } | 💬 ${
+            //                 data.data.children[loop("score")].data.num_comments
+            //             }`
+            //         }
+            //     }
+            // });
         } catch (e) {
             return context.message.channel.send(
                 "**Error**: Internal server error."

@@ -10,6 +10,7 @@ import {
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
 import { logEvent } from "../../reactions/auditlogs";
+import { MessageEmbed } from "discord.js";
 
 let loopIt = 0;
 
@@ -54,27 +55,45 @@ export default new Command()
                 context
             );
 
-            return context.message.channel.send({
-                embed: {
-                    color: 3447003,
-                    title: `${data.data.children[loop("title")].data.title}`,
-                    url: `https://www.reddit.com${
+            const embed = new MessageEmbed()
+                .setColor(3447003)
+                .setTitle(`${data.data.children[loop("title")].data.title}`)
+                .setURL(
+                    `https://www.reddit.com${
                         data.data.children[loop("url")].data.permalink
-                    }`,
+                    }`
+                )
+                .setImage(`${data.data.children[loop("url")].data.url}`)
+                .setFooter({
+                    text: `👍 ${
+                        data.data.children[loop("score")].data.score
+                    } | 💬 ${
+                        data.data.children[loop("score")].data.num_comments
+                    }`
+                });
+            return context.message.channel.send({ embeds: [embed] });
 
-                    image: {
-                        url: `${data.data.children[loop("url")].data.url}`
-                    },
+            // return context.message.channel.send({
+            //     embed: {
+            //         color: 3447003,
+            //         title: `${data.data.children[loop("title")].data.title}`,
+            //         url: `https://www.reddit.com${
+            //             data.data.children[loop("url")].data.permalink
+            //         }`,
 
-                    footer: {
-                        text: `👍 ${
-                            data.data.children[loop("score")].data.score
-                        } | 💬 ${
-                            data.data.children[loop("score")].data.num_comments
-                        }`
-                    }
-                }
-            });
+            //         image: {
+            //             url: `${data.data.children[loop("url")].data.url}`
+            //         },
+
+            //         footer: {
+            //             text: `👍 ${
+            //                 data.data.children[loop("score")].data.score
+            //             } | 💬 ${
+            //                 data.data.children[loop("score")].data.num_comments
+            //             }`
+            //         }
+            //     }
+            // });
         } catch (e) {
             return context.message.channel.send(
                 "**Error:** Internal server error."

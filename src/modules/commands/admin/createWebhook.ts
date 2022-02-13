@@ -26,7 +26,7 @@ export default new Command()
         if (message.guild !== null) message.delete();
         try {
             if (
-                message.member!.hasPermission("MANAGE_WEBHOOKS") ||
+                message.member!.permissions.has("MANAGE_WEBHOOKS") ||
                 message.member!.roles.cache.some(
                     (role: Role) => role.name === "webhooks"
                 )

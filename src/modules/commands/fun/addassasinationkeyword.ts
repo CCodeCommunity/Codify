@@ -42,11 +42,11 @@ export default new Command()
         })
     )
     .use(setCooldown(5000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
         try {
-            if (message.channel.type !== "dm")
+            if (message.channel.type !== "DM")
                 return message.channel.send(
                     `Sorry but to make the game more fun by avoiding others knowing what keyword you submit I have decided that keywords should be submitted usign dms only.`
                 );
@@ -94,7 +94,8 @@ export default new Command()
                     reaction.emoji.name === "👍" ||
                     reaction.emoji.name === "👎";
 
-                const collector = messageSent.createReactionCollector(filter, {
+                const collector = messageSent.createReactionCollector({
+                    filter,
                     max: 1,
                     time: 3600000 * 24
                 });
@@ -162,7 +163,7 @@ export default new Command()
                         }
                     }
                 );
-                if (message.channel.type !== "dm") message.delete();
+                if (message.channel.type !== "DM") message.delete();
             }, 1000);
         } catch (e) {
             return message.channel.send("**Error**: Something went wrong.");

@@ -22,7 +22,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(5000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
 
@@ -58,9 +58,14 @@ export default new Command()
             })
             .first();
 
-        const matchingRole = (await message.guild!.roles.fetch()).cache.find(
-            role => role.id === matchingStore.roleId
-        )!;
+        // const matchingRole = (await message.guild!.roles.fetch()).cache.find(
+        //     role => role.id === matchingStore.roleId
+        // )!;
+
+        const matchingRole = await message.guild?.roles.fetch(
+            matchingStore.roleId
+        );
+        if (!matchingRole) return;
 
         message.member!.roles.remove(matchingRole);
 
@@ -69,7 +74,9 @@ export default new Command()
             .where({ id: matchingSubscription.id });
 
         logEvent(
-            `<@${message.author.id}> has removed his <@&${matchingRole.id}> role.`,
+            `<@${message.author.id}> has removed his <@&${
+                (await matchingRole)?.id
+            }> role.`,
             context
         );
         return message.channel.send(

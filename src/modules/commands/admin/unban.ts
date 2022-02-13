@@ -29,12 +29,12 @@ export default new Command()
         if (message.guild === null)
             return message.channel.send("You can't use this command in dms.");
 
-        if (!message.guild.me!.hasPermission("BAN_MEMBERS")) {
+        if (!message.guild.me!.permissions.has("BAN_MEMBERS")) {
             return message.channel.send(
                 ":x: **Oops,** you aren't allowed to do that. Make sure the bot has the `Ban members` permission."
             );
         }
-        if (!message.member!.hasPermission("BAN_MEMBERS")) {
+        if (!message.member!.permissions.has("BAN_MEMBERS")) {
             return message.channel.send(
                 ":x: **Oops,** you aren't allowed to do that. Make sure you have the `Ban members` permission."
             );

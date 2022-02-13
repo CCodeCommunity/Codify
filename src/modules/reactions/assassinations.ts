@@ -31,14 +31,14 @@ export const addAssassin = (assassin: Assassin) => {
     assassins.push(assassin);
 };
 
-const checkAssassination = (): Matcher => async context => {
+const checkAssassination = (): Matcher => async (context) => {
     const { content, message } = context;
 
     if (keywords.length === 0) await initKeywords();
     if (assassins.length === 0) await initAssassins();
 
     const failedAssa = assassins.filter(
-        value =>
+        (value) =>
             value.target === message.author.id &&
             Number(value.date) + 86400000 < new Date().getTime()
     );
@@ -105,9 +105,9 @@ const checkAssassination = (): Matcher => async context => {
 
     for (const keyword of keywords) {
         if (content.toLowerCase().includes(keyword.keyword)) {
-            if (message.channel.type !== "dm") {
+            if (message.channel.type !== "DM") {
                 const assassinations = assassins.filter(
-                    value =>
+                    (value) =>
                         value.serverid === message.guild!.id &&
                         value.target === message.author.id &&
                         Number(value.keywordid) === keyword.id

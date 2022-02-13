@@ -38,13 +38,13 @@ export default new Command()
         })
     )
     .use(setCooldown(10000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
 
         if (message.guild !== null) message.delete();
 
-        if (message.channel.type !== "dm")
+        if (message.channel.type !== "DM")
             return message.channel.send(
                 "**Error:** You cannot initialise an assassination in a server, you can only do it in the dms."
             );
@@ -62,11 +62,7 @@ export default new Command()
             return message.channel.send(
                 "**Error:** You cannot target yourself."
             );
-        if (
-            !(await knex("user")
-                .where({ userid: args[1] })
-                .first())
-        ) {
+        if (!(await knex("user").where({ userid: args[1] }).first())) {
             return message.channel.send(
                 "**Error:** Target id doesn't exist in the database. Make sure that the target has talked in a server where Codify is present at least once. You can check if their profile exists by using the command **cc!profile <yourTarget>**"
             );

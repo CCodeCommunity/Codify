@@ -3,7 +3,7 @@ import { createMetadata } from "../commands/help/createMetadata";
 
 const phrases = ["75849578657459"];
 
-const matchPhrase = (): Matcher => context => {
+const matchPhrase = (): Matcher => (context) => {
     const { content } = context;
 
     for (const message of phrases) {
@@ -22,10 +22,10 @@ export default new Command()
             description: "The bot will react to random messages, it's passive"
         })
     )
-    .use(async context => {
+    .use(async (context) => {
         const { content, message } = context;
 
-        if (message.guild !== null) message.delete({ timeout: 5000 });
+        if (message.guild !== null) message.delete();
 
         message.channel.send(
             `<@${message.author.id}> wow nice easter egg, I wonder what the number means.`

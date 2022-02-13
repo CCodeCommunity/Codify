@@ -11,6 +11,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { MessageEmbed } from "discord.js";
 
 async function pullData(id: string) {
     await checkAndInitProfile(id);
@@ -29,7 +30,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(5000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
 
@@ -44,7 +45,7 @@ export default new Command()
                     if (matchingUsers.length >= 2) {
                         return message.channel.send(
                             `**OOPS:** There are multiple users that can match that name! Possible users include: \n${matchingUsers
-                                .map(l => `- \`${l.user.username}\``)
+                                .map((l) => `- \`${l.user.username}\``)
                                 .join("\n")}`
                         );
                     } else if (matchingUsers.length === 1) {
@@ -67,56 +68,55 @@ export default new Command()
                 profileData = (await pullData(message.author.id))[0];
             }
 
-            return message.channel.send({
-                embed: {
-                    description: "**Here you go!**",
-                    color: 3447003,
-                    fields: [
-                        {
-                            name: "😀 Nickname:",
-                            value: `${
-                                (
-                                    await message.guild!.members.fetch(
-                                        `${profileData.userid}`
-                                    )
-                                )?.displayName
-                            }`
-                        },
-                        {
-                            name: "↗️ Level:",
-                            value: `${profileData.level}`,
-                            inline: true
-                        },
-                        {
-                            name: "⭐ Xp until level up:",
-                            value: `${Math.floor(
-                                Math.sqrt(profileData.level) * 100
-                            ) - profileData.xp}`,
-                            inline: true
-                        },
-                        {
-                            name: "💬 Description:",
-                            value: `${profileData.description}`
-                        },
-                        {
-                            name: "💰 Balance:",
-                            value: `${profileData.balance}`,
-                            inline: true
-                        },
-                        {
-                            name: "📅 Last daily claim:",
-                            value:
-                                profileData.lastdaily === "Never claimed."
-                                    ? "Never claimed."
-                                    : `${
-                                          profileData.lastdaily
-                                      }/${new Date().getMonth() +
-                                          1}/${new Date().getFullYear()}`,
-                            inline: true
-                        }
-                    ]
-                }
-            });
+            const embed = new MessageEmbed()
+                .setColor(3447003)
+                .setDescription("**Here you go!**")
+                .setFields([
+                    {
+                        name: "😀 Nickname:",
+                        value: `${
+                            (
+                                await message.guild!.members.fetch(
+                                    `${profileData.userid}`
+                                )
+                            )?.displayName
+                        }`
+                    },
+                    {
+                        name: "↗️ Level:",
+                        value: `${profileData.level}`,
+                        inline: true
+                    },
+                    {
+                        name: "⭐ Xp until level up:",
+                        value: `${
+                            Math.floor(Math.sqrt(profileData.level) * 100) -
+                            profileData.xp
+                        }`,
+                        inline: true
+                    },
+                    {
+                        name: "💬 Description:",
+                        value: `${profileData.description}`
+                    },
+                    {
+                        name: "💰 Balance:",
+                        value: `${profileData.balance}`,
+                        inline: true
+                    },
+                    {
+                        name: "📅 Last daily claim:",
+                        value:
+                            profileData.lastdaily === "Never claimed."
+                                ? "Never claimed."
+                                : `${profileData.lastdaily}/${
+                                      new Date().getMonth() + 1
+                                  }/${new Date().getFullYear()}`,
+                        inline: true
+                    }
+                ]);
+
+            return message.channel.send({ embeds: [embed] });
         } catch (e) {
             console.info(e);
             return message.channel.send(

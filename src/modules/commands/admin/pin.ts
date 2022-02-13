@@ -39,7 +39,7 @@ export default new Command()
 
         if (message.guild !== null) message.delete();
 
-        if (!message.member!.hasPermission("MANAGE_MESSAGES")) {
+        if (!message.member!.permissions.has("MANAGE_MESSAGES")) {
             return message.channel.send(
                 ":x: **Oops,** you aren't allowed to do that. Make sure you have the `Manage messages` permission."
             );

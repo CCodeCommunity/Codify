@@ -10,6 +10,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { MessageEmbed } from "discord.js";
 
 export default new Command()
     .match(matchPrefixesStrict("purchases"))
@@ -21,7 +22,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(10000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
 
         const purchases: Subscription[] = await knex("subscriptions").where({
@@ -29,14 +30,13 @@ export default new Command()
         });
 
         if (!purchases.length) {
-            return message.channel.send({
-                embed: {
-                    title: `**Purchases on ${message.guild!.name}**`,
-                    description:
-                        "You don't have any purchases! Buy something on a server for it to show up here.",
-                    color: 3447003
-                }
-            });
+            const embed = new MessageEmbed()
+                .setTitle(`**Purchases on ${message.guild!.name}**`)
+                .setDescription(
+                    "You don't have any purchases! Buy something on a server for it to show up here."
+                )
+                .setColor(3447003);
+            return message.channel.send({ embeds: [embed] });
         }
 
         const fields = await Promise.all(
@@ -57,11 +57,10 @@ export default new Command()
                 };
             })
         );
-        return message.channel.send({
-            embed: {
-                title: `**Purchases on ${message.guild!.name}!**`,
-                color: 3447003,
-                fields
-            }
-        });
+        const embed = new MessageEmbed()
+            .setTitle(`**Purchases on ${message.guild!.name}!**`)
+            .setColor(3447003)
+            .setFields(fields);
+
+        return message.channel.send({ embeds: [embed] });
     });
