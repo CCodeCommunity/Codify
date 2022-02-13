@@ -18,5 +18,9 @@ export const logEvent = async (message: string, ctx: Context) => {
     const channel = (await ctx.message.client.channels.fetch(
         channelid
     )) as TextChannel;
-    channel.send(message);
+    channel.send(
+        `**${ctx.message.content.split(" ")[0]} in <#${
+            ctx.message.channel.id
+        }>: ** ${message}`
+    );
 };
