@@ -65,3 +65,6 @@ typings/
 
 # IntelliJ files
 .idea
+
+#TODO
+.TODO
