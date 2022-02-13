@@ -39,9 +39,17 @@ export async function checkAndInitProfile(
     }
 }
 
+const serverHasQuotesEnabled = async (serverid: string): Promise<boolean> => {
+    const has = (await knex("servers").where({ serverid }))[0].usersquotes;
+    return has;
+};
+
 async function checkLevelup(userid: string, ctx: Message) {
     try {
         const user = (await knex("user").where({ userid }))[0];
+        const guild = (
+            await knex("servers").where({ serverid: ctx.guild?.id })
+        )[0];
         const gain = Math.floor(Math.sqrt(user.level) * 50);
         if (user.xp > Math.sqrt(user.level) * 100) {
             const levelupmessages = user.levelupmessages;
@@ -57,7 +65,11 @@ async function checkLevelup(userid: string, ctx: Message) {
                     const [randomQuote, randomEmoji] = await randomMessage(
                         ctx.guild?.id
                     );
-                    await ctx.channel.send(`${randomQuote}`);
+
+                    if (guild.usersquotes) {
+                        await ctx.channel.send(`${randomQuote}`);
+                    }
+
                     ctx.channel.send(
                         `<@${user.userid}> you are now level **${parseInt(
                             user.level
