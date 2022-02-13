@@ -48,6 +48,7 @@ import age from "./modules/commands/utilities/age";
 import ban from "./modules/commands/admin/ban";
 import kick from "./modules/commands/admin/kick";
 import unban from "./modules/commands/admin/unban";
+import setWelcomeChannelId from "./modules/commands/admin/setWelcomeChannelId";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -77,6 +78,7 @@ const commands = new CommandGroup()
         ban,
         unban,
         kick,
+        setWelcomeChannelId,
         topbalance,
         joke,
         optoutofassassinations,
