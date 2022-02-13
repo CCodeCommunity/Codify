@@ -54,7 +54,7 @@
     },
     "dependencies": {
         "@enitoni/gears": "^4.0.2",
-        "@enitoni/gears-discordjs": "^3.0.1",
+        "@enitoni/gears-discordjs": "^4.0.0",
         "@types/he": "^1.1.1",
         "@types/knex": "0.16.1",
         "@types/pg": "7.14.3",
