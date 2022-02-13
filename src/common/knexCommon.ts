@@ -1,4 +1,4 @@
-import { Client, Guild, Message } from "discord.js";
+import { Client, Message } from "discord.js";
 import knex from "../../db/knex";
 
 import randomMessage from "./levelUpMessages";
