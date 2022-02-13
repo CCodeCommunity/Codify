@@ -62,7 +62,7 @@ export default new Command()
                 await daily(message.author.id, amount);
 
                 return message.channel.send(
-                    `**Oh look** you just found a wallet on the ground, and it has **$${amount}** in it, it's all yours.`
+                    `You just claimed your daily reward, you got **$${amount}** today. Come back tomorrow for more!`
                 );
             } else {
                 return message.channel.send(
