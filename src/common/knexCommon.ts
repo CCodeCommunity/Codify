@@ -39,11 +39,6 @@ export async function checkAndInitProfile(
     }
 }
 
-const serverHasQuotesEnabled = async (serverid: string): Promise<boolean> => {
-    const has = (await knex("servers").where({ serverid }))[0].usersquotes;
-    return has;
-};
-
 async function checkLevelup(userid: string, ctx: Message) {
     try {
         const user = (await knex("user").where({ userid }))[0];
