@@ -1,5 +1,5 @@
 import { Command } from "@enitoni/gears-discordjs";
-import { Role, TextChannel } from "discord.js";
+import { TextChannel } from "discord.js";
 
 import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 import {
@@ -15,7 +15,7 @@ export default new Command()
             name: "Create a webhook",
             usage: "cc!webhook/createwebhook",
             description:
-                'Creates a webhook in that channel if the user has a role named "webhooks". Then it sends a dm with the webhook link to the user'
+                "Creates a webhook in that channel if the user has the manage webhooks permission. Then it sends a dm with the webhook link to the user"
         })
     )
     .use<Cooldown>(setCooldown(20000))
@@ -28,13 +28,9 @@ export default new Command()
                 message.author.username,
                 { avatar: message.author.displayAvatarURL() }
             );
-            if (
-                message.member!.roles.cache.some(
-                    (role: Role) => role.name === "webhooks"
-                )
-            )
+            if (message.member!.hasPermission("MANAGE_WEBHOOKS"))
                 message.author.send(
-                    `Here is your webhook: \`https://canary.discordapp.com/api/webhooks/${webhook.id}/${webhook.token}/github\`, you can use it in github in any repository. \`Do not abuse!\``
+                    `Here is your webhook: \`https://canary.discordapp.com/api/webhooks/${webhook.id}/${webhook.token}\`, you can use it on github in any repository if you add \`/github\` at the end of the link, or just as it is anywhere else.`
                 );
             else
                 return message.channel.send(
