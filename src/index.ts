@@ -45,6 +45,8 @@ import assassinations from "./modules/reactions/assassinations";
 import optoutofassassinations from "./modules/commands/fun/optoutofassassinations";
 import xmas from "./modules/commands/fun/xmas";
 import age from "./modules/commands/utilities/age";
+import ban from "./modules/commands/admin/ban";
+import kick from "./modules/commands/admin/kick";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -71,6 +73,8 @@ const commands = new CommandGroup()
         token,
         googleit,
         addQuote,
+        ban,
+        kick,
         topbalance,
         joke,
         optoutofassassinations,
@@ -117,6 +121,7 @@ const init = async (): Promise<void> => {
 
     setInterval(() => {
         bot.client.user!.setActivity(activity());
+
         console.info("Bot activity updated!");
     }, 6 * 60 * 60 * 1000);
 
