@@ -11,6 +11,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 const checkBalance = async (amount: number, id: string) => {
     const balance = (await knex("user").where({ userid: id }))[0].balance;
@@ -105,6 +106,11 @@ export default new Command()
                 86400 * (matchingStoreItem.subscriptionInterval || 999999)
             ).toString()
         });
+
+        logEvent(
+            `<@${message.author.id}> has bought the <@&${matchingRole.id}> role.`,
+            context
+        );
 
         return message.channel.send(
             `:white_check_mark: **Successfully purchased store item.**`

@@ -7,6 +7,7 @@ import {
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
 import { createMetadata } from "../help/createMetadata";
+import { logEvent } from "../../reactions/auditlogs";
 
 let loopIt = 0;
 
@@ -33,6 +34,11 @@ export default new Command()
                 `https://www.reddit.com/r/copypasta/hot/.json`
             );
             const data = await response.json();
+
+            logEvent(
+                `<@${context.message.author.id}> has used this command.`,
+                context
+            );
 
             return context.message.channel.send({
                 embed: {

@@ -9,6 +9,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 const setChannelId = async (
     serverid: string | undefined,
@@ -58,9 +59,14 @@ export default new Command()
             return message.channel.send(`:x:**ERROR:** No argument provided.`);
         }
 
-        if (await setChannelId(message.guild?.id, args[0]))
+        if (await setChannelId(message.guild?.id, args[0])) {
+            logEvent(
+                `<@${context.message.author.id}> has set the audit channel to be <#${args[0]}>.`,
+                context
+            );
             return message.channel.send(
                 ":white_check_mark:**Successfully set the audit channel.**"
             );
-        else return message.channel.send(":x:**Oops,** something went wrong.");
+        } else
+            return message.channel.send(":x:**Oops,** something went wrong.");
     });

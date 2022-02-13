@@ -10,6 +10,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 export default new Command()
     .match(matchPrefixesStrict("unsubscribe"))
@@ -67,6 +68,10 @@ export default new Command()
             .delete()
             .where({ id: matchingSubscription.id });
 
+        logEvent(
+            `<@${message.author.id}> has removed his <@&${matchingRole.id}> role.`,
+            context
+        );
         return message.channel.send(
             `:white_check_mark: **Successfully unsubscribed.**`
         );

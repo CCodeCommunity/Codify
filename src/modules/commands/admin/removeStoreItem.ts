@@ -10,6 +10,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 export default new Command()
     .match(matchPrefixesStrict("removeStoreItem"))
@@ -74,6 +75,11 @@ export default new Command()
         await knex("store")
             .delete()
             .where({ id: matchingStoreItem.id });
+
+        logEvent(
+            `<@${context.message.author.id}> has removed the store item with the id ${args[0]}.`,
+            context
+        );
 
         return message.channel.send(
             `:white_check_mark: **Successfully removed store item.**`

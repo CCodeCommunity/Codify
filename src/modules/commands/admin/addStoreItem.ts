@@ -9,6 +9,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 export default new Command()
     .match(matchPrefixesStrict("addStoreItem"))
@@ -77,6 +78,11 @@ export default new Command()
         });
 
         if (message.guild !== null) message.delete();
+
+        logEvent(
+            `<@${context.message.author.id}> has added the role <@&${roleId}> to the store.`,
+            context
+        );
 
         return message.channel.send(
             `:white_check_mark: **Successfully added store item.**`

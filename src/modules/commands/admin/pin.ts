@@ -10,6 +10,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 const getPinsChannel = async (serverid: string): Promise<string | boolean> => {
     try {
@@ -95,6 +96,10 @@ export default new Command()
                     const channel = message.client.channels.cache.get(
                         pinschannel
                     ) as TextChannel;
+                    logEvent(
+                        `<@${context.message.author.id}> has pinned a message.`,
+                        context
+                    );
                     channel?.send(
                         `📌 ${link}\n${content}\n${sentBy}\n${inChannel}\n${sentAt}\n${pinnedBy}\n${contextProvided}`
                     );

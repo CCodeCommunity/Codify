@@ -9,6 +9,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 const setPinsChannel = async (
     serverid: string | undefined,
@@ -58,9 +59,14 @@ export default new Command()
             return message.channel.send(`:x:**ERROR:** No argument provided.`);
         }
 
-        if (await setPinsChannel(message.guild?.id, args[0]))
+        if (await setPinsChannel(message.guild?.id, args[0])) {
+            logEvent(
+                `<@${context.message.author.id}> has set the pins channel to be <#${args[0]}>.`,
+                context
+            );
             return message.channel.send(
                 ":white_check_mark:**Successfully set the pins channel.**"
             );
-        else return message.channel.send(":x:**Oops,** something went wrong.");
+        } else
+            return message.channel.send(":x:**Oops,** something went wrong.");
     });

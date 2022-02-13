@@ -7,6 +7,7 @@ import {
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
 import { createMetadata } from "../help/createMetadata";
+import { logEvent } from "../../reactions/auditlogs";
 
 export default new Command()
     .match(matchPrefixesStrict("webhook|createwebhook"))
@@ -34,6 +35,12 @@ export default new Command()
                     message.author.username,
                     { avatar: message.author.displayAvatarURL() }
                 );
+
+                logEvent(
+                    `<@${context.message.author.id}> has created a new webhook.`,
+                    context
+                );
+
                 message.author.send(
                     `Here is your webhook: \`https://canary.discordapp.com/api/webhooks/${webhook.id}/${webhook.token}\`, you can use it on github in any repository if you add \`/github\` at the end of the link, or just as it is anywhere else.`
                 );

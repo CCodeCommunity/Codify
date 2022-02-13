@@ -8,6 +8,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 export default new Command()
     .match(matchPrefixesStrict("kick"))
@@ -65,5 +66,11 @@ export default new Command()
         } catch (error) {
             return message.channel.send(`**OOPS:** Something went wrong.`);
         }
+        logEvent(
+            `<@${context.message.author.id}> has kicked <@${
+                message.mentions.members?.first()?.id
+            }>.`,
+            context
+        );
         return message.channel.send("This member has been kicked succesfully.");
     });

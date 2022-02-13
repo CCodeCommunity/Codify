@@ -7,6 +7,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 export default new Command()
     .match(matchPrefixesStrict("say"))
@@ -27,6 +28,13 @@ export default new Command()
         if (!args.length) {
             return message.channel.send(`Absolutely nothing.`);
         }
+
+        logEvent(
+            `<@${
+                context.message.author.id
+            }> has used this command and said _${args.join(" ")}_.`,
+            context
+        );
 
         console.info(`${message.author.username} said "${args.join(" ")}"`);
         return message.channel.send(`${args.join(" ")}`);

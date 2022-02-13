@@ -8,6 +8,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 export default new Command()
     .match(matchPrefixesStrict("unban"))
@@ -51,6 +52,10 @@ export default new Command()
                 `**OOPS:** Something went wrong. This user might not be banned.`
             );
         }
+        logEvent(
+            `<@${context.message.author.id}> has unbanned <@${id}>.`,
+            context
+        );
         return message.channel.send(
             "This member has been unbanned succesfully."
         );

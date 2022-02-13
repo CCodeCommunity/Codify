@@ -9,6 +9,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 const toggleQuotes = async (serverid: string | undefined): Promise<boolean> => {
     try {
@@ -58,14 +59,20 @@ export default new Command()
                 await knex("servers").where({ serverid: message.guild?.id })
             )[0].usersquotes;
             if (quotes) {
-                return message.channel.send(
+                message.channel.send(
                     ":white_check_mark:**Successfully turned on the quotes.**"
                 );
             } else {
-                return message.channel.send(
+                message.channel.send(
                     ":white_check_mark:**Successfully turned off the quotes.**"
                 );
             }
+
+            logEvent(
+                `<@${context.message.author.id}> has toggled the quotes.`,
+                context
+            );
+            return;
         } else
             return message.channel.send(":x:**Oops,** something went wrong.");
     });

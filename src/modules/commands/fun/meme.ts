@@ -9,6 +9,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { logEvent } from "../../reactions/auditlogs";
 
 let loopIt = 0;
 
@@ -47,6 +48,11 @@ export default new Command()
                 `https://www.reddit.com/r/${subreddit}/hot/.json`
             );
             const data = await response.json();
+
+            logEvent(
+                `<@${context.message.author.id}> has used this command and fetched a meme from _${subreddit}_.`,
+                context
+            );
 
             return context.message.channel.send({
                 embed: {
