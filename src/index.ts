@@ -47,6 +47,7 @@ import xmas from "./modules/commands/fun/xmas";
 import age from "./modules/commands/utilities/age";
 import ban from "./modules/commands/admin/ban";
 import kick from "./modules/commands/admin/kick";
+import unban from "./modules/commands/admin/unban";
 
 const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
 
@@ -74,6 +75,7 @@ const commands = new CommandGroup()
         googleit,
         addQuote,
         ban,
+        unban,
         kick,
         topbalance,
         joke,
