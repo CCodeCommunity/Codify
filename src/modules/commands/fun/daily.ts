@@ -36,6 +36,11 @@ async function daily(userid: string, amount: number) {
     }
 }
 
+const calculateAmount = async (userid: string): Promise<number> => {
+    const level = (await knex("user").where({ userid }))[0].level;
+    return Number(level) + Math.floor(Math.random() * 100) + 1;
+};
+
 export default new Command()
     .match(matchPrefixesStrict("daily|claim|dailyclaim|free"))
     .setMetadata(
@@ -52,7 +57,7 @@ export default new Command()
 
         try {
             if (await checkClaimed(message.author.id)) {
-                const amount = Math.floor(Math.random() * 100) + 1;
+                const amount = await calculateAmount(message.author.id);
 
                 await daily(message.author.id, amount);
 
