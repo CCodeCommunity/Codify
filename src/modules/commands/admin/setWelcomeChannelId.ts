@@ -60,7 +60,7 @@ export default new Command()
 
         if (await setChannelId(message.guild?.id, args[0]))
             return message.channel.send(
-                ":white_check_mark:**Successfully set the pins channel.**"
+                ":white_check_mark:**Successfully set the welcome channel.**"
             );
         else return message.channel.send(":x:**Oops,** something went wrong.");
     });
