@@ -1,3 +1,10 @@
+# [1.24.0](https://github.com/Vyctor661/codify/compare/v1.23.0...v1.24.0) (2022-02-14)
+
+
+### Features
+
+* safety for not being able to ban or kick the server owner (just in case) ([f53925e](https://github.com/Vyctor661/codify/commit/f53925e12a48a794551ad979f4ce66bcbe5b3398))
+
 # [1.23.0](https://github.com/Vyctor661/codify/compare/v1.22.0...v1.23.0) (2022-02-14)
 
 
