@@ -20,7 +20,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(3000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
 
@@ -35,6 +35,11 @@ export default new Command()
         if (!message.member!.permissions.has("KICK_MEMBERS")) {
             return message.channel.send(
                 ":x: **Oops,** you aren't allowed to do that. Make sure you have the `Kick members` permission."
+            );
+        }
+        if (message.mentions.users.first()?.id === message.guild.ownerId) {
+            return message.channel.send(
+                ":x: **Oops,** you can't kick the owner of the server."
             );
         }
         if (message.mentions.users.first() === message.author) {
