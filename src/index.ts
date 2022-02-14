@@ -1,64 +1,62 @@
-import { matchPrefixes } from "@enitoni/gears";
-import { Bot, Adapter, CommandGroup } from "@enitoni/gears-discordjs";
-
-import { parseArguments } from "./common/parsing/middleware/parseArguments";
-import { app, port, prefix, activity } from "./modules/constants";
+import { Adapter, Bot, CommandGroup } from "@enitoni/gears-discordjs";
+import { Intents } from "discord.js";
 import { autoXpClaim, checkSubscriptions } from "./common/knexCommon";
-
+import { matchServerPrefix } from "./common/matching/matchServerPrefix";
+import { parseArguments } from "./common/parsing/middleware/parseArguments";
+import addStoreItem from "./modules/commands/admin/addStoreItem";
+import ban from "./modules/commands/admin/ban";
+import createWebhook from "./modules/commands/admin/createWebhook";
+import kick from "./modules/commands/admin/kick";
+import pin from "./modules/commands/admin/pin";
+import removeStoreItem from "./modules/commands/admin/removeStoreItem";
+import setAuditChannel from "./modules/commands/admin/setAuditChannel";
+import setLevelUpChannel from "./modules/commands/admin/setLevelUpChannel";
+import setpinchannel from "./modules/commands/admin/setpinchannel";
+import setPrefix from "./modules/commands/admin/setPrefix";
+import setWelcomeChannelId from "./modules/commands/admin/setWelcomeChannelId";
+import toggleLevelUpMessagesOnServer from "./modules/commands/admin/toggleLevelUpMessagesOnServer";
+import toggleQuotes from "./modules/commands/admin/toggleQuotes";
+import unban from "./modules/commands/admin/unban";
 import a from "./modules/commands/fun/a";
-import anyway from "./modules/commands/images/anyway";
+import addassasinationkeyword from "./modules/commands/fun/addassasinationkeyword";
+import addQuote from "./modules/commands/fun/addquote";
+import assassinate from "./modules/commands/fun/assassinate";
+import copypasta from "./modules/commands/fun/copypasta";
 import daily from "./modules/commands/fun/daily";
-import description from "./modules/commands/utilities/description";
 import gamble from "./modules/commands/fun/gamble";
 import joke from "./modules/commands/fun/joke";
-import copypasta from "./modules/commands/fun/copypasta";
 import meme from "./modules/commands/fun/meme";
-import pay from "./modules/commands/utilities/pay";
-import profile from "./modules/commands/utilities/profile";
+import optoutofassassinations from "./modules/commands/fun/optoutofassassinations";
 import say from "./modules/commands/fun/say";
-import topbalance from "./modules/commands/utilities/topbalance";
-import toplevel from "./modules/commands/utilities/toplevel";
-import token from "./modules/commands/utilities/token";
+import trivia from "./modules/commands/fun/trivia";
+import xmas from "./modules/commands/fun/xmas";
+import { helpCommand } from "./modules/commands/help/helpCommand";
+import anyway from "./modules/commands/images/anyway";
+import chart from "./modules/commands/images/chart";
 import googleit from "./modules/commands/images/googleit";
 import javaistojs from "./modules/commands/images/javaistojs";
-import poll from "./modules/commands/utilities/poll";
-import createWebhook from "./modules/commands/admin/createWebhook";
-import addQuote from "./modules/commands/fun/addquote";
-import disableLevelupMessages from "./modules/commands/utilities/disableLevelupMessages";
-import trivia from "./modules/commands/fun/trivia";
-import store from "./modules/commands/store/store";
-import addStoreItem from "./modules/commands/admin/addStoreItem";
 import buy from "./modules/commands/store/buy";
 import purchases from "./modules/commands/store/purchases";
+import store from "./modules/commands/store/store";
 import unsubscribe from "./modules/commands/store/unsubscribe";
-import removeStoreItem from "./modules/commands/admin/removeStoreItem";
-import chart from "./modules/commands/images/chart";
-import bannedphrases from "./modules/reactions/bannedphrases";
-import { helpCommand } from "./modules/commands/help/helpCommand";
-import pin from "./modules/commands/admin/pin";
-import setpinchannel from "./modules/commands/admin/setpinchannel";
-import topxptoday from "./modules/commands/utilities/topxptoday";
-import servertime from "./modules/commands/utilities/servertime";
-import addassasinationkeyword from "./modules/commands/fun/addassasinationkeyword";
-import assassinate from "./modules/commands/fun/assassinate";
-import assassinations from "./modules/reactions/assassinations";
-import optoutofassassinations from "./modules/commands/fun/optoutofassassinations";
-import xmas from "./modules/commands/fun/xmas";
 import age from "./modules/commands/utilities/age";
-import ban from "./modules/commands/admin/ban";
-import kick from "./modules/commands/admin/kick";
-import unban from "./modules/commands/admin/unban";
-import setWelcomeChannelId from "./modules/commands/admin/setWelcomeChannelId";
-import toggleQuotes from "./modules/commands/admin/toggleQuotes";
-import setAuditChannel from "./modules/commands/admin/setAuditChannel";
-import { Intents } from "discord.js";
-import { welcomeEventsInitialiser } from "./modules/reactions/welcomemessages";
+import description from "./modules/commands/utilities/description";
+import disableLevelupMessages from "./modules/commands/utilities/disableLevelupMessages";
+import pay from "./modules/commands/utilities/pay";
+import poll from "./modules/commands/utilities/poll";
+import profile from "./modules/commands/utilities/profile";
+import serverprofile from "./modules/commands/utilities/serversettings";
+import servertime from "./modules/commands/utilities/servertime";
+import token from "./modules/commands/utilities/token";
+import topbalance from "./modules/commands/utilities/topbalance";
+import toplevel from "./modules/commands/utilities/toplevel";
+import topxptoday from "./modules/commands/utilities/topxptoday";
+import { activity, app, port } from "./modules/constants";
+import assassinations from "./modules/reactions/assassinations";
 // eslint-disable-next-line import/no-cycle
 import { auditEventsInitialiser } from "./modules/reactions/auditlogs";
-import toggleLevelUpMessagesOnServer from "./modules/commands/admin/toggleLevelUpMessagesOnServer";
-import setLevelUpChannel from "./modules/commands/admin/setLevelUpChannel";
-import serverprofile from "./modules/commands/utilities/serversettings";
-import setPrefix from "./modules/commands/admin/setPrefix";
+import bannedphrases from "./modules/reactions/bannedphrases";
+import { welcomeEventsInitialiser } from "./modules/reactions/welcomemessages";
 
 const intents = new Intents();
 
@@ -86,7 +84,7 @@ const adapter = new Adapter({
 });
 
 const commands = new CommandGroup()
-    .match(matchPrefixes(prefix))
+    .match(matchServerPrefix())
     .use(parseArguments)
     .setCommands(
         description,
