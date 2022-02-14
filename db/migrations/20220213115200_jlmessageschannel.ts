@@ -1,7 +1,7 @@
 import Knex from "knex";
 
 export const up = async (knex: Knex) => {
-    return knex.schema.alterTable("servers", table => {
+    return knex.schema.alterTable("servers", (table) => {
         table.string("pinschannel").alter();
         table.string("welcomechannel");
         table.string("auditchannel");
@@ -10,7 +10,7 @@ export const up = async (knex: Knex) => {
 };
 
 export const down = async (knex: Knex) => {
-    return knex.schema.table("servers", table => {
+    return knex.schema.table("servers", (table) => {
         table.dropColumn("pinschannel");
         table.dropColumn("welcomechannel");
         table.dropColumn("auditchannel");

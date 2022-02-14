@@ -1,7 +1,7 @@
 import Knex from "knex";
 
 export const up = async (knex: Knex) => {
-    return knex.schema.createTable("user", table => {
+    return knex.schema.createTable("user", (table) => {
         table.specificType("userid", "varchar(25)");
         table.specificType("description", "varchar(1000)");
         table.integer("balance");
