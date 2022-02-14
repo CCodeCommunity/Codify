@@ -60,16 +60,17 @@ async function checkLevelup(userid: string, ctx: Message) {
                     const [randomQuote, randomEmoji] = await randomMessage(
                         ctx.guild?.id
                     );
+                    if (guild.levelupmsgs) {
+                        if (guild.usersquotes) {
+                            await ctx.channel.send(`${randomQuote}`);
+                        }
 
-                    if (guild.usersquotes) {
-                        await ctx.channel.send(`${randomQuote}`);
+                        ctx.channel.send(
+                            `<@${user.userid}> you are now level **${
+                                parseInt(user.level) + 1
+                            }** here's **$${gain}** for you. ${randomEmoji}`
+                        );
                     }
-
-                    ctx.channel.send(
-                        `<@${user.userid}> you are now level **${parseInt(
-                            user.level
-                        ) + 1}** here's **$${gain}** for you. ${randomEmoji}`
-                    );
                 }
             }
             console.log(`User @${ctx.author.username} leveled up!`);
@@ -99,11 +100,9 @@ export const awardMostXpToday = async (userid: string, ctx: Message) => {
     }
     if (topUserLastAwardDay)
         if (today !== lastAwardDay && userid == topUserLastAwardDay.userid) {
-            await knex("awarddays")
-                .first()
-                .update({
-                    mostxpinaday: today
-                });
+            await knex("awarddays").first().update({
+                mostxpinaday: today
+            });
 
             await knex("user")
                 .where({ userid })
@@ -133,12 +132,10 @@ export const updateDayXp = async (userid: string, xp: number) => {
         const lastdayxp = user.lastdayxp;
 
         if (today.getDate() !== lastdayxp) {
-            await knex("user")
-                .where({ userid })
-                .update({
-                    lastdayxp: today.getDate(),
-                    dayxp: xp
-                });
+            await knex("user").where({ userid }).update({
+                lastdayxp: today.getDate(),
+                dayxp: xp
+            });
         } else {
             await knex("user")
                 .where({ userid })
@@ -185,7 +182,7 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
         userId
     });
     await Promise.all(
-        userSubscriptions.map(async l => {
+        userSubscriptions.map(async (l) => {
             if (Math.floor(Date.now() / 1000) > Number(l.expiration)) {
                 const store: Store = await knex("store")
                     .where({ id: l.storeId })
