@@ -68,13 +68,13 @@ export const auditEventsInitialiser = (client: Client) => {
                 channel.guildId
             );
     });
-    client.on("channelUpdate", (oldc, newc) => {
-        if (newc.type !== "DM")
-            logEventNoChannel(
-                `Channel <#${newc.id}> has been updated.`,
-                newc.guildId
-            );
-    });
+    // client.on("channelUpdate", (oldc, newc) => {
+    //     if (newc.type !== "DM")
+    //         logEventNoChannel(
+    //             `Channel <#${newc.id}> has been updated.`,
+    //             newc.guildId
+    //         );
+    // });
     client.on("emojiCreate", (emoji) => {
         logEventNoChannel(
             `A new emoji ${emoji} has been created.`,
@@ -154,12 +154,12 @@ export const auditEventsInitialiser = (client: Client) => {
             message.guildId || ""
         );
     });
-    client.on("messageUpdate", (oldm, newm) => {
-        logEventNoChannel(
-            `**Message send by <@${oldm.author?.id}>** _${oldm.content}_ **has been edited into** _${newm.content}_`,
-            newm.guild?.id || ""
-        );
-    });
+    // client.on("messageUpdate", (oldm, newm) => {
+    //     logEventNoChannel(
+    //         `**Message send by <@${oldm.author?.id}>** _${oldm.content}_ **has been edited into** _${newm.content}_`,
+    //         newm.guild?.id || ""
+    //     );
+    // });
     client.on("guildUpdate", (oldg, newg) => {
         logEventNoChannel(
             `**The server settings have been updated.**`,
