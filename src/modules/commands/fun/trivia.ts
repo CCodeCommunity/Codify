@@ -129,7 +129,8 @@ export default new Command()
                 time: 60000
             });
             collector.on("collect", async (reaction: MessageReaction) => {
-                const user = [...(await reaction.users.fetch()).values()][1];
+                const user = [...(await reaction.users.fetch()).values()][0];
+
                 console.log(user.username + " answered a trivia question.");
 
                 if (reaction.emoji.name === answerEmoji) {
