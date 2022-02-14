@@ -53,6 +53,7 @@ import topbalanceg from "./modules/commands/utilities/topbalanceg";
 import toplevel from "./modules/commands/utilities/toplevel";
 import toplevelg from "./modules/commands/utilities/toplevelg";
 import topxptoday from "./modules/commands/utilities/topxptoday";
+import topxptodayg from "./modules/commands/utilities/topxptodayg";
 import { activity, app, port } from "./modules/constants";
 import assassinations from "./modules/reactions/assassinations";
 // eslint-disable-next-line import/no-cycle
@@ -135,6 +136,7 @@ const commands = new CommandGroup()
         buy,
         toplevelg,
         pin,
+        topxptodayg,
         setpinchannel,
         purchases,
         unsubscribe,
