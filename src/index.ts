@@ -57,6 +57,7 @@ import { welcomeEventsInitialiser } from "./modules/reactions/welcomemessages";
 import { auditEventsInitialiser } from "./modules/reactions/auditlogs";
 import toggleLevelUpMessagesOnServer from "./modules/commands/admin/toggleLevelUpMessagesOnServer";
 import setLevelUpChannel from "./modules/commands/admin/setLevelUpChannel";
+import serverprofile from "./modules/commands/utilities/serversettings";
 
 const intents = new Intents();
 
@@ -120,6 +121,7 @@ const commands = new CommandGroup()
         topxptoday,
         copypasta,
         pay,
+        serverprofile,
         anyway,
         chart,
         a,
