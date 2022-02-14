@@ -38,7 +38,7 @@ export const helpCommand = new Command()
                 await knex("servers").where({
                     serverid: message.guildId
                 })
-            )[0].prefix || "!";
+            )[0].prefix || "cc!";
 
         return help.map((_, i) => {
             return message.channel.send(
