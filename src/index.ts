@@ -56,6 +56,7 @@ import { welcomeEventsInitialiser } from "./modules/reactions/welcomemessages";
 // eslint-disable-next-line import/no-cycle
 import { auditEventsInitialiser } from "./modules/reactions/auditlogs";
 import toggleLevelUpMessagesOnServer from "./modules/commands/admin/toggleLevelUpMessagesOnServer";
+import setLevelUpChannel from "./modules/commands/admin/setLevelUpChannel";
 
 const intents = new Intents();
 
@@ -110,6 +111,7 @@ const commands = new CommandGroup()
         ban,
         unban,
         kick,
+        setLevelUpChannel,
         setWelcomeChannelId,
         setAuditChannel,
         topbalance,
