@@ -49,11 +49,35 @@ import ban from "./modules/commands/admin/ban";
 import kick from "./modules/commands/admin/kick";
 import unban from "./modules/commands/admin/unban";
 import setWelcomeChannelId from "./modules/commands/admin/setWelcomeChannelId";
-import { joinMessage, leaveMessage } from "./modules/reactions/welcomemessages";
 import toggleQuotes from "./modules/commands/admin/toggleQuotes";
 import setAuditChannel from "./modules/commands/admin/setAuditChannel";
+import { Intents } from "discord.js";
+import { welcomeEventsInitialiser } from "./modules/reactions/welcomemessages";
 
-const adapter = new Adapter({ token: process.env.BOT_TOKEN || "" });
+const intents = new Intents();
+
+intents.add(
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MEMBERS,
+    Intents.FLAGS.GUILD_BANS,
+    Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+    Intents.FLAGS.GUILD_INTEGRATIONS,
+    Intents.FLAGS.GUILD_WEBHOOKS,
+    Intents.FLAGS.GUILD_VOICE_STATES,
+    Intents.FLAGS.GUILD_PRESENCES,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    Intents.FLAGS.GUILD_MESSAGE_TYPING,
+    Intents.FLAGS.DIRECT_MESSAGES,
+    Intents.FLAGS.DIRECT_MESSAGE_REACTIONS,
+    Intents.FLAGS.DIRECT_MESSAGE_TYPING,
+    Intents.FLAGS.GUILD_SCHEDULED_EVENTS
+);
+
+const adapter = new Adapter({
+    token: process.env.BOT_TOKEN || "",
+    intents
+});
 
 const commands = new CommandGroup()
     .match(matchPrefixes(prefix))
@@ -105,28 +129,23 @@ const commands = new CommandGroup()
         helpCommand
     );
 
-const bot = new Bot({
+export const bot = new Bot({
     adapter,
     commands: [commands, bannedphrases, assassinations]
 });
 
-bot.on("error", err => console.log("Error ", err));
+bot.on("error", (err) => console.log("Error ", err));
 
-bot.client.on("message", ctx => {
+bot.client.on("messageCreate", (ctx) => {
     if (ctx.author.bot) {
         return;
     }
+
     autoXpClaim(ctx.author.id, ctx);
     checkSubscriptions(ctx.author.id, bot.client);
 });
 
-bot.client.on("guildMemberAdd", async member => {
-    joinMessage(member.guild.id, bot.client, member);
-});
-
-bot.client.on("guildMemberRemove", async member => {
-    leaveMessage(member.guild.id, bot.client, member);
-});
+welcomeEventsInitialiser(bot.client);
 
 const init = async (): Promise<void> => {
     console.info(`Connecting to discord...`);

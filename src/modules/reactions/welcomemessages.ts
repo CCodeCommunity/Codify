@@ -4,7 +4,6 @@ import {
     PartialGuildMember,
     TextChannel
 } from "discord.js";
-import { bot } from "../../index";
 import knex from "../../../db/knex";
 
 type Guild = {
@@ -34,7 +33,10 @@ const joinMessage = async (
     if (!channelid) return;
     try {
         const channel = (await client.channels.fetch(channelid)) as TextChannel;
-        channel.send(`**${member.displayName} joined the server!**`);
+        channel.send({
+            content: `**<@${member.id}> has joined the server!**`,
+            allowedMentions: { users: [] }
+        });
     } catch (error) {
         console.log(error);
     }
@@ -49,16 +51,21 @@ const leaveMessage = async (
     if (!channelid) return;
     try {
         const channel = (await client.channels.fetch(channelid)) as TextChannel;
-        channel.send(`**${member.displayName} left the server!**`);
+        channel.send({
+            content: `**<@${member.id}> has left the server!**`,
+            allowedMentions: { users: [] }
+        });
     } catch (error) {
         console.log(error);
     }
 };
 
-bot.client.on("guildMemberAdd", async member => {
-    joinMessage(member.guild.id, bot.client, member);
-});
+export const welcomeEventsInitialiser = (client: Client) => {
+    client.on("guildMemberAdd", async (member) => {
+        joinMessage(member.guild.id, client, member);
+    });
 
-bot.client.on("guildMemberRemove", async member => {
-    leaveMessage(member.guild.id, bot.client, member);
-});
+    client.on("guildMemberRemove", async (member) => {
+        leaveMessage(member.guild.id, client, member);
+    });
+};
