@@ -51,6 +51,7 @@ import token from "./modules/commands/utilities/token";
 import topbalance from "./modules/commands/utilities/topbalance";
 import topbalanceg from "./modules/commands/utilities/topbalanceg";
 import toplevel from "./modules/commands/utilities/toplevel";
+import toplevelg from "./modules/commands/utilities/toplevelg";
 import topxptoday from "./modules/commands/utilities/topxptoday";
 import { activity, app, port } from "./modules/constants";
 import assassinations from "./modules/reactions/assassinations";
@@ -132,6 +133,7 @@ const commands = new CommandGroup()
         store,
         topbalanceg,
         buy,
+        toplevelg,
         pin,
         setpinchannel,
         purchases,
