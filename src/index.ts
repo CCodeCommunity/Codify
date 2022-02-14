@@ -55,6 +55,7 @@ import { Intents } from "discord.js";
 import { welcomeEventsInitialiser } from "./modules/reactions/welcomemessages";
 // eslint-disable-next-line import/no-cycle
 import { auditEventsInitialiser } from "./modules/reactions/auditlogs";
+import toggleLevelUpMessagesOnServer from "./modules/commands/admin/toggleLevelUpMessagesOnServer";
 
 const intents = new Intents();
 
@@ -95,6 +96,7 @@ const commands = new CommandGroup()
         meme,
         toplevel,
         createWebhook,
+        toggleLevelUpMessagesOnServer,
         poll,
         age,
         trivia,
