@@ -1,3 +1,62 @@
+# [1.23.0](https://github.com/Vyctor661/codify/compare/v1.22.0...v1.23.0) (2022-02-14)
+
+
+### Bug Fixes
+
+* annoying error caused by updating node fetch ([4323a7f](https://github.com/Vyctor661/codify/commit/4323a7fb61efe77e6ef724a484c4035af72df508))
+* bad file pathnames ([c866427](https://github.com/Vyctor661/codify/commit/c866427beed75a3cb8cab8b004f4a88081223a41))
+* changed the success message because it was saying pins channel instead of welcome channel ([e18c87f](https://github.com/Vyctor661/codify/commit/e18c87fdcb4493ba88a1a3f200f0f358b7f10123))
+* help being seen as an invalid command ([26611cd](https://github.com/Vyctor661/codify/commit/26611cd41e282210512b213dbe439ca24791556c))
+* help command broken after full update ([cb94d7a](https://github.com/Vyctor661/codify/commit/cb94d7ae438e1f0797fa4cf48e8ad1c8e7eacdff))
+* help command crashing the bot ([4452a42](https://github.com/Vyctor661/codify/commit/4452a42cc01dc8751d096ae3423233985bdf1678))
+* image manipulation commands now work after update ([8bff5d3](https://github.com/Vyctor661/codify/commit/8bff5d3ae85cafba0c57e15cee5833d8849b2e13))
+* invalid command now works again (I blame myself when I refactored the help command long time ago I apparently broke the invalid command thing) ([5d746c8](https://github.com/Vyctor661/codify/commit/5d746c857c5b24dab6fed50de7c2e68b18d12ae0))
+* most of the errors after updating discord js, a lot is still broken and needs to be fixed ([7b97b07](https://github.com/Vyctor661/codify/commit/7b97b07168ea7fd1debf14d21e91bb648e5c2f29))
+* potential bugs created by synchronicity ([1d7f99e](https://github.com/Vyctor661/codify/commit/1d7f99e13505d46f3d9e1ed40bd649db4e339822))
+* tops not working after updating ([2fec7fe](https://github.com/Vyctor661/codify/commit/2fec7fe9ae4dd6d3a54a37ee300ef4205f66625c))
+* trivia command crashing the bot ([cf6f046](https://github.com/Vyctor661/codify/commit/cf6f0463fcedc5e798e507ad7ee6efe3c52bfa80))
+* updated the set welome channel id command suffix ([d7a0457](https://github.com/Vyctor661/codify/commit/d7a04571d577e30ddcf39f79d60240d1de668dd2))
+* updated typescript, fixes a lot of errors ([ab65137](https://github.com/Vyctor661/codify/commit/ab65137e65c38509df855c7bc5c878a472fb76ac))
+* webhooks command now works again ([def722f](https://github.com/Vyctor661/codify/commit/def722f2a24f63d56077c7d10735c1a5e31959a2))
+* welcome leave messages fix after update ([429318f](https://github.com/Vyctor661/codify/commit/429318f2742bbd79b86175926941f4b75be7ae71))
+
+
+### Features
+
+* added the logevent to the commands that I think should have it ([2a83a47](https://github.com/Vyctor661/codify/commit/2a83a473fe86e5e9689d95fb9f3b122f42dd0160))
+* audit log events ([3f799f4](https://github.com/Vyctor661/codify/commit/3f799f430847eb46487f841830fb7fd4a01855da))
+* audit logs no longer ping users, just mentions them ([13921b3](https://github.com/Vyctor661/codify/commit/13921b3397e2cb27ea5e21b85945533588c9a371))
+* ban command ([feecfb3](https://github.com/Vyctor661/codify/commit/feecfb31b0e9fe404b640f6588b50ecff93b9ce2))
+* better looking embed ([07b5095](https://github.com/Vyctor661/codify/commit/07b509507891548b52b969ec42df1e3f96030ab2))
+* ccdaily amount of money now scales with level ([d5f4819](https://github.com/Vyctor661/codify/commit/d5f4819a3b1d99cfbb6539b216af0ec187d2f01c))
+* db implementation for only quotes and commands prefix ([1ceb23a](https://github.com/Vyctor661/codify/commit/1ceb23ac86d8ad345fd0badd27f592f575002ada))
+* help command shows the proper prefix for the server ([e8ad041](https://github.com/Vyctor661/codify/commit/e8ad0417eb995155d0754a0f528893f5547f1222))
+* implemented level up messages channl functionality ([a1449b9](https://github.com/Vyctor661/codify/commit/a1449b9825f09535950c0b41035292a5f7d47d08))
+* implemented logging function ([06fcea3](https://github.com/Vyctor661/codify/commit/06fcea3a863a15d18bede8f9cb04f1a413ff0579))
+* implemented no level up messages server wide ([025d310](https://github.com/Vyctor661/codify/commit/025d3101878d8b9efc1b11802249daead527abd2))
+* kick command ([83e0233](https://github.com/Vyctor661/codify/commit/83e02336129fb9b1842371016e1ebe6864a6a452))
+* now no args resets the audit channel ([90944f7](https://github.com/Vyctor661/codify/commit/90944f7c330face06ade58e991efa3a8bb4ba86a))
+* now no args resets the pins channel ([d24e4f0](https://github.com/Vyctor661/codify/commit/d24e4f0917c60691134413d19a3c96b123d29e15))
+* now no args resets the welcome channel ([347a2a4](https://github.com/Vyctor661/codify/commit/347a2a4f9e5b1bc45d163b380430b95aba0fa483))
+* per server prefix ([d16ed78](https://github.com/Vyctor661/codify/commit/d16ed7879ba7e45a0783af9adc2f0a72012559bc))
+* server settings command ([e767630](https://github.com/Vyctor661/codify/commit/e767630d43080300ca5586a82cbe37be747c75ab))
+* set audit channel id for audit logs ([d21b45f](https://github.com/Vyctor661/codify/commit/d21b45f3b86acd5bfb3379f7bc5c39a86082a540))
+* set prefix command for setting the commands prefix in the server ([6036e2f](https://github.com/Vyctor661/codify/commit/6036e2f9e2ce071896070f29c9e54db0f4353c75))
+* set welcome channel id for the server ([3ac4e1f](https://github.com/Vyctor661/codify/commit/3ac4e1fad7ff28f608e067335ef89059209c45a8))
+* setting levels up channel command ([2e7332c](https://github.com/Vyctor661/codify/commit/2e7332c88c5fdc63f190d70594d1cf289952adea))
+* the webhooks command now works if the user has the permission to manage webhooks or if the user has a role named "webhooks" ([a493d22](https://github.com/Vyctor661/codify/commit/a493d223e3078df5e7792fc7c7f496c1ed068134))
+* toggle level up messages server wide command ([2a0be59](https://github.com/Vyctor661/codify/commit/2a0be59f14da7d5abe8a909082c7c9393ad33c3d))
+* toggle quotes command implementation ([0403d9c](https://github.com/Vyctor661/codify/commit/0403d9c4b7ddbd0c7e5735ea7a14ec7b306b6d98))
+* toggleing the quotes now works ([5de2bf0](https://github.com/Vyctor661/codify/commit/5de2bf0ad831f2fcf765dbd4affc3f09e74b2eb2))
+* top balance global ([192c6ef](https://github.com/Vyctor661/codify/commit/192c6ef50bcbf38f185b6440c4790fbd19da5f44))
+* top level global ([e3d1ab2](https://github.com/Vyctor661/codify/commit/e3d1ab2f83fecbebdfc05792807d6ea8f25ec521))
+* tops now use tags instead of displaynames ([170b11b](https://github.com/Vyctor661/codify/commit/170b11b5f5c4084ede9594f7f4eaa7f54606c429))
+* total money in the economy and percentage held ([8555f6b](https://github.com/Vyctor661/codify/commit/8555f6be51d0392fd2228a0ef13b9d4519445651))
+* unban command ([cc4946c](https://github.com/Vyctor661/codify/commit/cc4946c1ea797fff6e4cada32e450195d979f87c))
+* updated no quotes message when the server has no quotes added ([dccb204](https://github.com/Vyctor661/codify/commit/dccb20485e3dced0806a072cd86cf27d1ff9d157))
+* user left and joined the server messages ([284b3f0](https://github.com/Vyctor661/codify/commit/284b3f093d5ff19f6edda69fbc7fe480f9b6667d))
+* xp today top global command ([e44d75a](https://github.com/Vyctor661/codify/commit/e44d75a6bd6861ff29e0faf2234ab2d55ca9473e))
+
 # [1.22.0](https://github.com/Vyctor661/codify/compare/v1.21.0...v1.22.0) (2021-12-27)
 
 
