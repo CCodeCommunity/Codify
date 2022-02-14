@@ -53,6 +53,8 @@ import toggleQuotes from "./modules/commands/admin/toggleQuotes";
 import setAuditChannel from "./modules/commands/admin/setAuditChannel";
 import { Intents } from "discord.js";
 import { welcomeEventsInitialiser } from "./modules/reactions/welcomemessages";
+// eslint-disable-next-line import/no-cycle
+import { auditEventsInitialiser } from "./modules/reactions/auditlogs";
 
 const intents = new Intents();
 
@@ -146,6 +148,7 @@ bot.client.on("messageCreate", (ctx) => {
 });
 
 welcomeEventsInitialiser(bot.client);
+auditEventsInitialiser(bot.client);
 
 const init = async (): Promise<void> => {
     console.info(`Connecting to discord...`);
