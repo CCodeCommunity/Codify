@@ -9,7 +9,7 @@ import {
 } from "../../../common/cooldown/middleware/comandCooldown";
 
 const splitToChunks = (array: Array<CommandMetadata>, parts: number) => {
-    const result = [];
+    const result: CommandMetadata[][] = [];
     for (let i = parts; i > 0; i--) {
         result.push(array.splice(0, Math.ceil(array.length / i)));
     }
@@ -26,7 +26,7 @@ export const helpCommand = new Command()
         })
     )
     .use<Cooldown>(setCooldown(10000))
-    .use(context => {
+    .use((context) => {
         const { bot, message } = context;
         const metadata = mapTreeToMetadata(bot.group);
 
