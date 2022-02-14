@@ -1,7 +1,5 @@
 import { Matcher } from "@enitoni/gears-discordjs";
 
-import { resolveArrayToOne } from "../../modules/constants";
-
 const symbols = ["-", "."] as const;
 
 export const matchPrefixesStrict =
@@ -16,18 +14,23 @@ export const matchPrefixesStrict =
 
         const isMatching =
             !!context.content.match(regex) && !context.message.author.bot;
-        if (!isMatching) {
-            if (
-                keywords[0] === "help|cmds|commands" &&
-                !context.message.author.bot
-            ) {
+
+        if (keywords[0] === "help" && !context.message.author.bot) {
+            context.message.delete();
+            const newMessage = await context.message.channel.send(
+                `**Invalid command!**`
+            );
+            setTimeout(() => {
+                newMessage.delete();
+            }, 3000);
+        }
+
+        if (!isMatching) return;
+
+        if (context.message.channel.type !== "DM") {
+            setTimeout(() => {
                 context.message.delete();
-                const newMessage = await context.message.channel.send(
-                    `**Invalid command, try:** \`cc!help\`**!**`
-                );
-                resolveArrayToOne(newMessage).delete();
-            }
-            return;
+            }, 1000);
         }
 
         const newContent = context.content.replace(regex, "").trim();

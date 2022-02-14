@@ -1,6 +1,5 @@
 import { Command } from "@enitoni/gears-discordjs";
 import { createMetadata } from "./createMetadata";
-import { matchPrefixes } from "@enitoni/gears";
 import { mapTreeToMetadata } from "./mapTreeToMetadata";
 import { CommandMetadata } from "./CommandMetadata";
 import {
@@ -8,6 +7,7 @@ import {
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
 import knex from "../../../../db/knex";
+import { matchPrefixesStrict } from "../../../common/matching/matchPrefixesStrict";
 
 const splitToChunks = (array: Array<CommandMetadata>, parts: number) => {
     const result: CommandMetadata[][] = [];
@@ -18,7 +18,7 @@ const splitToChunks = (array: Array<CommandMetadata>, parts: number) => {
 };
 
 export const helpCommand = new Command()
-    .match(matchPrefixes("help"))
+    .match(matchPrefixesStrict("help"))
     .setMetadata(
         createMetadata({
             name: "help",
