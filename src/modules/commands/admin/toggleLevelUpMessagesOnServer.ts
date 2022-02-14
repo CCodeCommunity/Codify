@@ -34,10 +34,10 @@ export default new Command()
     .match(matchPrefixesStrict("toggleServerLevelUps|toggleLevels"))
     .setMetadata(
         createMetadata({
-            name: "Toggle the leveling up in the server.",
+            name: "Toggle the leveling messages in the server.",
             usage: "cc!toggleServerLevelUps | cc!toggleLevels",
             description:
-                "Toggle the leveling up in the server, users will still level up, just without the messages."
+                "Toggle the leveling up in the server, users will still level up, just without the message that shows the level."
         })
     )
     .use<Cooldown>(setCooldown(15000))

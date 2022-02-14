@@ -60,52 +60,29 @@ async function checkLevelup(userid: string, ctx: Message) {
                     const [randomQuote, randomEmoji] = await randomMessage(
                         ctx.guild?.id
                     );
-                    if (!guild.levelupmsgschannel) {
-                        if (guild.levelupmsgs) {
-                            if (guild.usersquotes) {
-                                await ctx.channel.send(`${randomQuote}`);
-                            }
 
-                            ctx.channel.send(
+                    const levelupchannel =
+                        ctx.client.channels.cache.get(
+                            guild.levelupmsgschannel
+                        ) || ctx.channel;
+
+                    if (
+                        levelupchannel.type !== "DM" &&
+                        levelupchannel.type !== "GUILD_CATEGORY" &&
+                        levelupchannel.type !== "GUILD_STAGE_VOICE" &&
+                        levelupchannel.type !== "GUILD_STORE" &&
+                        levelupchannel.type !== "GUILD_VOICE"
+                    ) {
+                        if (guild.usersquotes) {
+                            levelupchannel.send(`${randomQuote}`);
+                        }
+
+                        if (guild.levelupmsgs) {
+                            levelupchannel.send(
                                 `<@${user.userid}> you are now level **${
                                     parseInt(user.level) + 1
                                 }** here's **$${gain}** for you. ${randomEmoji}`
                             );
-                        }
-                    } else {
-                        const channel = ctx.client.channels.cache.get(
-                            guild.levelupmsgschannel
-                        );
-                        if (channel) {
-                            if (
-                                channel.type !== "DM" &&
-                                channel.type !== "GUILD_CATEGORY" &&
-                                channel.type !== "GUILD_STAGE_VOICE" &&
-                                channel.type !== "GUILD_STORE" &&
-                                channel.type !== "GUILD_VOICE"
-                            ) {
-                                if (guild.usersquotes) {
-                                    await channel.send(`${randomQuote}`);
-                                }
-
-                                channel.send(
-                                    `<@${user.userid}> you are now level **${
-                                        parseInt(user.level) + 1
-                                    }** here's **$${gain}** for you. ${randomEmoji}`
-                                );
-                            }
-                        } else {
-                            if (guild.levelupmsgs) {
-                                if (guild.usersquotes) {
-                                    await ctx.channel.send(`${randomQuote}`);
-                                }
-
-                                ctx.channel.send(
-                                    `<@${user.userid}> you are now level **${
-                                        parseInt(user.level) + 1
-                                    }** here's **$${gain}** for you. ${randomEmoji}`
-                                );
-                            }
                         }
                     }
                 }
