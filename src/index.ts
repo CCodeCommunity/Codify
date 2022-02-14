@@ -58,6 +58,7 @@ import { auditEventsInitialiser } from "./modules/reactions/auditlogs";
 import toggleLevelUpMessagesOnServer from "./modules/commands/admin/toggleLevelUpMessagesOnServer";
 import setLevelUpChannel from "./modules/commands/admin/setLevelUpChannel";
 import serverprofile from "./modules/commands/utilities/serversettings";
+import setPrefix from "./modules/commands/admin/setPrefix";
 
 const intents = new Intents();
 
@@ -128,6 +129,7 @@ const commands = new CommandGroup()
         addStoreItem,
         removeStoreItem,
         servertime,
+        setPrefix,
         store,
         buy,
         pin,
