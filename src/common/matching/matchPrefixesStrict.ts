@@ -16,7 +16,6 @@ export const matchPrefixesStrict =
             !!context.content.match(regex) && !context.message.author.bot;
 
         if (keywords[0] === "help" && !context.message.author.bot) {
-            context.message.delete();
             const newMessage = await context.message.channel.send(
                 `**Invalid command!**`
             );
