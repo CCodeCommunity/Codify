@@ -49,6 +49,7 @@ import serverprofile from "./modules/commands/utilities/serversettings";
 import servertime from "./modules/commands/utilities/servertime";
 import token from "./modules/commands/utilities/token";
 import topbalance from "./modules/commands/utilities/topbalance";
+import topbalanceg from "./modules/commands/utilities/topbalanceg";
 import toplevel from "./modules/commands/utilities/toplevel";
 import topxptoday from "./modules/commands/utilities/topxptoday";
 import { activity, app, port } from "./modules/constants";
@@ -129,6 +130,7 @@ const commands = new CommandGroup()
         servertime,
         setPrefix,
         store,
+        topbalanceg,
         buy,
         pin,
         setpinchannel,
