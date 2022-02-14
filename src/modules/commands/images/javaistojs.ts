@@ -19,7 +19,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(10000))
-    .use(context => {
+    .use((context) => {
         const { message } = context;
 
         if (message.guild !== null) message.delete();
@@ -27,5 +27,5 @@ export default new Command()
         const attachment = new MessageAttachment(
             `src/common/images/javaistojs.png`
         );
-        return message.channel.send(attachment);
+        return message.channel.send({ files: [attachment] });
     });

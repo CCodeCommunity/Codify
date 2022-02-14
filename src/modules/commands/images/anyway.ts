@@ -30,7 +30,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(10000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
 
@@ -47,7 +47,7 @@ export default new Command()
             const attachment = new MessageAttachment(
                 `src/common/images/anywayManipulated.jpg`
             );
-            return message.channel.send(attachment);
+            return message.channel.send({ files: [attachment] });
         } else {
             return message.channel.send(`**ERROR:** Input text is too long.`);
         }

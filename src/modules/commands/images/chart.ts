@@ -51,7 +51,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(10000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const rawArgs = context.state.args;
 
@@ -60,7 +60,7 @@ export default new Command()
         const args = rawArgs
             .join(" ")
             .split("|")
-            .map(l => l.trim());
+            .map((l) => l.trim());
 
         if (!args[0]) {
             return message.channel.send(
@@ -84,5 +84,5 @@ export default new Command()
         const attachment = new MessageAttachment(
             `src/common/images/thechartManipulated.jpg`
         );
-        return message.channel.send(attachment);
+        return message.channel.send({ files: [attachment] });
     });
