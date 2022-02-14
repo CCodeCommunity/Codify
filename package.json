@@ -15,7 +15,6 @@
         "start": "node ./dist/src/index.js",
         "semantic-release": "semantic-release"
     },
-    "type": "commonjs",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/Vyctor661/codify.git"
@@ -35,7 +34,7 @@
         "@types/express": "4.17.2",
         "@types/jimp": "^0.2.28",
         "@types/node": "^17.0.17",
-        "@types/node-fetch": "^3.0.3",
+        "@types/node-fetch": "^2.5.4",
         "@types/ws": "^7.4.0",
         "nodemon": "^2.0.15",
         "prettier": "^2.5.1",
@@ -55,7 +54,7 @@
         "he": "^1.2.0",
         "jimp": "^0.9.3",
         "knex": "^0.21.12",
-        "node-fetch": "^3.2.0",
+        "node-fetch": "^2.6.1",
         "pg": "8.2.0"
     }
 }
