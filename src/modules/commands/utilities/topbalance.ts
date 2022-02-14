@@ -16,7 +16,6 @@ async function fillFields(message: Message) {
     const economyTotal = top
         .map((a) => a.balance)
         .reduce((p, c) => Number(p) + Number(c));
-    console.log(economyTotal);
 
     let fill = "```styl\n" + `[Economy Total]: $${economyTotal}\n\n`;
     for (let i = 0; i <= 9; i++) {
