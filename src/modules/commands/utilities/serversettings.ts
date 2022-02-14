@@ -50,59 +50,61 @@ export default new Command()
         try {
             const embed = new MessageEmbed()
                 .setColor(3447003)
-                .setDescription("**Server Settings**")
+                .setDescription(`*${message.guild.name} Server Settings*`)
                 .setFields([
                     {
                         name: "Commands Prefix",
-                        value: `${serverData.prefix}`
+                        value: `*${serverData.prefix}*`
                     },
                     {
                         name: "Pins Channel",
                         value: `${
                             serverData.pinschannel
                                 ? `<#${serverData.pinschannel}>`
-                                : "Not Set"
-                        }`
+                                : "*Not Set*"
+                        }`,
+                        inline: true
                     },
                     {
                         name: "Welcome Channel",
                         value: `${
                             serverData.welcomechannel
                                 ? `<#${serverData.welcomechannel}>`
-                                : "Not Set"
-                        }`
+                                : "*Not Set*"
+                        }`,
+                        inline: true
                     },
                     {
                         name: "Audit Log Channel",
                         value: `${
                             serverData.auditchannel
                                 ? `<#${serverData.auditchannel}>`
-                                : "Not Set"
-                        }`
+                                : "*Not Set*"
+                        }`,
+                        inline: true
                     },
                     {
                         name: "Level Up Channel",
                         value: `${
                             serverData.levelupmsgschannel
                                 ? `<#${serverData.levelupmsgschannel}>`
-                                : "Not Set"
-                        }`
+                                : "*Not Set*"
+                        }`,
+                        inline: true
                     },
                     {
                         name: "Level Up Quotes",
                         value: `${
-                            serverData.usersquotes
-                                ? "Quotes Enabled"
-                                : "Quotes Disabled"
-                        }`
+                            serverData.usersquotes ? "*Enabled*" : "*Disabled*"
+                        }`,
+                        inline: true
                     },
                     {
                         name: "Level Up Level",
                         value: `${
-                            serverData.levelupmsgs
-                                ? "Levels Enabled"
-                                : "Levels Disabled"
-                        }`
+                            serverData.levelupmsgs ? "*Enabled*" : "*Disabled*"
+                        }`,
+                        inline: true
                     }
                 ]);
             return message.channel.send({ embeds: [embed] });
