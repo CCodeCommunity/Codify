@@ -25,12 +25,12 @@ async function generateTop(message: Message) {
                 i = 99;
                 break;
             }
-            if (message.guild?.members.cache.get(`${top[i].userid}`))
-                memberName = (
-                    await message.guild!.members.fetch({
-                        user: `${top[i].userid}`
-                    })
-                )?.displayName.replace(/[^\w\s]|\s+/gi, "");
+            const member = message?.guild?.members.cache.get(
+                `${top[i].userid}`
+            );
+            const user = message.client.users.cache.get(`${top[i].userid}`);
+
+            if (member) memberName = user?.tag.split("#")[0];
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);

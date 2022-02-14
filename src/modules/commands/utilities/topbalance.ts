@@ -29,8 +29,9 @@ async function fillFields(message: Message) {
             const member = message?.guild?.members.cache.get(
                 `${top[i].userid}`
             );
-            if (member)
-                memberName = member?.displayName.replace(/[^\w\s]|\s+/gi, "");
+            const user = message.client.users.cache.get(`${top[i].userid}`);
+
+            if (member) memberName = user?.tag.split("#")[0];
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);
