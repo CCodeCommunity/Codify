@@ -29,7 +29,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(5000))
-    .use(async context => {
+    .use(async (context) => {
         try {
             const response = await fetch(
                 `https://www.reddit.com/r/Jokes/hot/.json`
@@ -57,24 +57,6 @@ export default new Command()
                     }`
                 });
             return context.message.channel.send({ embeds: [embed] });
-
-            // return context.message.channel.send({
-            //     embed: {
-            //         color: 3447003,
-            //         title: `${data.data.children[loop("title")].data.title}`,
-            //         description: `${data.data.children[
-            //             loop("content")
-            //         ].data.selftext.substring(0, 2000)}`,
-
-            //         footer: {
-            //             text: `👍 ${
-            //                 data.data.children[loop("score")].data.score
-            //             } | 💬 ${
-            //                 data.data.children[loop("score")].data.num_comments
-            //             }`
-            //         }
-            //     }
-            // });
         } catch (e) {
             return context.message.channel.send(
                 "**Error:** Internal server error."
