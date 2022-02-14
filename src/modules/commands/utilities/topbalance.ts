@@ -13,7 +13,12 @@ import {
 async function fillFields(message: Message) {
     const top = await knex("user").orderBy("balance", "desc");
 
-    let fill = "```styl\n";
+    const economyTotal = top
+        .map((a) => a.balance)
+        .reduce((p, c) => Number(p) + Number(c));
+    console.log(economyTotal);
+
+    let fill = "```styl\n" + `[Economy Total]: $${economyTotal}\n\n`;
     for (let i = 0; i <= 9; i++) {
         let memberName;
         do {
@@ -34,7 +39,10 @@ async function fillFields(message: Message) {
         const k = i + 1 == 10 ? "10" : `0${i + 1}`;
         if (i != 99) {
             fill += `[${k}]  #${memberName} \n`;
-            fill += `      Balance: $${top[i].balance}\n\n`;
+            fill += `      Balance: $${top[i].balance} Percentage: ${(
+                (Number(top[i].balance) / economyTotal) *
+                100
+            ).toFixed(2)}%\n\n`;
         }
     }
     fill += "```";
