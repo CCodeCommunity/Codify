@@ -7,6 +7,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import knex from "../../../../db/knex";
 
 const splitToChunks = (array: Array<CommandMetadata>, parts: number) => {
     const result: CommandMetadata[][] = [];
@@ -25,22 +26,31 @@ export const helpCommand = new Command()
             description: "Shows this output"
         })
     )
-    .use<Cooldown>(setCooldown(10000))
-    .use((context) => {
+    .use<Cooldown>(setCooldown(15000))
+    .use(async (context) => {
         const { bot, message } = context;
         const metadata = mapTreeToMetadata(bot.group);
 
-        const help = splitToChunks(metadata, 4);
+        const help = splitToChunks(metadata, 6);
+
+        const prefix: string =
+            (
+                await knex("servers").where({
+                    serverid: message.guildId
+                })
+            )[0].prefix || "!";
 
         return help.map((_, i) => {
             return message.channel.send(
-                "```makefile\n" +
+                (
+                    "```makefile\n" +
                     help[i].map((item, index) => {
                         return `\n[${i * help[0].length + index + 1}]: ${
                             item.name
                         } - ${item.usage}\n- ${item.description}`;
                     }) +
                     "```"
+                ).replaceAll("cc!", prefix)
             );
         });
     });
