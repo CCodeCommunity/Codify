@@ -13,19 +13,17 @@ import { logEvent } from "../../reactions/auditlogs";
 
 const setChannelId = async (
     serverid: string | undefined,
-    auditchannel: string
+    auditchannel: string | null
 ): Promise<boolean> => {
     try {
         const serverRow = await knex("servers").where({ serverid });
         if (serverRow.length === 0) {
             await knex("servers").insert({ serverid, auditchannel });
         } else {
-            await knex("servers")
-                .where({ serverid })
-                .update({
-                    serverid,
-                    auditchannel
-                });
+            await knex("servers").where({ serverid }).update({
+                serverid,
+                auditchannel
+            });
         }
         return true;
     } catch (error) {
@@ -38,13 +36,13 @@ export default new Command()
     .setMetadata(
         createMetadata({
             name: "Set the audit log channel for your server.",
-            usage: "cc!setauditchannel [channelid]",
+            usage: "cc!setauditchannel <channelid>",
             description:
-                "It sets the channel for were all of the log messages will be sent by the bot."
+                "It sets the channel for were all of the log messages will be sent by the bot. Use no arguments to reset it."
         })
     )
     .use<Cooldown>(setCooldown(15000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
 
@@ -56,7 +54,18 @@ export default new Command()
             );
         }
         if (!args.length) {
-            return message.channel.send(`:x:**ERROR:** No argument provided.`);
+            if (await setChannelId(message.guild?.id, null)) {
+                logEvent(
+                    `<@${context.message.author.id}> has reset the audit log channel.`,
+                    context
+                );
+                return message.channel.send(
+                    ":white_check_mark:**Successfully reset the audit log channel.**"
+                );
+            } else
+                return message.channel.send(
+                    ":x:**Oops,** something went wrong."
+                );
         }
 
         if (await setChannelId(message.guild?.id, args[0])) {
