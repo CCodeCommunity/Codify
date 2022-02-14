@@ -21,11 +21,12 @@ export const logEvent = async (message: string, ctx: Context) => {
         const channel = (await ctx.message.client.channels.fetch(
             channelid
         )) as TextChannel;
-        channel.send(
-            `**${ctx.message.content.split(" ")[0]} in <#${
+        channel.send({
+            content: `**${ctx.message.content.split(" ")[0]} in <#${
                 ctx.message.channel.id
-            }>: ** ${message}`
-        );
+            }>: ** ${message}`,
+            allowedMentions: { users: [] }
+        });
     } catch (error) {
         console.log(error);
     }
@@ -40,7 +41,7 @@ export const logEventNoChannel = async (message: string, guildid: string) => {
         const channel = (await bot.client.channels.fetch(
             channelid
         )) as TextChannel;
-        channel.send(`${message}`);
+        channel.send({ allowedMentions: { users: [] }, content: `${message}` });
     } catch (error) {
         console.log(error);
     }
