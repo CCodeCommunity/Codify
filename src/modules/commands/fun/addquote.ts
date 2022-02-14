@@ -158,7 +158,6 @@ export default new Command()
                         }
                     }
                 );
-                if (message.channel.type !== "DM") message.delete();
             }, 1000);
         } catch (e) {
             return message.channel.send("**Error**: Something went wrong.");

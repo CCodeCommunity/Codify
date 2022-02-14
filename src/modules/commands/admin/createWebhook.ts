@@ -20,10 +20,9 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(20000))
-    .use(async context => {
+    .use(async (context) => {
         const { message } = context;
         const channel = message.channel as TextChannel;
-        if (message.guild !== null) message.delete();
         try {
             if (
                 message.member!.permissions.has("MANAGE_WEBHOOKS") ||

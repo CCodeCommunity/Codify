@@ -19,11 +19,9 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(3000))
-    .use<ParseArgumentsState>(context => {
+    .use<ParseArgumentsState>((context) => {
         const { message } = context;
         const { args } = context.state;
-
-        if (message.guild !== null) message.delete();
 
         if (!args.length) {
             return message.channel.send(`Absolutely nothing.`);

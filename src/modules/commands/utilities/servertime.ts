@@ -18,10 +18,8 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(5000))
-    .use<ParseArgumentsState>(context => {
+    .use<ParseArgumentsState>((context) => {
         const { message } = context;
-
-        if (message.guild !== null) message.delete();
 
         return message.channel.send(
             `${new Date().toLocaleString("en-GB", {

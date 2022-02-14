@@ -22,7 +22,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(5000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
 
@@ -76,8 +76,6 @@ export default new Command()
             subscription: !!subscriptionInterval,
             subscriptionInterval: subscriptionInterval || 0
         });
-
-        if (message.guild !== null) message.delete();
 
         logEvent(
             `<@${context.message.author.id}> has added the role <@&${roleId}> to the store.`,

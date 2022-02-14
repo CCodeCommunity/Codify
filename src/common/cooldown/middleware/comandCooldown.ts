@@ -22,7 +22,6 @@ export const setCooldown =
                 mostRecentTime
             ) {
                 state.lastTalkedAt = recentlySentCommand.get(key)!.lastTalkedAt;
-                if (message.channel.type !== "DM") message.delete();
 
                 return message.channel.send(
                     `You have to wait **${

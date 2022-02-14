@@ -44,8 +44,6 @@ export default new Command()
     .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
 
-        if (message.guild !== null) message.delete();
-
         if (!message.member!.permissions.has("ADMINISTRATOR")) {
             return message.channel.send(
                 ":x: **Oops,** you aren't allowed to do that. Make sure you have the `Administrator` permission."

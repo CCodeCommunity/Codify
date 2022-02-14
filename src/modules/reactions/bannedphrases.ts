@@ -25,8 +25,6 @@ export default new Command()
     .use(async (context) => {
         const { content, message } = context;
 
-        if (message.guild !== null) message.delete();
-
         message.channel.send(
             `<@${message.author.id}> wow nice easter egg, I wonder what the number means.`
         );

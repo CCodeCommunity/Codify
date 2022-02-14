@@ -20,11 +20,9 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(5000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
         const { args } = context.state;
-
-        if (message.guild !== null) message.delete();
 
         if (!args.length) {
             return message.channel.send(

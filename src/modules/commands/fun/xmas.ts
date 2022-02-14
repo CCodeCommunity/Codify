@@ -39,10 +39,8 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(3000))
-    .use<ParseArgumentsState>(context => {
+    .use<ParseArgumentsState>((context) => {
         const { message } = context;
-
-        if (message.guild !== null) message.delete();
 
         return message.channel.send(
             `${timeTillChristmas(new Date().getFullYear())}`

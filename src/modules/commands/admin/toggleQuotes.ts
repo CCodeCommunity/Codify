@@ -19,12 +19,10 @@ const toggleQuotes = async (serverid: string | undefined): Promise<boolean> => {
         } else {
             const currentValue = (await knex("servers").where({ serverid }))[0]
                 .usersquotes;
-            await knex("servers")
-                .where({ serverid })
-                .update({
-                    serverid,
-                    usersquotes: !currentValue
-                });
+            await knex("servers").where({ serverid }).update({
+                serverid,
+                usersquotes: !currentValue
+            });
         }
         return true;
     } catch (error) {
@@ -43,10 +41,8 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(15000))
-    .use<ParseArgumentsState>(async context => {
+    .use<ParseArgumentsState>(async (context) => {
         const { message } = context;
-
-        if (message.guild !== null) message.delete();
 
         if (!message.member!.permissions.has("ADMINISTRATOR")) {
             return message.channel.send(

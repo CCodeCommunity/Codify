@@ -55,8 +55,6 @@ export default new Command()
         const { message } = context;
         const rawArgs = context.state.args;
 
-        if (message.guild !== null) message.delete();
-
         const args = rawArgs
             .join(" ")
             .split("|")

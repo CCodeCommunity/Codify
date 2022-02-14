@@ -42,8 +42,6 @@ export default new Command()
         const { message } = context;
         const { args } = context.state;
 
-        if (message.guild !== null) message.delete();
-
         if (message.channel.type !== "DM")
             return message.channel.send(
                 "**Error:** You cannot initialise an assassination in a server, you can only do it in the dms."

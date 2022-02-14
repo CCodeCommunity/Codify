@@ -19,10 +19,8 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(1000))
-    .use<ParseArgumentsState>(context => {
+    .use<ParseArgumentsState>((context) => {
         const { message } = context;
-
-        if (message.guild !== null) message.delete();
 
         const randNum = Math.floor(Math.random() * 100) + 1;
 
