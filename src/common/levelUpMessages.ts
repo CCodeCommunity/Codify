@@ -5,12 +5,10 @@ const quotesIndexes: Map<string, number[]> = new Map<string, number[]>();
 const emojiIndexes: Array<number> = [];
 let numberOfTotalQuotes: number;
 
+type QuoteData = { quote: string; username: string | null; serverid: string };
+
 const initIndexes = async () => {
-    const quotes = (await knex("quotes").orderBy("quote")) as Array<{
-        quote: string;
-        username: string | null;
-        serverid: string;
-    }>;
+    const quotes = await knex<QuoteData>("quotes").orderBy("quote");
 
     numberOfTotalQuotes = quotes.length;
 
@@ -39,11 +37,7 @@ const checkForEmptyMapKey = (serverid: string, map: Map<string, number[]>) => {
 };
 
 const fixEmptyMapKey = async (serverid: string) => {
-    const quotes = (await knex("quotes").orderBy("quote")) as Array<{
-        quote: string;
-        username: string | null;
-        serverid: string;
-    }>;
+    const quotes = await knex<QuoteData>("quotes").orderBy("quote");
 
     const counterMap = new Map<string, { val: number }>();
 
@@ -68,11 +62,7 @@ const innitEmojiIndexes = (length: number) => {
 };
 
 const randomMessage = async (serverid: string): Promise<[string, string]> => {
-    const quotes = (await knex("quotes").orderBy("quote")) as Array<{
-        quote: string;
-        username: string | null;
-        serverid: string;
-    }>;
+    const quotes = await knex<QuoteData>("quotes").orderBy("quote");
 
     if (emojiIndexes.length == 0) innitEmojiIndexes(emojis.length);
     const indexEmoji = Math.floor(Math.random() * (emojiIndexes.length - 1));

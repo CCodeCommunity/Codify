@@ -1,3 +1,31 @@
+# [1.22.0](https://github.com/Vyctor661/codify/compare/v1.21.0...v1.22.0) (2021-12-27)
+
+
+### Features
+
+* new command age ([53d6456](https://github.com/Vyctor661/codify/commit/53d6456a302f1121017735f2ea03c2d1342e4f4e))
+
+# [1.21.0](https://github.com/Vyctor661/codify/compare/v1.20.0...v1.21.0) (2021-12-02)
+
+
+### Features
+
+* days till christmas left command ([d89e5c6](https://github.com/Vyctor661/codify/commit/d89e5c69f90617967a3577494360407a57ddda3a))
+
+# [1.20.0](https://github.com/Vyctor661/codify/compare/v1.19.2...v1.20.0) (2021-11-03)
+
+
+### Features
+
+* automatic status changing (at least in theory) ([fcf9889](https://github.com/Vyctor661/codify/commit/fcf988958645a82d4e0d69b94489a523ff20779c))
+
+## [1.19.2](https://github.com/Vyctor661/codify/compare/v1.19.1...v1.19.2) (2021-10-14)
+
+
+### Bug Fixes
+
+* make sure only non-bot reactions are picked up by trivia ([ecca7f4](https://github.com/Vyctor661/codify/commit/ecca7f4346857043c9da763f5ba91f5b40f01ec3))
+
 ## [1.19.1](https://github.com/Vyctor661/codify/compare/v1.19.0...v1.19.1) (2021-10-10)
 
 
