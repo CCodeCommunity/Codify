@@ -95,10 +95,7 @@ const randomMessage = async (serverid: string): Promise<[string, string]> => {
     );
     const quoteNumber = quotesIndexes.get(serverid)![index];
 
-    console.log(quotesIndexes.get(serverid)!.splice(index, 1));
-    console.log(quotesIndexes.get(serverid));
-
-    const serverQuotes = quotes.filter(quote => quote.serverid === serverid);
+    const serverQuotes = quotes.filter((quote) => quote.serverid === serverid);
 
     return [`*${serverQuotes[quoteNumber].quote}*`, `${emojis[emojiNumber]}`];
 };
