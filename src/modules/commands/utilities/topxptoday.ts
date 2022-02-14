@@ -25,7 +25,7 @@ async function generateTop(message: Message) {
                 i = 99;
                 break;
             }
-            if (message.guild?.member(`${top[i].userid}`))
+            if (message.guild?.members.cache.get(`${top[i].userid}`))
                 memberName = (
                     await message.guild!.members.fetch({
                         user: `${top[i].userid}`
@@ -54,10 +54,12 @@ const getPlaceLocal = async (uid: string, message: Message) => {
         .orderBy("dayxp", "desc")
         .orderBy("level", "desc");
 
-    const localTop = top.filter(a => message.guild?.member(`${a.userid}`));
+    const localTop = top.filter((a) =>
+        message.guild?.members.cache.get(`${a.userid}`)
+    );
 
     return (
-        localTop.findIndex(k => {
+        localTop.findIndex((k) => {
             const { userid } = k;
             return userid == uid;
         }) + 1
@@ -71,7 +73,7 @@ const getPlace = async (uid: string) => {
         .orderBy("level", "desc");
 
     return (
-        top.findIndex(k => {
+        top.findIndex((k) => {
             const { userid } = k;
             return userid == uid;
         }) + 1
@@ -88,7 +90,7 @@ export default new Command()
         })
     )
     .use<Cooldown>(setCooldown(20000))
-    .use(async context => {
+    .use(async (context) => {
         const { message } = context;
         const list = await generateTop(message);
         message.channel.send(
