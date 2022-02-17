@@ -75,13 +75,16 @@ export const auditEventsInitialiser = (client: Client) => {
                 channel.guildId
             );
     });
-    // client.on("channelUpdate", (oldc, newc) => {
-    //     if (newc.type !== "DM")
-    //         logEventNoChannel(
-    //             `Channel <#${newc.id}> has been updated.`,
-    //             newc.guildId
-    //         );
-    // });
+    client.on("channelUpdate", (oldc, newc) => {
+        if (newc.type !== "DM" && oldc.type !== "DM") {
+            if (newc.rawPosition !== oldc.rawPosition) return;
+
+            logEventNoChannel(
+                `Channel <#${newc.id}> has been updated.`,
+                newc.guildId
+            );
+        }
+    });
     client.on("emojiCreate", (emoji) => {
         logEventNoChannel(
             `A new emoji ${emoji} has been created.`,
