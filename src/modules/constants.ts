@@ -292,3 +292,5 @@ export const ymwdhms = (diff: number): string => {
         minutes > 1 ? "s" : ""
     } and ${seconds} Second${seconds > 1 ? "s" : ""}`;
 };
+
+export const alphanumericRegx = /[^A-Za-z0-9]/g;

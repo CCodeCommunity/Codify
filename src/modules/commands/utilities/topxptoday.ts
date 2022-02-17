@@ -9,6 +9,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { alphanumericRegx } from "../../constants";
 
 async function generateTop(message: Message) {
     const today = new Date(Date.now()).getDate();
@@ -16,7 +17,7 @@ async function generateTop(message: Message) {
         .where({ lastdayxp: today })
         .orderBy("dayxp", "desc")
         .orderBy("level", "desc");
-    let fill = "```styl\n";
+    let fill = "```less\n";
 
     for (let i = 0; i <= 9; i++) {
         let memberName;
@@ -30,7 +31,10 @@ async function generateTop(message: Message) {
             );
             const user = message.client.users.cache.get(`${top[i].userid}`);
 
-            if (member) memberName = user?.tag.split("#")[0];
+            if (member)
+                memberName = user?.tag
+                    .split("#")[0]
+                    .replace(alphanumericRegx, "");
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);

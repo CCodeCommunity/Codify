@@ -9,6 +9,7 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { alphanumericRegx } from "../../constants";
 
 async function fillFields(message: Message) {
     const top = await knex("user").orderBy("balance", "desc");
@@ -17,7 +18,7 @@ async function fillFields(message: Message) {
         .map((a) => a.balance)
         .reduce((p, c) => Number(p) + Number(c));
 
-    let fill = "```styl\n" + `[Economy Total]: $${economyTotal}\n\n`;
+    let fill = "```less\n" + `Economy Total: [$${economyTotal}]\n\n`;
     for (let i = 0; i <= 9; i++) {
         let memberName;
         do {
@@ -28,7 +29,10 @@ async function fillFields(message: Message) {
 
             const member = message.client.users.cache.get(`${top[i].userid}`);
 
-            if (member) memberName = member?.tag.split("#")[0];
+            if (member)
+                memberName = member?.tag
+                    .split("#")[0]
+                    .replace(alphanumericRegx, "");
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);
@@ -36,10 +40,10 @@ async function fillFields(message: Message) {
         const k = i + 1 == 10 ? "10" : `0${i + 1}`;
         if (i != 99) {
             fill += `[${k}]  #${memberName} \n`;
-            fill += `      Balance: $${top[i].balance} Percentage: ${(
+            fill += `      Balance: [$${top[i].balance}] Percentage: [${(
                 (Number(top[i].balance) / economyTotal) *
                 100
-            ).toFixed(2)}%\n\n`;
+            ).toFixed(2)}%]\n\n`;
         }
     }
     fill += "```";

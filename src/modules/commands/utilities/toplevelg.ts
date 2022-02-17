@@ -9,12 +9,13 @@ import {
     Cooldown,
     setCooldown
 } from "../../../common/cooldown/middleware/comandCooldown";
+import { alphanumericRegx } from "../../constants";
 
 async function generateTop(message: Message) {
     const top = await knex("user")
         .orderBy("level", "desc")
         .orderBy("xp", "desc");
-    let fill = "```styl\n";
+    let fill = "```less\n";
 
     for (let i = 0; i <= 9; i++) {
         let memberName;
@@ -26,7 +27,10 @@ async function generateTop(message: Message) {
 
             const member = message.client.users.cache.get(`${top[i].userid}`);
 
-            if (member) memberName = member?.tag.split("#")[0];
+            if (member)
+                memberName = member?.tag
+                    .split("#")[0]
+                    .replace(alphanumericRegx, "");
 
             if (memberName == undefined) top.shift();
         } while (memberName == undefined);
