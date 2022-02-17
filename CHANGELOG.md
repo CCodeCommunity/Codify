@@ -1,3 +1,14 @@
+## [1.24.1](https://github.com/Vyctor661/codify/compare/v1.24.0...v1.24.1) (2022-02-17)
+
+
+### Bug Fixes
+
+* another error that I spotted in heroku logs ([7cbcacd](https://github.com/Vyctor661/codify/commit/7cbcacd770a175aa2ee7601e3a2c76917bae62f2))
+* broken highlighting fixed ([c043172](https://github.com/Vyctor661/codify/commit/c043172f4c4c22e0b5e0d559aeb30c3faeef20f6))
+* hopefully this will fix the thing that caused the crash earlier today ([ff9ab1b](https://github.com/Vyctor661/codify/commit/ff9ab1ba37b804b1eaa4c9a9a329791291af08a7))
+* message update creating update loop in audit channel ([e514438](https://github.com/Vyctor661/codify/commit/e5144389ef31a6d1568257603f53c0f470adb076))
+* moving a channel around doesnt trigger the channelupdate audit a million times anymore ([e8e12fe](https://github.com/Vyctor661/codify/commit/e8e12fe5aed86be30b862390f24e132859084d42))
+
 # [1.24.0](https://github.com/Vyctor661/codify/compare/v1.23.0...v1.24.0) (2022-02-14)
 
 
