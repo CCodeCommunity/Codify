@@ -4,7 +4,7 @@ import knex from "../../../db/knex";
 export const matchServerPrefix = (): Matcher => async (context) => {
     const serverPrefix = (
         (await knex("servers").where({ serverid: context.message.guildId }))[0]
-            .prefix || "cc!"
+            ?.prefix || "cc!"
     ).replaceAll(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
     const regex = new RegExp(`^(${serverPrefix})`, "i");
