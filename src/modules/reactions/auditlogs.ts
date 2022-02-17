@@ -32,11 +32,18 @@ export const logEvent = async (message: string, ctx: Context) => {
     }
 };
 
-export const logEventNoChannel = async (message: string, guildid: string) => {
+export const logEventNoChannel = async (
+    message: string,
+    guildid: string,
+    sourceId?: string
+) => {
     try {
         const channelid = await getAuditChannelId(guildid);
 
         if (!channelid) return;
+        if (sourceId) {
+            if (sourceId === channelid) return;
+        }
 
         const channel = (await bot.client.channels.fetch(
             channelid
@@ -151,15 +158,17 @@ export const auditEventsInitialiser = (client: Client) => {
     client.on("messageDelete", (message) => {
         logEventNoChannel(
             `**Message:** _${message.content}_ ** sent by <@${message.author?.id}> has been deleted .**`,
-            message.guildId || ""
+            message.guildId || "",
+            message.channelId
         );
     });
-    // client.on("messageUpdate", (oldm, newm) => {
-    //     logEventNoChannel(
-    //         `**Message send by <@${oldm.author?.id}>** _${oldm.content}_ **has been edited into** _${newm.content}_`,
-    //         newm.guild?.id || ""
-    //     );
-    // });
+    client.on("messageUpdate", (oldm, newm) => {
+        logEventNoChannel(
+            `**Message send by <@${oldm.author?.id}>** _${oldm.content}_ **has been edited into** _${newm.content}_`,
+            newm.guild?.id || "",
+            newm.channelId
+        );
+    });
     client.on("guildUpdate", (oldg, newg) => {
         logEventNoChannel(
             `**The server settings have been updated.**`,
