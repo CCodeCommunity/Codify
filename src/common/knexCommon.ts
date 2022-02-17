@@ -236,21 +236,29 @@ export const checkSubscriptions = async (userId: string, client: Client) => {
                         .delete()
                         .where({ id: l.id });
                 } else {
-                    user?.send(
-                        `:timer: Looks like your subscription to ${
-                            (
-                                await (
-                                    await client.guilds.fetch(store.serverId)
-                                )?.roles.fetch(store.roleId)
-                            )?.name
-                        } on ${await client.guilds.fetch(
-                            store.serverId
-                        )} has expired ${
-                            subscriptionsMissed > 1
-                                ? `${subscriptionsMissed} times`
-                                : ""
-                        }, but you have the sufficient funds to pay for another subscription. Your subscription will continue and automatically renew when it next expires unless you have insufficient funds.`
-                    );
+                    try {
+                        user?.send(
+                            `:timer: Looks like your subscription to ${
+                                (
+                                    await (
+                                        await client.guilds.fetch(
+                                            store.serverId
+                                        )
+                                    )?.roles.fetch(store.roleId)
+                                )?.name
+                            } on ${await client.guilds.fetch(
+                                store.serverId
+                            )} has expired ${
+                                subscriptionsMissed > 1
+                                    ? `${subscriptionsMissed} times`
+                                    : ""
+                            }, but you have the sufficient funds to pay for another subscription. Your subscription will continue and automatically renew when it next expires unless you have insufficient funds.`
+                        );
+                    } catch (error) {
+                        console.log(
+                            "Cannot send subscription message to " + user.tag
+                        );
+                    }
 
                     await knex("user")
                         .update({
