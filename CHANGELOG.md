@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/Vyctor661/codify/compare/v1.24.1...v1.25.0) (2022-02-18)
+
+
+### Features
+
+* changed the formula for daily rewards ([8f54dec](https://github.com/Vyctor661/codify/commit/8f54dec6c28c571a2b2342d80b49d665024a4dd1))
+
 ## [1.24.1](https://github.com/Vyctor661/codify/compare/v1.24.0...v1.24.1) (2022-02-17)
 
 
