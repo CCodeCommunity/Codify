@@ -38,7 +38,11 @@ async function daily(userid: string, amount: number) {
 
 const calculateAmount = async (userid: string): Promise<number> => {
     const level = (await knex("user").where({ userid }))[0].level;
-    return Number(level) + Math.floor(Math.random() * 100) + 1;
+    return (
+        Math.floor(Math.random() * Number(level) * Math.sqrt(Number(level))) +
+        Math.floor(Math.random() * 1000) +
+        1
+    );
 };
 
 export default new Command()
@@ -48,11 +52,11 @@ export default new Command()
             name: "Daily money",
             usage: "cc!daily/claim/dailyclaim/free",
             description:
-                "You get a random amount of coins from 1 to 100, can be used once a day"
+                "You get a random amount of coins, can be used once a day"
         })
     )
     .use<Cooldown>(setCooldown(60000))
-    .use(async context => {
+    .use(async (context) => {
         const { message } = context;
 
         try {
