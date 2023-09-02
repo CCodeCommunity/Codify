@@ -9,7 +9,7 @@
     "scripts": {
         "lint": "eslint **/*.ts",
         "lint:fix": "eslint **/*.ts --fix",
-        "start:dev": "node -r ./register.js src/index.ts",
+        "start:dev": "node -r ./register.js src/index.ts --trace-deprecation",
         "dev": "nodemon",
         "build": "tsc",
         "start": "node ./dist/src/index.js",

@@ -62,9 +62,11 @@ async function checkLevelup(userid: string, ctx: Message) {
                     );
 
                     const levelupchannel =
-                        ctx.client.channels.cache.get(
-                            guild.levelupmsgschannel
-                        ) || ctx.channel;
+                        (guild?.levelupmsgschannel
+                            ? ctx.client.channels.cache.get(
+                                  guild.levelupmsgschannel
+                              )
+                            : ctx.channel) || ctx.channel;
 
                     if (
                         levelupchannel.type !== "DM" &&
@@ -95,7 +97,7 @@ async function checkLevelup(userid: string, ctx: Message) {
 }
 
 export const awardMostXpToday = async (userid: string, ctx: Message) => {
-    const lastAwardDay = (await knex("awarddays"))[0].mostxpinaday;
+    const lastAwardDay = (await knex("awarddays"))[0]?.mostxpinaday || 0;
     const user = (await knex("user").where({ userid }))[0];
     const today = new Date(Date.now()).getDate();
     const topUserLastAwardDay = (

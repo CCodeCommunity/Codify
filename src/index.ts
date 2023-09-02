@@ -82,7 +82,10 @@ intents.add(
 );
 
 const adapter = new Adapter({
-    token: process.env.BOT_TOKEN || "",
+    token:
+        (process.env.NODE_ENV === "production"
+            ? process.env.BOT_TOKEN
+            : process.env.BOT_TOKEN_INDEV) || "",
     intents
 });
 

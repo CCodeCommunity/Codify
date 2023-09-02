@@ -18,7 +18,10 @@ const options: Config = {
 };
 
 const configs: Record<string, Config> = {
-    development: options,
+    development: {
+        ...options,
+        connection: process.env.DATABASE_URL + "?ssl=no-verify"
+    },
 
     production: {
         ...options,

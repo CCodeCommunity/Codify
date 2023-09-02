@@ -7,7 +7,7 @@ import knex from "../../../db/knex";
 const getAuditChannelId = async (serverid?: string) => {
     if (!serverid) return;
     const channelid = (await knex("servers").where({ serverid }))[0]
-        .auditchannel;
+        ?.auditchannel;
     if (channelid) return channelid;
     return;
 };
