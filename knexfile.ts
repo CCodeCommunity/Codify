@@ -6,7 +6,8 @@ config();
 const options: Config = {
     client: process.env.DB_CLIENT,
     connection: process.env.CONNECTION || {
-        filename: "db/db.sqlite3"
+        filename: "db/db.sqlite3",
+        ssl: { rejectUnauthorized: false }
     },
     migrations: {
         directory: "db/migrations",
@@ -20,12 +21,18 @@ const options: Config = {
 const configs: Record<string, Config> = {
     development: {
         ...options,
-        connection: process.env.DATABASE_URL + "?ssl=no-verify"
+        connection: {
+            connectionString: process.env.DATABASE_URL + "?sslmode=disable",
+            ssl: false
+        }
     },
 
     production: {
         ...options,
-        connection: process.env.DATABASE_URL + "?ssl=no-verify"
+        connection: {
+            connectionString: process.env.DATABASE_URL + "?sslmode=disable",
+            ssl: false
+        }
     }
 };
 
